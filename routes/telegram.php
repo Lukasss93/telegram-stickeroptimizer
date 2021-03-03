@@ -1,9 +1,9 @@
 <?php
 
+use App\Telegram\Commands\StartCommand;
 use SergiX44\Nutgram\Nutgram;
 
 /** @var Nutgram $bot */
 
-$bot->onCommand('start', function(Nutgram $bot){
-    $bot->sendMessage('hello world!');
-});
+$bot->onCommand('start', StartCommand::class);
+$bot->onCommand('help', StartCommand::class);
