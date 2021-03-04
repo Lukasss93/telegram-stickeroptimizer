@@ -10,14 +10,10 @@
 function message(string $view, array $values = []): string
 {
     return rescue(function () use ($view, $values) {
-        $message = view("messages.$view", $values)->render();
-
-        //remove line breaks
-        $message = preg_replace('/\r\n|\r|\n/', '', $message);
-
-        //replace <br> with \n
-        $message = str_replace(['<br>', '<BR>'], "\n", $message);
-
-        return $message;
+        return (string)Str::of(view("messages.$view", $values)->render())
+            //remove line breaks
+            ->replaceMatches('/\r\n|\r|\n/', '')
+            //replace <br> with \n
+            ->replace(['<br>', '<BR>'], "\n");
     }, 'messages.' . $view, true);
 }
