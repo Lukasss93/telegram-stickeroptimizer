@@ -1,0 +1,11 @@
+group,key,en
+about,bot,🤖 Bot
+about,name,<b>Name:</b> :value
+about,username,<b>Username:</b> :value
+about,version,<b>Version:</b> :value
+about,source,<b>Source code:</b> :value
+about,changelog,<b>Changelog:</b> :value
+about,developer,👤 Developer
+about,email,<b>Email:</b> :value
+about,website,<b>Website:</b> :value
+start,description,"Just send me an image or sticker, and I will convert it to a png file and optimized it to make its size smaller than or equal to 350Kb, so that you will be able to add it to a sticker pack using the @stickers bot."
