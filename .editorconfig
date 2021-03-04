@@ -15,6 +15,9 @@ trim_trailing_whitespace = false
 [*.{yml,yaml}]
 indent_size = 2
 
+[*.blade.php]
+trim_trailing_whitespace = false
+
 [*.php]
 ij_php_align_key_value_pairs = false
 ij_php_comma_after_last_array_element = true
