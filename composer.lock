@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc61230030a42d5d98584f30dd66b10e",
+    "content-hash": "296bf13e4a77c25d03bd3dd11c13661b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5649,6 +5649,129 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2021-03-02T16:47:59+00:00"
+        },
+        {
+            "name": "loilo/fuse",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loilo/Fuse.git",
+                "reference": "108cb7fb1375c84c92a5ce06419c3e893fd59683"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loilo/Fuse/zipball/108cb7fb1375c84c92a5ce06419c3e893fd59683",
+                "reference": "108cb7fb1375c84c92a5ce06419c3e893fd59683",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fuse\\": "src/"
+                },
+                "files": [
+                    "src/Bitap/matched_indices.php",
+                    "src/Bitap/pattern_alphabet.php",
+                    "src/Bitap/regex_search.php",
+                    "src/Bitap/score.php",
+                    "src/Bitap/search.php",
+                    "src/Helpers/deep_value.php",
+                    "src/Helpers/get.php",
+                    "src/Helpers/is_list.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Reuschel",
+                    "email": "florian@loilo.de"
+                }
+            ],
+            "description": "Fuzzy search for PHP based on Bitap algorithm",
+            "support": {
+                "issues": "https://github.com/loilo/Fuse/issues",
+                "source": "https://github.com/loilo/Fuse/tree/v4.0.0"
+            },
+            "time": "2021-01-05T07:42:38+00:00"
+        },
+        {
+            "name": "lukasss93/laravel-larex",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lukasss93/laravel-larex.git",
+                "reference": "6b10cbf78940d85192b404d6c41eea3ce7f034be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lukasss93/laravel-larex/zipball/6b10cbf78940d85192b404d6c41eea3ce7f034be",
+                "reference": "6b10cbf78940d85192b404d6c41eea3ce7f034be",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "loilo/fuse": "^4.0",
+                "php": "^8.0|^7.4|^7.3"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.5",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lukasss93\\Larex\\LarexServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lukasss93\\Larex\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luca Patera",
+                    "email": "lucapatera@outlook.it",
+                    "homepage": "https://www.lucapatera.it/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Translate your Laravel application from a single CSV file!",
+            "keywords": [
+                "csv",
+                "i18n",
+                "laravel",
+                "localization",
+                "translation"
+            ],
+            "support": {
+                "issues": "https://github.com/Lukasss93/laravel-larex/issues",
+                "source": "https://github.com/Lukasss93/laravel-larex/tree/v2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Lukasss93",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-01-09T21:09:12+00:00"
         },
         {
             "name": "mockery/mockery",
