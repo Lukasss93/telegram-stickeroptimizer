@@ -34,20 +34,7 @@ class BotCommandsCommand extends Command
         /** @var Nutgram $bot */
         $bot = app(Nutgram::class);
 
-        $commands = collect([])
-            ->put('start', 'Welcome message')
-            ->put('help', 'Help message')
-            ->put('about', 'About the bot')
-            ->map(function ($item, $key) {
-                $command = new BotCommand();
-                $command->command = $key;
-                $command->description = $item;
-                return $command;
-            })
-            ->values()
-            ->toArray();
-
-        $bot->setMyCommands($commands);
+        $bot->setMyCommands(config('telegram.bot.commands', []));
 
         $this->info('Done.');
 
