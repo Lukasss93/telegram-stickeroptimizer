@@ -17,6 +17,7 @@
         "sergix44/nutgram": "^0.5"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.9",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
@@ -59,6 +60,26 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "ide-helper-meta": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
+        ],
+        "ide-helper-models": [
+            "@php artisan ide-helper:models -W"
+        ],
+        "migrate-fresh": [
+            "@php artisan migrate:fresh",
+            "@php artisan ide-helper:models -W"
+        ],
+        "bot:commands": [
+            "@php artisan bot:commands"
+        ],
+        "bot:run": [
+            "@php artisan bot:run"
+        ],
+        "larex:export": [
+            "@php artisan larex:export"
         ]
     }
 }
