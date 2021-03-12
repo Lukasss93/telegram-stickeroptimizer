@@ -5,7 +5,7 @@ namespace App\Telegram\Middleware;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 
-class CheckForMaintenance
+class CheckMaintenance
 {
     public function __invoke(Nutgram $bot, $next): void
     {
