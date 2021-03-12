@@ -38,4 +38,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function report(Throwable $e)
+    {
+        parent::report($e);
+
+        if (app()->runningInConsole()) {
+            echo $e;
+        }
+    }
 }
