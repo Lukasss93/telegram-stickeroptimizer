@@ -21,6 +21,7 @@ return [
             ['command' => 'help', 'description' => 'Help message'],
             ['command' => 'about', 'description' => 'About the bots'],
         ],
+        'online' => (bool) env('BOT_ONLINE', true),
     ],
 
 ];
