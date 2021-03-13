@@ -16,9 +16,11 @@ return [
         'version' => env('BOT_VERSION'),
         'source' => env('BOT_SOURCE'),
         'changelog' => env('BOT_CHANGELOG'),
+        'privacy' => env('BOT_PRIVACY'),
         'commands' => [
             ['command' => 'start', 'description' => 'Welcome message'],
             ['command' => 'help', 'description' => 'Help message'],
+            ['command' => 'privacy', 'description' => 'Privacy Policy'],
             ['command' => 'about', 'description' => 'About the bots'],
         ],
         'online' => (bool) env('BOT_ONLINE', true),

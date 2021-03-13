@@ -12,3 +12,5 @@ start,description,"Just send me an image or sticker, and I will convert it to a 
 maintenance,title,Bot currently in maintenance mode.
 maintenance,back,It will be back soon!
 maintenance,offline,Bot currently offline.
+privacy,title,Privacy Policy
+privacy,description,Read the privacy policy clicking the button below.
