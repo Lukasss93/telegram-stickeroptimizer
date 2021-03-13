@@ -11,26 +11,32 @@ class CollectChat
     public function __invoke(Nutgram $bot, $next): void
     {
         $user = $bot->user();
+
+        if ($user === null) {
+            return;
+        }
+
         $type = match ($bot->update()?->getType()) {
             UpdateTypes::MESSAGE => $bot->update()->message->chat->type,
+            UpdateTypes::EDITED_MESSAGE => $bot->update()->edited_message->chat->type,
             UpdateTypes::INLINE_QUERY, UpdateTypes::CALLBACK_QUERY => 'private',
-            default => null,
+            default => 'unknown',
         };
 
-        if ($user !== null && $type !== null) {
-            Chat::updateOrCreate([
-                'chat_id' => $user->id,
-            ], [
-                    'type' => $type,
-                    'first_name' => $user->first_name,
-                    'last_name' => $user->last_name,
-                    'username' => $user->username,
-                    'language_code' => $user->language_code,
-                    'status' => true,
-                    'blocked' => false,
-                ]
-            );
-        }
+        $chat = Chat::updateOrCreate([
+            'chat_id' => $user->id,
+        ], [
+                'type' => $type,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'username' => $user->username,
+                'language_code' => $user->language_code,
+                'status' => true,
+                'blocked' => false,
+            ]
+        );
+
+        $bot->setData(Chat::class, $chat);
 
         $next($bot);
     }

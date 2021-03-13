@@ -1946,4 +1946,9 @@ namespace PHPSTORM_META
     override(\tap(0), type(0));
     override(\optional(0), type(0));
 
+
+    override(\SergiX44\Nutgram\Nutgram::getData(), map([
+        '' => '@',
+    ]));
+
 }
