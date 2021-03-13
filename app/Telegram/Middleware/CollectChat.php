@@ -31,7 +31,7 @@ class CollectChat
                 'last_name' => $user->last_name,
                 'username' => $user->username,
                 'language_code' => $user->language_code,
-                'status' => true,
+                'started' => true,
                 'blocked' => false,
             ]
         );

@@ -18,7 +18,7 @@ use SergiX44\Nutgram\Telegram\Types\User;
  * @property string|null $last_name
  * @property string|null $username
  * @property string|null $language_code
- * @property bool $status
+ * @property bool $started
  * @property bool $blocked
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -46,7 +46,7 @@ class Chat extends Model
     public $incrementing = false;
     protected $guarded = [];
     protected $casts = [
-        'status' => 'boolean',
+        'started' => 'boolean',
         'blocked' => 'boolean',
     ];
 
