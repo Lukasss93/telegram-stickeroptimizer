@@ -3,6 +3,7 @@
 use App\Telegram\Commands\AboutCommand;
 use App\Telegram\Commands\PrivacyCommand;
 use App\Telegram\Commands\StartCommand;
+use App\Telegram\Conversations\FeedbackConversation;
 use App\Telegram\Handlers\ExceptionsHandler;
 use App\Telegram\Handlers\UpdateChatStatus;
 use App\Telegram\Middleware\CheckMaintenance;
@@ -20,6 +21,7 @@ $bot->onMyChatMember(UpdateChatStatus::class);
 
 $bot->onCommand('start', StartCommand::class);
 $bot->onCommand('help', StartCommand::class);
+$bot->onCommand('feedback', FeedbackConversation::class);
 $bot->onCommand('privacy', PrivacyCommand::class);
 $bot->onCommand('about', AboutCommand::class);
 

@@ -20,6 +20,7 @@ return [
         'commands' => [
             ['command' => 'start', 'description' => 'Welcome message'],
             ['command' => 'help', 'description' => 'Help message'],
+            ['command' => 'feedback', 'description' => 'Send a feedback about the bot'],
             ['command' => 'privacy', 'description' => 'Privacy Policy'],
             ['command' => 'about', 'description' => 'About the bots'],
         ],

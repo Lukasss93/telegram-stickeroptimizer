@@ -81,6 +81,9 @@
         ],
         "larex:export": [
             "@php artisan larex:export"
+        ],
+        "larex:export --watch": [
+            "@php artisan larex:export --watch"
         ]
     }
 }

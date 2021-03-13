@@ -1,0 +1,1 @@
+@lang('feedback.cancelled')

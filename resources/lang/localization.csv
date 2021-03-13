@@ -14,3 +14,11 @@ maintenance,back,It will be back soon!
 maintenance,offline,Bot currently offline.
 privacy,title,Privacy Policy
 privacy,description,Read the privacy policy clicking the button below.
+common,from,From:
+common,message,Message:
+common,cancel,Cancel
+feedback,ask,Please enter a feedback about the bot:
+feedback,cancelled,Feedback cancelled.
+feedback,new,New feedback!
+feedback,thanks,Thank you for your feedback!
+feedback,wrong,Invalid content. Please send only text.
