@@ -35,7 +35,7 @@ class CollectChat
             ]
         );
 
-        if ($bot->message()?->chat?->type === 'private') {
+        if ($chat->started_at !== null && $bot->message()?->chat?->type === 'private') {
             $chat->started_at = now();
             $chat->save();
         }
