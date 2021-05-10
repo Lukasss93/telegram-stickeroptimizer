@@ -18,8 +18,8 @@ use SergiX44\Nutgram\Telegram\Types\User;
  * @property string|null $last_name
  * @property string|null $username
  * @property string|null $language_code
- * @property bool $started
- * @property bool $blocked
+ * @property Carbon|null $started_at
+ * @property Carbon|null $blocked_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @method static Builder|Chat newModelQuery()
@@ -45,10 +45,7 @@ class Chat extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     protected $guarded = [];
-    protected $casts = [
-        'started' => 'boolean',
-        'blocked' => 'boolean',
-    ];
+    protected $dates = ['started_at', 'blocked_at'];
 
     public static function findFromUser(?User $user): ?Chat
     {

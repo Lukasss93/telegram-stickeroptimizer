@@ -31,10 +31,14 @@ class CollectChat
                 'last_name' => $user->last_name,
                 'username' => $user->username,
                 'language_code' => $user->language_code,
-                'started' => true,
-                'blocked' => false,
+                'blocked_at' => null,
             ]
         );
+
+        if ($bot->message()?->chat?->type === 'private') {
+            $chat->started_at = now();
+            $chat->save();
+        }
 
         $bot->setData(Chat::class, $chat);
 

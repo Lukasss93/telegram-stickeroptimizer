@@ -20,8 +20,8 @@ class CreateChatsTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('username')->nullable();
             $table->string('language_code')->nullable();
-            $table->boolean('started')->default(false);
-            $table->boolean('blocked')->default(false);
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('blocked_at')->nullable();
             $table->timestamps();
         });
     }
