@@ -19,7 +19,7 @@ class ExceptionsHandler
             'line' => $e->getLine(),
             'file' => str_replace(base_path(), '', $e->getFile()),
         ]), [
-            'chat_id' => config('telegram.dev.id'),
+            'chat_id' => config('developer.id'),
         ]);
     }
 }

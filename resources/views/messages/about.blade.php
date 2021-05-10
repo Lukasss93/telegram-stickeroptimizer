@@ -13,7 +13,7 @@
 <br>
 
 <b>@lang('about.developer')</b><br>
-@lang('about.name',['value'=>config('telegram.dev.name')])<br>
-@lang('about.username',['value'=>config('telegram.dev.username')])<br>
-@lang('about.email',['value'=>config('telegram.dev.email')])<br>
-@lang('about.website',['value'=>config('telegram.dev.website')])<br>
+@lang('about.name',['value'=>config('developer.name')])<br>
+@lang('about.username',['value'=>config('developer.username')])<br>
+@lang('about.email',['value'=>config('developer.email')])<br>
+@lang('about.website',['value'=>config('developer.website')])<br>

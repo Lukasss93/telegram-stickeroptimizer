@@ -8,7 +8,7 @@ class OnlyDev
 {
     public function __invoke(Nutgram $bot, $next): void
     {
-        if ($bot->user()?->id !== config('telegram.dev.id')) {
+        if ($bot->user()?->id !== config('developer.id')) {
             return;
         }
 

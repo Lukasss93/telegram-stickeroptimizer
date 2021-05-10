@@ -74,7 +74,7 @@ class FeedbackConversation extends Conversation
             'user_id' => $message->from->id,
             'message' => $this->feedback,
         ]), [
-            'chat_id' => config('telegram.dev.id'),
+            'chat_id' => config('developer.id'),
         ]);
 
         //close conversation

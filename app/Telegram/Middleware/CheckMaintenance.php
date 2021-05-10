@@ -9,7 +9,7 @@ class CheckMaintenance
 {
     public function __invoke(Nutgram $bot, $next): void
     {
-        if (app()->isDownForMaintenance() && $bot->user()?->id !== config('telegram.dev.id')) {
+        if (app()->isDownForMaintenance() && $bot->user()?->id !== config('developer.id')) {
             if ($bot->isCallbackQuery()) {
                 $bot->answerCallbackQuery();
             }
@@ -17,6 +17,7 @@ class CheckMaintenance
             $bot->sendMessage(message('maintenance'), [
                 'parse_mode' => ParseMode::HTML,
             ]);
+
             return;
         }
 
