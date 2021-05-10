@@ -17,8 +17,3 @@ use SergiX44\Nutgram\Nutgram;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::post('/hook', function () {
-    app(Nutgram::class)->run();
-});
-
