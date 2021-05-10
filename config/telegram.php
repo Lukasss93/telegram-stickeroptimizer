@@ -20,11 +20,21 @@ return [
         'commands' => [
             ['command' => 'start', 'description' => 'Welcome message'],
             ['command' => 'help', 'description' => 'Help message'],
+            ['command' => 'donate', 'description' => 'Make a donation'],
             ['command' => 'feedback', 'description' => 'Send a feedback about the bot'],
             ['command' => 'privacy', 'description' => 'Privacy Policy'],
             ['command' => 'about', 'description' => 'About the bots'],
         ],
         'online' => (bool) env('BOT_ONLINE', true),
+        'donations' => [
+            'enabled' => (int) env('BOT_DONATIONS_ENABLED', false),
+            'terms' => env('BOT_DONATIONS_TERMS'),
+            'providers' => [
+                'telegram' => env('BOT_DONATIONS_PROVIDER_TOKEN'),
+                'github' => env('BOT_DONATIONS_PROVIDER_GITHUB_URL'),
+                'paypal' => env('BOT_DONATIONS_PROVIDER_PAYPAL_URL'),
+            ],
+        ],
     ],
 
 ];

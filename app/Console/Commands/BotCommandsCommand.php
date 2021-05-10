@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Types\BotCommand;
 
 class BotCommandsCommand extends Command
 {
@@ -34,7 +34,14 @@ class BotCommandsCommand extends Command
         /** @var Nutgram $bot */
         $bot = app(Nutgram::class);
 
-        $bot->setMyCommands(config('telegram.bot.commands', []));
+        //get bot commands and remove /donate if disabled
+        $commands = collect(config('telegram.bot.commands', []))
+            ->when(!config('telegram.bot.donations.enabled'), function (Collection $collection) {
+                return $collection->reject(fn ($item) => $item['command'] === 'donate');
+            });
+
+        //set commands
+        $bot->setMyCommands($commands->toArray());
 
         $this->info('Done.');
 

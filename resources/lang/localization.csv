@@ -22,3 +22,12 @@ feedback,cancelled,Feedback cancelled.
 feedback,new,New feedback!
 feedback,thanks,Thank you for your feedback!
 feedback,wrong,Invalid content. Please send only text.
+donate,donation,Donation
+donate,support_by_donating,Support this bot by donating
+donate,select_amount,Select the amount you wish to donate:
+donate,consider_donation,"If you want to support my work, please consider making a donation."
+donate,appreciated,That'll be very much appreciated 😊
+donate,terms,Terms and conditions for donation payments
+donate,thanks,Thank you for your donation!
+common,close,Close
+common,back,Back

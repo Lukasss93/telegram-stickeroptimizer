@@ -1,15 +1,11 @@
 <?php
 
-use App\Telegram\Commands\AboutCommand;
-use App\Telegram\Commands\PrivacyCommand;
-use App\Telegram\Commands\StartCommand;
-use App\Telegram\Conversations\FeedbackConversation;
-use App\Telegram\Handlers\ExceptionsHandler;
-use App\Telegram\Handlers\UpdateChatStatus;
-use App\Telegram\Middleware\CheckMaintenance;
-use App\Telegram\Middleware\CollectChat;
-use App\Telegram\Middleware\CheckOnline;
+use App\Telegram\Commands\{AboutCommand, PrivacyCommand, StartCommand};
+use App\Telegram\Conversations\{DonateConversation, FeedbackConversation};
+use App\Telegram\Handlers\{ExceptionsHandler, PreCheckoutQueryHandler, SuccessfulPaymentHandler, UpdateChatStatus};
+use App\Telegram\Middleware\{CheckMaintenance, CheckOnline, CollectChat, DonationsEnabled};
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Attributes\MessageTypes;
 
 /** @var Nutgram $bot */
 
@@ -21,9 +17,14 @@ $bot->onMyChatMember(UpdateChatStatus::class);
 
 $bot->onCommand('start', StartCommand::class);
 $bot->onCommand('help', StartCommand::class);
+$bot->onCommand('start donate', DonateConversation::class)->middleware(DonationsEnabled::class);
+$bot->onCommand('donate', DonateConversation::class)->middleware(DonationsEnabled::class);
 $bot->onCommand('feedback', FeedbackConversation::class);
 $bot->onCommand('privacy', PrivacyCommand::class);
 $bot->onCommand('about', AboutCommand::class);
+
+$bot->onPreCheckoutQuery(PreCheckoutQueryHandler::class);
+$bot->onMessageType(MessageTypes::SUCCESSFUL_PAYMENT, SuccessfulPaymentHandler::class);
 
 $bot->onException(ExceptionsHandler::class);
 $bot->onApiError(ExceptionsHandler::class);
