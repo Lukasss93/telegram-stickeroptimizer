@@ -21,13 +21,13 @@ class DonateConversation extends OneMessageConversation
         $keyboard = InlineKeyboardMarkup::make();
 
         collect([])
-            ->when(config('telegram.bot.donations.providers.github') !== null, function (Collection $collection) {
-                return $collection->push(InlineKeyboardButton::make('Github Sponsor', config('telegram.bot.donations.providers.github')));
+            ->when(config('bot.donations.providers.github') !== null, function (Collection $collection) {
+                return $collection->push(InlineKeyboardButton::make('Github Sponsor', config('bot.donations.providers.github')));
             })
-            ->when(config('telegram.bot.donations.providers.paypal') !== null, function (Collection $collection) {
-                return $collection->push(InlineKeyboardButton::make('Paypal Donation', config('telegram.bot.donations.providers.paypal')));
+            ->when(config('bot.donations.providers.paypal') !== null, function (Collection $collection) {
+                return $collection->push(InlineKeyboardButton::make('Paypal Donation', config('bot.donations.providers.paypal')));
             })
-            ->when(config('telegram.bot.donations.providers.telegram') !== null, function (Collection $collection) {
+            ->when(config('bot.donations.providers.telegram') !== null, function (Collection $collection) {
                 return $collection->push(InlineKeyboardButton::make('Telegram Payment', callback_data: 'donate.telegram'));
             })->each(fn ($item) => $keyboard->addRow($item));
 
@@ -59,7 +59,7 @@ class DonateConversation extends OneMessageConversation
                 __('donate.donation'),
                 __('donate.support_by_donating'),
                 'donation',
-                config('telegram.bot.donations.providers.telegram'),
+                config('bot.donations.providers.telegram'),
                 'donation',
                 'EUR',
                 [['label' => "{$value}€", 'amount' => $value * 100]]

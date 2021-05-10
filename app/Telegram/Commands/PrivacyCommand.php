@@ -17,7 +17,7 @@ class PrivacyCommand
             'disable_web_page_preview' => true,
             'reply_markup' => InlineKeyboardMarkup::make()
                 ->addRow(
-                    InlineKeyboardButton::make(trans('privacy.title'), config('telegram.bot.privacy'))
+                    InlineKeyboardButton::make(trans('privacy.title'), config('bot.privacy'))
                 ),
         ]);
     }

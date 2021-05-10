@@ -36,7 +36,7 @@ class BotCommandsCommand extends Command
 
         //get bot commands and remove /donate if disabled
         $commands = collect(config('telegram.bot.commands', []))
-            ->when(!config('telegram.bot.donations.enabled'), function (Collection $collection) {
+            ->when(!config('bot.donations.enabled'), function (Collection $collection) {
                 return $collection->reject(fn ($item) => $item['command'] === 'donate');
             });
 

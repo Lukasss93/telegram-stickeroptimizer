@@ -9,7 +9,7 @@ class CheckOnline
 {
     public function __invoke(Nutgram $bot, $next): void
     {
-        if (!config('telegram.bot.online') && $bot->user()?->id !== config('developer.id')) {
+        if (!config('bot.online') && $bot->user()?->id !== config('developer.id')) {
             if ($bot->isCallbackQuery()) {
                 $bot->answerCallbackQuery();
             }
