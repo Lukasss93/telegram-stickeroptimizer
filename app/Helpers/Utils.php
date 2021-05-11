@@ -26,3 +26,15 @@ function stringToBoolean($value): bool
 {
     return filter_var($value, FILTER_VALIDATE_BOOLEAN);
 }
+
+/**
+ * Returns a list of locales or a locale by code
+ * @param string|null $code
+ * @return array|string|null
+ */
+function locale(string $code = null): array|string|null
+{
+    $locales = config('locales');
+
+    return $code === null ? $locales : ($locales[$code] ?? null);
+}
