@@ -3,12 +3,15 @@
 namespace App\Jobs;
 
 use App\Jobs\Middleware\RateLimited;
+use App\Models\Chat;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Exceptions\TelegramException;
 
 class SendNews implements ShouldQueue
 {
@@ -33,13 +36,27 @@ class SendNews implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     * @throws TelegramException
      */
     public function handle(): void
     {
         /** @var Nutgram $bot */
         $bot = app(Nutgram::class);
 
-        $bot->forwardMessage($this->chat_id, config('bot.news.channel_id'), $this->message_id);
+        try {
+            //forward message
+            $bot->forwardMessage($this->chat_id, config('bot.news.channel_id'), $this->message_id);
+        } catch (TelegramException $e) {
+            if (Str::contains($e->getMessage(), 'user is deactivated')) {
+                Chat::find($this->chat_id)?->delete();
+
+                return;
+            }
+
+            if (!Str::contains($e->getMessage(), ['bot was blocked by the user'])) {
+                throw $e;
+            }
+        }
     }
 
     /**
