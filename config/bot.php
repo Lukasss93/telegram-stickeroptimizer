@@ -29,4 +29,10 @@ return [
         ],
     ],
 
+    'news' => [
+        'channel_id' => (int) env('BOT_NEWS_CHANNEL_ID'),
+        'rate' => (int) env('BOT_NEWS_RATE', 2000),
+        'queue' => 'news',
+    ],
+
 ];

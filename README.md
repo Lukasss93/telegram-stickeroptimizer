@@ -33,7 +33,7 @@
     - [x] /donate command
     - [ ] /stats command
     - [ ] /settings command
-- [ ] News system
+- [x] News system
 - [ ] Sticker Optimization Core Logic
 
 ### Other TODOs
