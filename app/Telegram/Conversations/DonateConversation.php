@@ -40,6 +40,8 @@ class DonateConversation extends OneMessageConversation
         ]);
 
         $this->updateLastMessageStatus('menuHandler', $message);
+
+        stats('donate', 'command');
     }
 
     public function menuHandler(Nutgram $bot): void
@@ -54,17 +56,7 @@ class DonateConversation extends OneMessageConversation
             $this->donationMenu($bot);
         } elseif (str_starts_with($data, 'donate.telegram.value.')) {
             $value = (int) last(explode('.', $data));
-
-            $bot->sendInvoice(
-                __('donate.donation'),
-                __('donate.support_by_donating'),
-                'donation',
-                config('bot.donations.providers.telegram'),
-                'donation',
-                'EUR',
-                [['label' => "{$value}€", 'amount' => $value * 100]]
-            );
-
+            $this->donationInvoice($bot, $value);
         } elseif ($bot->isCallbackQuery()) {
             $bot->answerCallbackQuery();
         }
@@ -88,6 +80,23 @@ class DonateConversation extends OneMessageConversation
         ]);
 
         $this->updateLastMessageStatus('menuHandler', $message);
+
+        stats('donate.telegram', 'donation');
+    }
+
+    public function donationInvoice(Nutgram $bot, int $value): void
+    {
+        $bot->sendInvoice(
+            __('donate.donation'),
+            __('donate.support_by_donating'),
+            'donation',
+            config('bot.donations.providers.telegram'),
+            'donation',
+            'EUR',
+            [['label' => "{$value}€", 'amount' => $value * 100]]
+        );
+
+        stats('donate.invoice', 'donation', ['value' => $value]);
     }
 
     public function cancelDonation(Nutgram $bot): void
@@ -101,5 +110,7 @@ class DonateConversation extends OneMessageConversation
         }
 
         $this->end();
+
+        stats('donate.cancel', 'donation');
     }
 }

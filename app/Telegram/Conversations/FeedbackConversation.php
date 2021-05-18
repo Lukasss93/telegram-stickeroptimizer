@@ -30,6 +30,8 @@ class FeedbackConversation extends Conversation
                 ),
         ]);
         $this->setSkipHandlers(true)->next('getFeedback');
+
+        stats('feedback', 'command');
     }
 
     /**
@@ -46,6 +48,7 @@ class FeedbackConversation extends Conversation
             $bot->deleteMessage($callbackMessage->chat->id, $callbackMessage->message_id);
             $bot->sendMessage(message('feedback.cancel'));
             $this->end();
+            stats('feedback.cancel', 'feedback');
             return;
         }
 
@@ -79,5 +82,7 @@ class FeedbackConversation extends Conversation
 
         //close conversation
         $this->end();
+
+        stats('feedback.sent', 'feedback');
     }
 }

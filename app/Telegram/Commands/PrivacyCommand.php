@@ -20,5 +20,7 @@ class PrivacyCommand
                     InlineKeyboardButton::make(trans('privacy.title'), config('bot.privacy'))
                 ),
         ]);
+
+        stats('privacy', 'command');
     }
 }

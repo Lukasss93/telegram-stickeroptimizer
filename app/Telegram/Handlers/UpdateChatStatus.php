@@ -16,6 +16,8 @@ class UpdateChatStatus
         if ($chat !== null && $chatMember !== null) {
             $chat->blocked_at = $chatMember->new_chat_member->status === ChatMemberStatus::KICKED ? now() : null;
             $chat->save();
+
+            stats($chat->blocked_at === null ? 'chat.unblocked' : 'chat.blocked', 'chat status');
         }
     }
 }

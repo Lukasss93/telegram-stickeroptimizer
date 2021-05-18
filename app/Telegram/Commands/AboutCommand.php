@@ -12,7 +12,9 @@ class AboutCommand
     {
         $bot->sendMessage(message('about'), [
             'parse_mode' => ParseMode::HTML,
-            'disable_web_page_preview'=>true
+            'disable_web_page_preview' => true,
         ]);
+
+        stats('about', 'command');
     }
 }
