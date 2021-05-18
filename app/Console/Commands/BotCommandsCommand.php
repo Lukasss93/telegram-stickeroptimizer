@@ -35,10 +35,18 @@ class BotCommandsCommand extends Command
         $bot = app(Nutgram::class);
 
         //get bot commands and remove /donate if disabled
-        $commands = collect(config('telegram.bot.commands', []))
+        $commands = collect(config('bot.commands', []))
             ->when(!config('bot.donations.enabled'), function (Collection $collection) {
                 return $collection->reject(fn ($item) => $item['command'] === 'donate');
-            });
+            })
+            ->each(fn ($item, $key) => $this->line("<fg=green>$key</> - $item"))
+            ->map(function ($item, $key) {
+                return [
+                    'command' => $key,
+                    'description' => $item,
+                ];
+            })
+            ->values();
 
         //set commands
         $bot->setMyCommands($commands->toArray());
