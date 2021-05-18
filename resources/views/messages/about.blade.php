@@ -4,11 +4,11 @@
 @lang('about.version',['value'=>config('bot.version')])<br>
 
 @if(config('bot.source'))
-    @lang('about.source',['value'=>'<a href="'.config('bot.source').'">Github</a>'])<br>
+@lang('about.source',['value'=>'<a href="'.config('bot.source').'">Github</a>'])<br>
 @endif
 
 @if(config('bot.changelog'))
-    @lang('about.changelog',['value'=>'<a href="'.config('bot.changelog').'">Telegraph</a>'])<br>
+@lang('about.changelog',['value'=>'<a href="'.config('bot.changelog').'">Telegraph</a>'])<br>
 @endif
 <br>
 
