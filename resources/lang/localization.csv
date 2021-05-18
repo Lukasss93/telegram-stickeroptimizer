@@ -31,3 +31,10 @@ donate,terms,Terms and conditions for donation payments,Termini e condizioni per
 donate,thanks,Thank you for your donation!,Grazie per la tua donazione!
 common,close,Close,Chiudi
 common,back,Back,Indietro
+stats,title,<b>📊 Statistics</b>,<b>📊 Statistiche</b>
+stats,stickers.today,<b>🆕 Stickers optimized today:</b> :value,<b>🆕 Sticker ottimizzati oggi:</b> :value
+stats,stickers.total,<b>🖼 Total stickers optimized:</b> :value,<b>🖼 Totale sticker ottimizzati:</b> :value
+stats,users.today.new,<b>🆕 New users today:</b> :value,<b>🆕 Nuovi utenti oggi:</b> :value
+stats,users.today.active,<b>✳️ Active users today:</b> :value,<b>✳️ Utenti attivi oggi:</b> :value
+stats,users.total,<b>👥 Total users:</b> :value,<b>👥 Utenti totali:</b> :value
+stats,last_update,<i>Last update:</i> :value,<i>Ultimo aggiornamento:</i> :value
