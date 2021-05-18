@@ -1,6 +1,6 @@
 <?php
 
-use App\Telegram\Commands\{AboutCommand, PrivacyCommand, StartCommand};
+use App\Telegram\Commands\{AboutCommand, PrivacyCommand, StartCommand, StatsCommand};
 use App\Telegram\Conversations\{DonateConversation, FeedbackConversation};
 use App\Telegram\Handlers\{ExceptionsHandler, PreCheckoutQueryHandler, SuccessfulPaymentHandler, UpdateChatStatus};
 use App\Telegram\Middleware\{CheckMaintenance, CheckOnline, CollectChat, DonationsEnabled};
@@ -19,6 +19,7 @@ $bot->onCommand('start', StartCommand::class);
 $bot->onCommand('help', StartCommand::class);
 $bot->onCommand('start donate', DonateConversation::class)->middleware(DonationsEnabled::class);
 $bot->onCommand('donate', DonateConversation::class)->middleware(DonationsEnabled::class);
+$bot->onCommand('stats', StatsCommand::class);
 $bot->onCommand('feedback', FeedbackConversation::class);
 $bot->onCommand('privacy', PrivacyCommand::class);
 $bot->onCommand('about', AboutCommand::class);

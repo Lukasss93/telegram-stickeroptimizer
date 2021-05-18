@@ -1,0 +1,11 @@
+<b>@lang('stats.title')</b><br>
+<br>
+@lang('stats.stickers.today',['value'=>$stickers_new])<br>
+@lang('stats.stickers.total',['value'=>$stickers_total])<br>
+<br>
+@lang('stats.users.today.new',['value'=>$users_new_today])<br>
+@lang('stats.users.today.active',['value'=>$users_active_today])<br>
+<br>
+@lang('stats.users.total',['value'=>$users_total])<br>
+<br>
+@lang('stats.last_update',['value'=>$last_update])

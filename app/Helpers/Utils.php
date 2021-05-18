@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Statistic;
+use SergiX44\Nutgram\Nutgram;
+
 /**
  * Render an HTML message
  * @param string $view
@@ -37,4 +40,14 @@ function locale(string $code = null): array|string|null
     $locales = config('locales');
 
     return $code === null ? $locales : ($locales[$code] ?? null);
+}
+
+function stats(string $action, string $category = null, array $value = null, int $chat_id = null): void
+{
+    Statistic::create([
+        'action' => $action,
+        'category' => $category,
+        'value' => $value,
+        'chat_id' => $chat_id ?? app(Nutgram::class)->update()?->getChat()?->id,
+    ]);
 }
