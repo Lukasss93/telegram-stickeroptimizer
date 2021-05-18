@@ -31,14 +31,13 @@
     - [x] /privacy command
     - [x] /feedback command
     - [x] /donate command
-    - [ ] /stats command
+    - [x] /stats command
     - [ ] /settings command
 - [x] News system
 - [ ] Sticker Optimization Core Logic
 
 ### Other TODOs
 
-- [ ] Localize entire app in Italian
 - [ ] Watermark
     - [ ] Font family
     - [ ] Font color
