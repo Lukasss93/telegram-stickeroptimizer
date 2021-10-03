@@ -1,5 +1,7 @@
 <?php
 
+/** @var Nutgram $bot */
+
 use App\Telegram\Commands\{AboutCommand, HelpCommand, PrivacyCommand, StartCommand, StatsCommand};
 use App\Telegram\Conversations\{DonateConversation, FeedbackConversation};
 use App\Telegram\Handlers\{ExceptionsHandler, PreCheckoutQueryHandler, SuccessfulPaymentHandler, UpdateChatStatus};
@@ -7,22 +9,23 @@ use App\Telegram\Middleware\{CheckMaintenance, CheckOnline, CollectChat, Donatio
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\MessageTypes;
 
-/** @var Nutgram $bot */
-
 $bot->middleware(CheckMaintenance::class);
 $bot->middleware(CheckOnline::class);
 $bot->middleware(CollectChat::class);
 
 $bot->onMyChatMember(UpdateChatStatus::class);
 
-$bot->onCommand('start', StartCommand::class);
-$bot->onCommand('help', HelpCommand::class);
-$bot->onCommand('start donate', DonateConversation::class)->middleware(DonationsEnabled::class);
-$bot->onCommand('donate', DonateConversation::class)->middleware(DonationsEnabled::class);
-$bot->onCommand('stats', StatsCommand::class);
-$bot->onCommand('feedback', FeedbackConversation::class);
-$bot->onCommand('privacy', PrivacyCommand::class);
-$bot->onCommand('about', AboutCommand::class);
+$bot->onCommand('start', StartCommand::class)->description('Welcome message');
+$bot->onCommand('help', HelpCommand::class)->description('Help message');
+$bot->onCommand('stats', StatsCommand::class)->description('Show bot statistics');
+$bot->onCommand('feedback', FeedbackConversation::class)->description('Send a feedback about the bot');
+$bot->onCommand('privacy', PrivacyCommand::class)->description('Privacy Policy');
+$bot->onCommand('about', AboutCommand::class)->description('About the bots');
+
+if(config('bot.donations.enabled')){
+    $bot->onCommand('donate', DonateConversation::class)->middleware(DonationsEnabled::class)->description('Make a donation');
+    $bot->onCommand('start donate', DonateConversation::class)->middleware(DonationsEnabled::class);
+}
 
 $bot->onPreCheckoutQuery(PreCheckoutQueryHandler::class);
 $bot->onMessageType(MessageTypes::SUCCESSFUL_PAYMENT, SuccessfulPaymentHandler::class);

@@ -5,7 +5,7 @@ namespace App\Telegram\Conversations;
 
 
 use Psr\SimpleCache\InvalidArgumentException;
-use SergiX44\Nutgram\Conversation;
+use SergiX44\Nutgram\Conversations\Conversation;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\InlineKeyboardButton;

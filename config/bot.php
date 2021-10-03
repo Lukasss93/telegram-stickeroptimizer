@@ -10,16 +10,6 @@ return [
     'changelog' => env('BOT_CHANGELOG'),
     'privacy' => env('BOT_PRIVACY'),
 
-    'commands' => [
-        'start' => 'Welcome message',
-        'help' => 'Help message',
-        'donate' => 'Make a donation',
-        'stats' => 'Show bot statistics',
-        'feedback' => 'Send a feedback about the bot',
-        'privacy' => 'Privacy Policy',
-        'about' => 'About the bots',
-    ],
-
     'donations' => [
         'enabled' => (int) env('BOT_DONATIONS_ENABLED', false),
         'terms' => env('BOT_DONATIONS_TERMS'),

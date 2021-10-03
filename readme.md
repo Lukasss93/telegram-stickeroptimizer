@@ -21,9 +21,6 @@
     - [x] CheckForMaintenance (check maintenance mode)
     - [x] CollectChat (save chats in db)
     - [x] OnlyDev (dev only commands/actions)
-- [x] App commands
-    - [x] bot:commands (Generate bot commands with setCommands)
-    - [x] bot:run (dev only - run bot in cli mode)
 - [ ] Bot commands
     - [x] /start command
     - [x] /help command

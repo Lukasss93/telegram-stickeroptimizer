@@ -2,7 +2,7 @@
 
 namespace App\Telegram\Conversations;
 
-use SergiX44\Nutgram\Conversation;
+use SergiX44\Nutgram\Conversations\Conversation;
 use SergiX44\Nutgram\Telegram\Types\Message;
 
 abstract class OneMessageConversation extends Conversation
