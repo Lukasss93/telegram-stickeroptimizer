@@ -17,6 +17,7 @@ indent_size = 2
 
 [*.blade.php]
 trim_trailing_whitespace = false
+ij_blade_indent_size = 0
 
 [*.php]
 ij_php_align_key_value_pairs = false
