@@ -16,10 +16,11 @@
         "chillerlan/php-qrcode": "^4.3",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "glorand/laravel-model-settings": "^4.3",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.62",
         "laravel/tinker": "^2.5",
-        "sergix44/nutgram": "^0.14.1",
+        "sergix44/nutgram": "^0.15",
         "spatie/laravel-backup": "^7.6"
     },
     "require-dev": {

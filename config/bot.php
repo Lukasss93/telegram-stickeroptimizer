@@ -11,13 +11,21 @@ return [
     'privacy' => env('BOT_PRIVACY'),
 
     'donations' => [
-        'enabled' => (int) env('BOT_DONATIONS_ENABLED', false),
+        'enabled' => (int)env('BOT_DONATIONS_ENABLED', false),
         'terms' => env('BOT_DONATIONS_TERMS'),
-        'providers' => [
-            'telegram' => env('BOT_DONATIONS_PROVIDER_TELEGRAM_TOKEN'),
-            'github' => env('BOT_DONATIONS_PROVIDER_GITHUB_URL'),
-            'paypal' => env('BOT_DONATIONS_PROVIDER_PAYPAL_URL'),
+        'provider_token' => env('BOT_DONATIONS_PROVIDER_TOKEN'),
+        'third_party_providers' => [
+            'url' => [
+                'Github Sponsor' => env('BOT_DONATIONS_THIRD_PARTY_PROVIDERS_URL_GITHUB'),
+                'PayPal' => env('BOT_DONATIONS_THIRD_PARTY_PROVIDERS_URL_PAYPAL'),
+            ],
+            'text' => [
+                'BTC' => env('BOT_DONATIONS_THIRD_PARTY_PROVIDERS_TEXT_BTC'),
+                'ETH' => env('BOT_DONATIONS_THIRD_PARTY_PROVIDERS_TEXT_ETH'),
+                'DOGE' => env('BOT_DONATIONS_THIRD_PARTY_PROVIDERS_TEXT_DOGE'),
+            ],
         ],
+        'message_in_caption' => (bool)env('BOT_DONATIONS_MESSAGE_IN_CAPTION', false),
     ],
 
     'news' => [

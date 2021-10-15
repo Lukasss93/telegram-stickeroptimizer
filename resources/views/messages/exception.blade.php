@@ -1,4 +1,5 @@
-Exception: {{$name}}<br>
-Message: {{$message}}<br>
-Line: {{$line}}<br>
-File: {{$file}}
+⚠ Exception found! ⚠<br>
+❗ Type: {{$name}}<br>
+📫 Message: {!! $message !!}<br>
+🗄 File: {{$file}}<br>
+🔢 Line: {{$line}}

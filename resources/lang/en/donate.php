@@ -9,5 +9,6 @@ return [
     'appreciated' => 'That\'ll be very much appreciated 😊',
     'terms' => 'Terms and conditions for donation payments',
     'thanks' => 'Thank you for your donation!',
+    'with' => 'Donate with :service',
 
 ];

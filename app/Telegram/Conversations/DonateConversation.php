@@ -2,114 +2,130 @@
 
 namespace App\Telegram\Conversations;
 
-use Illuminate\Support\Collection;
+use JsonException;
+use Psr\SimpleCache\InvalidArgumentException;
+use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
-use SergiX44\Nutgram\Telegram\Types\InlineKeyboardButton;
-use SergiX44\Nutgram\Telegram\Types\InlineKeyboardMarkup;
+use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 
-class DonateConversation extends OneMessageConversation
+class DonateConversation extends InlineMenu
 {
-    protected ?string $step = 'donationMenu';
-
     /**
-     * Donation menu
+     * Open donation menu
      * @param Nutgram $bot
+     * @throws InvalidArgumentException
      */
-    public function donationMenu(Nutgram $bot): void
+    public function start(Nutgram $bot): void
     {
-        $keyboard = InlineKeyboardMarkup::make();
-
-        collect([])
-            ->when(config('bot.donations.providers.github') !== null, function (Collection $collection) {
-                return $collection->push(InlineKeyboardButton::make('Github Sponsor', config('bot.donations.providers.github')));
-            })
-            ->when(config('bot.donations.providers.paypal') !== null, function (Collection $collection) {
-                return $collection->push(InlineKeyboardButton::make('Paypal Donation', config('bot.donations.providers.paypal')));
-            })
-            ->when(config('bot.donations.providers.telegram') !== null, function (Collection $collection) {
-                return $collection->push(InlineKeyboardButton::make('Telegram Payment', callback_data: 'donate.telegram'));
-            })->each(fn ($item) => $keyboard->addRow($item));
-
-        $keyboard->addRow(InlineKeyboardButton::make('❌ '.trans('common.close'), callback_data: 'donate.cancel'));
-
-        $message = $this->sendOrEditMessage(message('donate.menu'), [
+        $this->menuText(message('donate.menu'), [
             'parse_mode' => ParseMode::HTML,
-            'reply_markup' => $keyboard,
             'disable_web_page_preview' => true,
         ]);
 
-        $this->updateLastMessageStatus('menuHandler', $message);
+        $this->clearButtons();
+        $this->addButtonRow(InlineKeyboardButton::make('Telegram Payment',
+            callback_data: 'donate.telegram@menuTelegram'));
+
+        foreach (config('bot.donations.third_party_providers.url') as $service => $value) {
+            $this->addButtonRow(InlineKeyboardButton::make($service, url: $value));
+        }
+
+        foreach (config('bot.donations.third_party_providers.text') as $service => $value) {
+            $this->addButtonRow(InlineKeyboardButton::make($service,
+                callback_data: "donate.third.$service@menuThirdParty"));
+        }
+
+        $this->addButtonRow(InlineKeyboardButton::make('❌ '.__('common.close'),
+            callback_data: 'donate.cancel@end'));
+
+        $this->showMenu();
 
         stats('donate', 'command');
     }
 
-    public function menuHandler(Nutgram $bot): void
+    /**
+     * Telegram payment actions
+     * @throws InvalidArgumentException
+     */
+    public function menuTelegram(): void
     {
-        $data = $bot->callbackQuery()?->data;
-
-        if ($data === 'donate.telegram') {
-            $this->donationTelegram($bot);
-        } elseif ($data === 'donate.cancel') {
-            $this->cancelDonation($bot);
-        } elseif ($data === 'donate.telegram.back') {
-            $this->donationMenu($bot);
-        } elseif (str_starts_with($data, 'donate.telegram.value.')) {
-            $value = (int) last(explode('.', $data));
-            $this->donationInvoice($bot, $value);
-        } elseif ($bot->isCallbackQuery()) {
-            $bot->answerCallbackQuery();
-        }
-    }
-
-    public function donationTelegram(Nutgram $bot): void
-    {
-        $message = $this->sendOrEditMessage(message('donate.telegram'), [
+        $this->menuText(message('donate.telegram'), [
             'parse_mode' => ParseMode::HTML,
-            'reply_markup' => InlineKeyboardMarkup::make()
-                ->addRow(
-                    InlineKeyboardButton::make('1€', callback_data: 'donate.telegram.value.1'),
-                    InlineKeyboardButton::make('5€', callback_data: 'donate.telegram.value.5'),
-                    InlineKeyboardButton::make('10€', callback_data: 'donate.telegram.value.10'),
-                    InlineKeyboardButton::make('25€', callback_data: 'donate.telegram.value.25'),
-                    InlineKeyboardButton::make('50€', callback_data: 'donate.telegram.value.50'),
-                    InlineKeyboardButton::make('100€', callback_data: 'donate.telegram.value.100'),
-                )->addRow(
-                    InlineKeyboardButton::make('🔙 '.trans('common.back'), callback_data: 'donate.telegram.back')
-                ),
+            'disable_web_page_preview' => true,
         ]);
 
-        $this->updateLastMessageStatus('menuHandler', $message);
+        $this->clearButtons();
+        $this->addButtonRow(
+            InlineKeyboardButton::make('1€', callback_data: 'donate.telegram.value.1@donationInvoice'),
+            InlineKeyboardButton::make('5€', callback_data: 'donate.telegram.value.5@donationInvoice'),
+            InlineKeyboardButton::make('10€', callback_data: 'donate.telegram.value.10@donationInvoice'),
+            InlineKeyboardButton::make('25€', callback_data: 'donate.telegram.value.25@donationInvoice'),
+            InlineKeyboardButton::make('50€', callback_data: 'donate.telegram.value.50@donationInvoice'),
+            InlineKeyboardButton::make('100€', callback_data: 'donate.telegram.value.100@donationInvoice')
+        );
+
+        $this->addButtonRow(InlineKeyboardButton::make('🔙 '.trans('app.back'),
+            callback_data: 'donate.telegram.back@start'));
+
+        $this->showMenu();
 
         stats('donate.telegram', 'donation');
     }
 
-    public function donationInvoice(Nutgram $bot, int $value): void
+    /**
+     * Telegram invoice actions
+     * @param Nutgram $bot
+     * @throws InvalidArgumentException
+     * @throws JsonException
+     */
+    public function donationInvoice(Nutgram $bot): void
     {
-        $bot->sendInvoice(
+        $value = (int)last(explode('.', $bot->callbackQuery()->data));
+
+        $this->bot->sendInvoice(
             __('donate.donation'),
             __('donate.support_by_donating'),
             'donation',
-            config('bot.donations.providers.telegram'),
-            'donation',
+            config('bot.donations.provider_token'),
             'EUR',
             [['label' => "{$value}€", 'amount' => $value * 100]]
         );
 
+        $this->end();
+
         stats('donate.invoice', 'donation', ['value' => $value]);
     }
 
-    public function cancelDonation(Nutgram $bot): void
+    /**
+     * Third-party providers actions
+     * @param Nutgram $bot
+     * @throws InvalidArgumentException
+     */
+    public function menuThirdParty(Nutgram $bot): void
     {
-        if ($bot->isCallbackQuery()) {
-            $bot->answerCallbackQuery();
-        }
+        $service = last(explode('.', $bot->callbackQuery()->data));
 
-        if ($this->chatId !== null && $this->messageId !== null) {
-            $bot->deleteMessage($this->chatId, $this->messageId);
-        }
+        $text = config("bot.donations.third_party_providers.text.$service");
+
+        $photo = generateQrCode($text, $service, true);
+
+        $this->bot->sendPhoto($photo, [
+            'caption' => message('donate.third', [
+                'service' => $service,
+                'text' => $text,
+            ]),
+            'parse_mode' => ParseMode::HTML,
+        ]);
 
         $this->end();
+
+        stats('donate.third', 'donation', ['service' => $service]);
+    }
+
+    protected function closing(Nutgram $bot): void
+    {
+        parent::closing($bot);
 
         stats('donate.cancel', 'donation');
     }

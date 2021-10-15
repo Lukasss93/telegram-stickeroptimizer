@@ -4,27 +4,33 @@
 
 use App\Telegram\Commands\{AboutCommand, HelpCommand, PrivacyCommand, StartCommand, StatsCommand};
 use App\Telegram\Conversations\{DonateConversation, FeedbackConversation};
-use App\Telegram\Handlers\{ExceptionsHandler, PreCheckoutQueryHandler, SuccessfulPaymentHandler, UpdateChatStatus};
-use App\Telegram\Middleware\{CheckMaintenance, CheckOnline, CollectChat, DonationsEnabled};
+use App\Telegram\Handlers\{ExceptionsHandler,
+    PreCheckoutQueryHandler,
+    SuccessfulPaymentHandler,
+    UpdateChatStatusHandler
+};
+use App\Telegram\Middleware\{CheckMaintenance, CheckOnline, CollectChat, SetLocale};
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\MessageTypes;
 
+$bot->middleware(CollectChat::class);
+$bot->middleware(SetLocale::class);
 $bot->middleware(CheckMaintenance::class);
 $bot->middleware(CheckOnline::class);
-$bot->middleware(CollectChat::class);
 
-$bot->onMyChatMember(UpdateChatStatus::class);
+$bot->onMyChatMember(UpdateChatStatusHandler::class);
 
 $bot->onCommand('start', StartCommand::class)->description('Welcome message');
 $bot->onCommand('help', HelpCommand::class)->description('Help message');
+$bot->onCommand('about', AboutCommand::class)->description('About the bots');
+$bot->onCommand('privacy', PrivacyCommand::class)->description('Privacy Policy');
 $bot->onCommand('stats', StatsCommand::class)->description('Show bot statistics');
 $bot->onCommand('feedback', FeedbackConversation::class)->description('Send a feedback about the bot');
-$bot->onCommand('privacy', PrivacyCommand::class)->description('Privacy Policy');
-$bot->onCommand('about', AboutCommand::class)->description('About the bots');
+$bot->onCommand('cancel', fn (Nutgram $bot) => $bot->endConversation());
 
-if(config('bot.donations.enabled')){
-    $bot->onCommand('donate', DonateConversation::class)->middleware(DonationsEnabled::class)->description('Make a donation');
-    $bot->onCommand('start donate', DonateConversation::class)->middleware(DonationsEnabled::class);
+if (config('bot.donations.enabled')) {
+    $bot->onCommand('donate', DonateConversation::class)->description('Make a donation');
+    $bot->onCommand('start donate', DonateConversation::class);
 }
 
 $bot->onPreCheckoutQuery(PreCheckoutQueryHandler::class);

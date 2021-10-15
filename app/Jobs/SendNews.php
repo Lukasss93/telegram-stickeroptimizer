@@ -11,7 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Exceptions\TelegramException;
+use Throwable;
 
 class SendNews implements ShouldQueue
 {
@@ -36,7 +36,7 @@ class SendNews implements ShouldQueue
      * Execute the job.
      *
      * @return void
-     * @throws TelegramException
+     * @throws Throwable
      */
     public function handle(): void
     {
@@ -46,7 +46,7 @@ class SendNews implements ShouldQueue
         try {
             //forward message
             $bot->forwardMessage($this->chat_id, config('bot.news.channel_id'), $this->message_id);
-        } catch (TelegramException $e) {
+        } catch (Throwable $e) {
             if (Str::contains($e->getMessage(), 'user is deactivated')) {
                 Chat::find($this->chat_id)?->delete();
 

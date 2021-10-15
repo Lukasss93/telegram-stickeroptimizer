@@ -4,9 +4,9 @@ namespace App\Jobs\Middleware;
 
 class RateLimited
 {
-    private $ms;
+    private int $ms;
 
-    public function __construct($ms)
+    public function __construct(int $ms)
     {
         $this->ms = $ms;
     }
@@ -16,9 +16,8 @@ class RateLimited
      *
      * @param mixed $job
      * @param callable $next
-     * @return mixed
      */
-    public function handle($job, $next)
+    public function handle(mixed $job, callable $next): void
     {
         usleep($this->ms * 1000);
         $next($job);

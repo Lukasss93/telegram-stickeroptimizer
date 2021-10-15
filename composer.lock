@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6146ddf284280f8a407a4c1c187c403",
+    "content-hash": "c06997314503d98c1c51f96b970b7964",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -776,6 +776,76 @@
                 }
             ],
             "time": "2021-04-26T11:24:25+00:00"
+        },
+        {
+            "name": "glorand/laravel-model-settings",
+            "version": "4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glorand/laravel-model-settings.git",
+                "reference": "eccffb58299002321daf0ee53a9ef5ea0a3de55e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glorand/laravel-model-settings/zipball/eccffb58299002321daf0ee53a9ef5ea0a3de55e",
+                "reference": "eccffb58299002321daf0ee53a9ef5ea0a3de55e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/cache": "^6.0|^7.0|^8.0",
+                "illuminate/config": "^6.0|^7.0|^8.0",
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "illuminate/filesystem": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16@dev",
+                "josiasmontag/laravel-redis-mock": "^1.2",
+                "orchestra/testbench": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "suggest": {
+                "predis/predis": "Required to use settings with Redis"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Glorand\\Model\\Settings\\ModelSettingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Glorand\\Model\\Settings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lorand Gombos",
+                    "email": "gombos.lorand@gmail.com"
+                }
+            ],
+            "description": "Model Settings for your Laravel app",
+            "keywords": [
+                "Settings",
+                "glorand",
+                "laravel",
+                "laravel-model-settings",
+                "laravel-settings"
+            ],
+            "support": {
+                "issues": "https://github.com/glorand/laravel-model-settings/issues",
+                "source": "https://github.com/glorand/laravel-model-settings/tree/4.3.0"
+            },
+            "time": "2021-10-11T14:44:24+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -3192,16 +3262,16 @@
         },
         {
             "name": "sergix44/nutgram",
-            "version": "0.14.1",
+            "version": "0.15.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergiX44/Nutgram.git",
-                "reference": "053864464e403ae471c0ef92c2e02948215af778"
+                "reference": "5f95a6f67bcc2e054ad9f137716c9b5b1c79285e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergiX44/Nutgram/zipball/053864464e403ae471c0ef92c2e02948215af778",
-                "reference": "053864464e403ae471c0ef92c2e02948215af778",
+                "url": "https://api.github.com/repos/SergiX44/Nutgram/zipball/5f95a6f67bcc2e054ad9f137716c9b5b1c79285e",
+                "reference": "5f95a6f67bcc2e054ad9f137716c9b5b1c79285e",
                 "shasum": ""
             },
             "require": {
@@ -3260,7 +3330,7 @@
             ],
             "support": {
                 "issues": "https://github.com/SergiX44/Nutgram/issues",
-                "source": "https://github.com/SergiX44/Nutgram/tree/0.14.1"
+                "source": "https://github.com/SergiX44/Nutgram/tree/0.15.5"
             },
             "funding": [
                 {
@@ -3268,7 +3338,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-27T20:09:19+00:00"
+            "time": "2021-10-15T23:39:18+00:00"
         },
         {
             "name": "spatie/db-dumper",

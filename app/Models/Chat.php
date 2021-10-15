@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Eloquent;
+use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
-use SergiX44\Nutgram\Telegram\Types\User;
+use SergiX44\Nutgram\Telegram\Types\User\User;
 
 /**
  * App\Models\Chat
@@ -40,12 +41,18 @@ use SergiX44\Nutgram\Telegram\Types\User;
 class Chat extends Model
 {
     use HasFactory;
+    use HasSettingsTable;
 
     protected $primaryKey = 'chat_id';
     protected $keyType = 'string';
     public $incrementing = false;
-    protected $guarded = [];
+    protected static $unguarded = true;
     protected $dates = ['started_at', 'blocked_at'];
+
+    public array $defaultSettings = [
+        'news' => true,
+        'language' => 'en',
+    ];
 
     public static function findFromUser(?User $user): ?Chat
     {
