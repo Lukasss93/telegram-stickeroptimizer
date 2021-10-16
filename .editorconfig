@@ -15,7 +15,7 @@ trim_trailing_whitespace = false
 [*.{yml,yaml}]
 indent_size = 2
 
-[*.blade.php]
+[resources/views/messages/**.blade.php]
 trim_trailing_whitespace = false
 ij_blade_indent_size = 0
 
