@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //update the bot stattistics
+        //update the bot statistics
         $schedule
             ->command(UpdateBotStatsCommand::class)
             ->everyFiveMinutes();
