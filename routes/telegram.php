@@ -28,7 +28,7 @@ $bot->onCommand('stats', StatsCommand::class)->description('Show bot statistics'
 $bot->onCommand('feedback', FeedbackConversation::class)->description('Send a feedback about the bot');
 $bot->onCommand('cancel', fn (Nutgram $bot) => $bot->endConversation());
 
-if (config('bot.donations.enabled')) {
+if (config('donation.enabled')) {
     $bot->onCommand('donate', DonateConversation::class)->description('Make a donation');
     $bot->onCommand('start donate', DonateConversation::class);
 }

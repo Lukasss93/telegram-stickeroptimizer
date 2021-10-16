@@ -25,9 +25,24 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //update the bot stattistics
         $schedule
             ->command(UpdateBotStatsCommand::class)
             ->everyFiveMinutes();
+
+        //delete too old backups
+        $schedule
+            ->command('backup:clean')
+            ->when(fn () => config('backup.enabled'))
+            ->evenInMaintenanceMode()
+            ->dailyAt(config('backup.clean_at'));
+
+        //save database backup
+        $schedule
+            ->command('backup:run', ['--only-db' => true])
+            ->when(fn () => config('backup.enabled'))
+            ->evenInMaintenanceMode()
+            ->dailyAt(config('backup.run_at'));
     }
 
     /**

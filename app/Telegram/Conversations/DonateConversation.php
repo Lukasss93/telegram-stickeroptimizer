@@ -27,11 +27,11 @@ class DonateConversation extends InlineMenu
         $this->addButtonRow(InlineKeyboardButton::make('Telegram Payment',
             callback_data: 'donate.telegram@menuTelegram'));
 
-        foreach (config('bot.donations.third_party_providers.url') as $service => $value) {
+        foreach (config('donation.third_party_providers.url') as $service => $value) {
             $this->addButtonRow(InlineKeyboardButton::make($service, url: $value));
         }
 
-        foreach (config('bot.donations.third_party_providers.text') as $service => $value) {
+        foreach (config('donation.third_party_providers.text') as $service => $value) {
             $this->addButtonRow(InlineKeyboardButton::make($service,
                 callback_data: "donate.third.$service@menuThirdParty"));
         }
@@ -87,7 +87,7 @@ class DonateConversation extends InlineMenu
             __('donate.donation'),
             __('donate.support_by_donating'),
             'donation',
-            config('bot.donations.provider_token'),
+            config('donation.provider_token'),
             'EUR',
             [['label' => "{$value}€", 'amount' => $value * 100]]
         );
@@ -106,7 +106,7 @@ class DonateConversation extends InlineMenu
     {
         $service = last(explode('.', $bot->callbackQuery()->data));
 
-        $text = config("bot.donations.third_party_providers.text.$service");
+        $text = config("donation.third_party_providers.text.$service");
 
         $photo = generateQrCode($text, $service, true);
 

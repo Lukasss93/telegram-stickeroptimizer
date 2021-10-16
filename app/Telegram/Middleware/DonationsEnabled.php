@@ -8,7 +8,7 @@ class DonationsEnabled
 {
     public function __invoke(Nutgram $bot, $next): void
     {
-        if (!config('bot.donations.enabled')) {
+        if (!config('donation.enabled')) {
             return;
         }
 

@@ -27,7 +27,7 @@ class SendNews implements ShouldQueue
      */
     public function __construct(string $chat_id, int $message_id)
     {
-        $this->onQueue(config('bot.news.queue'));
+        $this->onQueue('news');
         $this->chat_id = $chat_id;
         $this->message_id = $message_id;
     }
@@ -45,7 +45,7 @@ class SendNews implements ShouldQueue
 
         try {
             //forward message
-            $bot->forwardMessage($this->chat_id, config('bot.news.channel_id'), $this->message_id);
+            $bot->forwardMessage($this->chat_id, config('bot.channel'), $this->message_id);
         } catch (Throwable $e) {
             if (Str::contains($e->getMessage(), 'user is deactivated')) {
                 Chat::find($this->chat_id)?->delete();
@@ -66,6 +66,6 @@ class SendNews implements ShouldQueue
      */
     public function middleware(): array
     {
-        return [new RateLimited(config('bot.news.rate'))];
+        return [new RateLimited(2000)];
     }
 }
