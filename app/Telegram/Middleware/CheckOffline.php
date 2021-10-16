@@ -6,16 +6,16 @@ use App\Models\Chat;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 
-class CheckMaintenance
+class CheckOffline
 {
     public function __invoke(Nutgram $bot, $next): void
     {
         $chat = $bot->getData(Chat::class);
 
-        if (app()->isDownForMaintenance()) {
+        if (!config('bot.online')) {
 
             if ($chat->chat_id === config('developer.id')) {
-                $bot->sendMessage('<b>⚠ MAINTENANCE MODE ENABLED ⚠</b>', [
+                $bot->sendMessage('<b>⚠ OFFLINE MODE ENABLED ⚠</b>', [
                     'parse_mode' => ParseMode::HTML,
                 ]);
                 $next($bot);
@@ -25,14 +25,14 @@ class CheckMaintenance
 
             if ($bot->isCallbackQuery()) {
                 $bot->answerCallbackQuery([
-                    'text' => trans('maintenance.title'),
+                    'text' => trans('maintenance.offline'),
                     'show_alert' => true,
                 ]);
 
                 return;
             }
 
-            $bot->sendMessage(message('maintenance'), [
+            $bot->sendMessage(message('offline'), [
                 'parse_mode' => ParseMode::HTML,
             ]);
 

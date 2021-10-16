@@ -9,14 +9,15 @@ use App\Telegram\Handlers\{ExceptionsHandler,
     SuccessfulPaymentHandler,
     UpdateChatStatusHandler
 };
-use App\Telegram\Middleware\{CheckMaintenance, CheckOnline, CollectChat, SetLocale};
+use App\Telegram\Middleware\{CheckMaintenance, CheckOffline, CheckRateLimit, CollectChat, SetLocale};
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\MessageTypes;
 
 $bot->middleware(CollectChat::class);
 $bot->middleware(SetLocale::class);
+$bot->middleware(CheckRateLimit::class);
 $bot->middleware(CheckMaintenance::class);
-$bot->middleware(CheckOnline::class);
+$bot->middleware(CheckOffline::class);
 
 $bot->onMyChatMember(UpdateChatStatusHandler::class);
 
