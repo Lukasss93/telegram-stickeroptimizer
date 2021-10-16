@@ -13,7 +13,13 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
           script: |
-            cd ${{ secrets.PROJECT_PATH }}
-            wget -O https://getcomposer.org/download/latest-2.x/composer.phar composer.phar
-            ${{ secrets.PHP_BIN }} composer.phar install
-            ls -lah
+            cd stickeroptimizer.lucapatera.it
+            /opt/plesk/php/8.0/bin/php artisan down
+            git reset --hard
+            git pull "https://Lukasss93:${{ secrets.GIT_TOKEN }}@github.com/Lukasss93/telegram-stickeroptimizer.git" master
+            /opt/plesk/php/8.0/bin/php composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
+            /opt/plesk/php/8.0/bin/php artisan migrate --force --step
+            /opt/plesk/php/8.0/bin/php artisan optimize
+            /opt/plesk/php/8.0/bin/php artisan storage:link
+            /opt/plesk/php/8.0/bin/php artisan up
+            echo 'DONE!'
