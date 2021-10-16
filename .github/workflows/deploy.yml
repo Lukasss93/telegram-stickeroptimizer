@@ -9,7 +9,7 @@ jobs:
       - name: Deploy to production server
         uses: appleboy/ssh-action@master
         with:
-          host: stickeroptimizer.lucapatera.it
+          host: lucapatera.dev
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
           script: |
