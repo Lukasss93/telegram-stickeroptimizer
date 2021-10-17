@@ -108,7 +108,7 @@ class DonateConversation extends InlineMenu
 
         $text = config("donation.third_party_providers.text.$service");
 
-        $photo = generateQrCode($text, $service, true);
+        $photo = qrcode($text, $service, true);
 
         $this->bot->sendPhoto($photo, [
             'caption' => message('donate.third', [

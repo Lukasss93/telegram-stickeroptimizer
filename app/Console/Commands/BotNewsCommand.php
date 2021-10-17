@@ -14,7 +14,7 @@ class BotNewsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'bot:news {id} {confirm=false}';
+    protected $signature = 'bot:news {id} {--confirm}';
 
     /**
      * The console command description.
@@ -31,7 +31,7 @@ class BotNewsCommand extends Command
     public function handle(): int
     {
         $message_id = (int) $this->argument('id');
-        $confirm = stringToBoolean($this->argument('confirm'));
+        $confirm = $this->option('confirm');
 
         $this->warn('Dispatching news...');
 
