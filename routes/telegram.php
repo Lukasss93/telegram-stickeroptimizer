@@ -2,7 +2,7 @@
 
 /** @var Nutgram $bot */
 
-use App\Telegram\Commands\{AboutCommand, HelpCommand, PrivacyCommand, StartCommand, StatsCommand};
+use App\Telegram\Commands\{AboutCommand, CancelCommand, HelpCommand, PrivacyCommand, StartCommand, StatsCommand};
 use App\Telegram\Conversations\{DonateConversation, FeedbackConversation};
 use App\Telegram\Handlers\{ExceptionsHandler,
     PreCheckoutQueryHandler,
@@ -27,7 +27,7 @@ $bot->onCommand('about', AboutCommand::class)->description('About the bots');
 $bot->onCommand('privacy', PrivacyCommand::class)->description('Privacy Policy');
 $bot->onCommand('stats', StatsCommand::class)->description('Show bot statistics');
 $bot->onCommand('feedback', FeedbackConversation::class)->description('Send a feedback about the bot');
-$bot->onCommand('cancel', fn (Nutgram $bot) => $bot->endConversation());
+$bot->onCommand('cancel', CancelCommand::class)->description('Close a conversation or a keyboard');
 
 if (config('donation.enabled')) {
     $bot->onCommand('donate', DonateConversation::class)->description('Make a donation');
