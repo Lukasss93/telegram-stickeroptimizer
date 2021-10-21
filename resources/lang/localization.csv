@@ -39,3 +39,40 @@ stats,users.today.new,<b>🆕 New users today:</b> :value,<b>🆕 Nuovi utenti o
 stats,users.today.active,<b>✳️ Active users today:</b> :value,<b>✳️ Utenti attivi oggi:</b> :value
 stats,users.total,<b>👥 Total users:</b> :value,<b>👥 Utenti totali:</b> :value
 stats,last_update,<i>Last update:</i> :value,<i>Ultimo aggiornamento:</i> :value
+settings,back,🔙 Back,🔙 Indietro
+settings,description,Here you can change the bot settings.,Qui puoi cambiare le impostazioni del bot.
+settings,disable_news,📰 Disable news,📰 Disabilita news
+settings,disabled,❌ Disabled,❌ Disabilitato
+settings,enable_news,📰 Enable news,📰 Abilita news
+settings,enabled,✅ Enabled,✅ Abilitato
+settings,language.click,Click here,Clicca qui
+settings,language.description,Here you can change the bot language.,Qui puoi cambiare la lingua del bot.
+settings,language.more,Do you want more languages?,Vuoi altre lingue?
+settings,language.title,💬 Language,💬 Lingua
+settings,news,📰 News,📰 News
+settings,title,⚙️ Settings,⚙️ Impostazioni
+settings,watermark.title,🔏 Watermark,🔏 Watermark
+settings,watermark.description,Protect your stickers with a watermark.,Proteggi i tuoi sticker con un watermark.
+common,general,General,Generale
+common,opacity,Opacity,Opacità
+common,position,Position,Posizione
+common,text,Text,Testo
+common,content,Content,Contenuto
+common,size,Size,Dimensione
+common,color,Color,Colore
+common,border,Border,Bordo
+watermark,opacity.set,👓 Set opacity,👓 Imposta opacità
+watermark,position.set,🎛 Set position,🎛 Imposta posizione
+watermark,text.content.set,📝 Set text content,📝 Imposta testo
+watermark,text.size.set,🔢 Set text size,🔢 Imposta dimensione testo
+watermark,text.color.set,🖍 Set text color,🖍 Imposta colore testo
+watermark,border.size.set,🔢 Set border size,🔢 Imposta dimensione bordo
+watermark,border.color.set,🖍 Set border color,🖍 Imposta colore bordo
+watermark,opacity.send,Enter the opacity value (0-100):,Inserisci un valore per l'opacità (0-100):
+common,invalid_value,Invalid value!,Valore non valido!
+watermark,position.send,Enter the watermark position:,Inserisci la posizione del watermark:
+watermark,text.content.send,Enter the watermark text:,Inserisci il testo del watermark:
+watermark,text.size.send,Enter the text size (1-100):,Inserisci la dimensione del testo (1-100):
+watermark,border.size.send,Enter the border size (0-10):,Inserisci la dimensione del bordo (0-10):
+watermark,text.color.send,Enter the text color (HEX):,Inserisci il colore del testo (HEX):
+watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore del bordo (HEX):

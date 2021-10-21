@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\WatermarkPosition;
 use Eloquent;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Builder;
@@ -52,6 +53,19 @@ class Chat extends Model
     public array $defaultSettings = [
         'news' => true,
         'language' => 'en',
+        'watermark' => [
+            'opacity' => 0,
+            'position' => WatermarkPosition::MIDDLE_CENTER,
+            'text' => [
+                'content' => null,
+                'size' => 14,
+                'color' => '#ffffff',
+            ],
+            'border' => [
+                'size' => 0,
+                'color' => '#000000',
+            ],
+        ],
     ];
 
     public static function findFromUser(?User $user): ?Chat

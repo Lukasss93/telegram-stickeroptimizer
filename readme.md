@@ -10,36 +10,18 @@
 > Optimize an image or sticker to a png file to make its size smaller than or equal to 350Kb,
 > so that you will be able to add it to a sticker pack using the [@stickers](https://t.me/stickers) bot.
 
-## Roadmap
+## Requirements
+- Apache / nginx
+- SSL support
+- PHP >= 8
+    - ext-json
+    - ext-pdo
+    - ext-gd
+    - webp support
+- Imagick
+- MariaDB >= 10.2.3 or Postgresql >= 9.5 or SQLite with JSON1 extension
+- SystemD
+- Crontab
 
-- [x] Restart project from scratch
-- [x] Install Laravel (PHP Framework)
-- [x] Install Nutgram (Telegram Bot Framework)
-- [x] Install Laravel Larex (Localization System)
-- [x] App middlewares
-    - [x] CheckOnline (check app status)
-    - [x] CheckForMaintenance (check maintenance mode)
-    - [x] CollectChat (save chats in db)
-    - [x] OnlyDev (dev only commands/actions)
-- [ ] Bot commands
-    - [x] /start command
-    - [x] /help command
-    - [x] /about command
-    - [x] /privacy command
-    - [x] /feedback command
-    - [x] /donate command
-    - [x] /stats command
-    - [ ] /settings command
-- [x] News system
-- [ ] Sticker Optimization Core Logic
-
-### Other TODOs
-
-- [ ] Watermark
-    - [ ] Font family
-    - [ ] Font color
-    - [ ] Font border color
-- [ ] https://github.com/bodqhrohro/giftolottie/
-- [ ] Optimize images to sticker pack logo (100x100)
-- [ ] Optimize entire packs
-- [ ] Create packs
+## License
+This is an open-source software licensed under the [MIT license](LICENSE.md).

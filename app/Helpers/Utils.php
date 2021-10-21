@@ -71,11 +71,15 @@ function language(string $code = null): array|string
 {
     $languages = config('languages');
 
+    if ($code === null) {
+        return $languages;
+    }
+
     if (!array_key_exists($code, $languages)) {
         throw new InvalidArgumentException('Language code not found');
     }
 
-    return $code === null ? $languages : $languages[$code];
+    return $languages[$code];
 }
 
 /**
@@ -191,4 +195,18 @@ function zip($source, $destination): bool
     }
 
     return $zip->close();
+}
+
+/**
+ * Validate hex color
+ * @param $string
+ * @return bool
+ */
+function isHexColor($string): bool
+{
+    if (!preg_match('/^#[a-f0-9]{6}$/i', $string)) {
+        return false;
+    }
+
+    return true;
 }
