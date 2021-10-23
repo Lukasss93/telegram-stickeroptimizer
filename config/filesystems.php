@@ -69,6 +69,16 @@ return [
             'root' => '/backups',
         ],
 
+        'downloaded' => [
+            'driver' => 'local',
+            'root' => storage_path('app/downloaded'),
+        ],
+
+        'converted' => [
+            'driver' => 'local',
+            'root' => storage_path('app/converted'),
+        ],
+
     ],
 
     /*
