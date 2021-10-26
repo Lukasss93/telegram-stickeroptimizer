@@ -50,4 +50,24 @@ class WatermarkPosition extends Enum
             default => throw new InvalidArgumentException('Invalid value'),
         };
     }
+
+    public static function getX(string $value): string
+    {
+        return match ($value) {
+            self::TOP_LEFT, self::MIDDLE_LEFT, self::BOTTOM_LEFT => 'left',
+            self::TOP_CENTER, self::MIDDLE_CENTER, self::BOTTOM_CENTER => 'center',
+            self::TOP_RIGHT, self::MIDDLE_RIGHT, self::BOTTOM_RIGHT => 'right',
+            default => throw new InvalidArgumentException('Invalid value'),
+        };
+    }
+
+    public static function getY(string $value): string
+    {
+        return match ($value) {
+            self::TOP_LEFT, self::TOP_CENTER, self::TOP_RIGHT => 'top',
+            self::MIDDLE_LEFT, self::MIDDLE_CENTER, self::MIDDLE_RIGHT => 'center',
+            self::BOTTOM_LEFT, self::BOTTOM_CENTER, self::BOTTOM_RIGHT => 'bottom',
+            default => throw new InvalidArgumentException('Invalid value'),
+        };
+    }
 }

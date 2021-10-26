@@ -55,7 +55,7 @@ function dt($message): void
     }
 
     $bot = app(Nutgram::class);
-    $bot->sendMessage("<pre>$message</pre>", [
+    $bot->sendMessage("<b>Debug:</b>\n<pre>$message</pre>", [
         'chat_id' => config('developer.id'),
         'parse_mode' => ParseMode::HTML,
     ]);

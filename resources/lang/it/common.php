@@ -16,5 +16,8 @@ return [
     'color' => 'Colore',
     'border' => 'Bordo',
     'invalid_value' => 'Valore non valido!',
+    'too_large_file' => 'File troppo grande!',
+    'animated_not_supported' => 'Gli sticker animati non sono supportati!',
+    'invalid_file' => 'File non valido!',
 
 ];

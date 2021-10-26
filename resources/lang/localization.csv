@@ -76,3 +76,6 @@ watermark,text.size.send,Enter the text size (1-100):,Inserisci la dimensione de
 watermark,border.size.send,Enter the border size (0-10):,Inserisci la dimensione del bordo (0-10):
 watermark,text.color.send,Enter the text color (HEX):,Inserisci il colore del testo (HEX):
 watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore del bordo (HEX):
+common,too_large_file,Too large file!,File troppo grande!
+common,animated_not_supported,Animated stickers are not supported!,Gli sticker animati non sono supportati!
+common,invalid_file,Invalid file!,File non valido!
