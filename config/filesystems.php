@@ -56,29 +56,6 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/temp'),
         ],
-
-        'backups' => [
-            'driver' => 'ftp',
-            'host' => env('BACKUP_HOST'),
-            'username' => env('BACKUP_USERNAME'),
-            'password' => env('BACKUP_PASSWORD'),
-            'port' => (int)env('BACKUP_PORT', 21),
-            'passive' => env('BACKUP_PASSIVE', true),
-            'ssl' => env('BACKUP_SSL', false),
-            'timeout' => env('BACKUP_TIMEOUT', 30),
-            'root' => '/backups',
-        ],
-
-        'downloaded' => [
-            'driver' => 'local',
-            'root' => storage_path('app/downloaded'),
-        ],
-
-        'converted' => [
-            'driver' => 'local',
-            'root' => storage_path('app/converted'),
-        ],
-
     ],
 
     /*

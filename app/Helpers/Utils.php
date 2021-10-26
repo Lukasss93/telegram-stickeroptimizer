@@ -111,9 +111,9 @@ function cast(string $type, mixed $value, mixed $default = null): array|bool|flo
  * @param string $content
  * @param string|null $name
  * @param bool $asResource
- * @return bool|string|null
+ * @return mixed
  */
-function qrcode(string $content, string $name = null, bool $asResource = false): bool|string|null
+function qrcode(string $content, string $name = null, bool $asResource = false): mixed
 {
     $path = storage_path("app/temp/$name.png");
 
