@@ -161,11 +161,11 @@ function stats(string $action, string $category = null, array $value = null, int
 
 /**
  * Zip a folder
- * @param $source
- * @param $destination
+ * @param string $source
+ * @param string $destination
  * @return bool
  */
-function zip($source, $destination): bool
+function zip(string $source, string $destination): bool
 {
     if (!File::exists($source)) {
         throw new RuntimeException('folder not found');
@@ -199,14 +199,24 @@ function zip($source, $destination): bool
 
 /**
  * Validate hex color
- * @param $string
+ * @param string $value
  * @return bool
  */
-function isHexColor($string): bool
+function isHexColor(string $value): bool
 {
-    if (!preg_match('/^#[a-f0-9]{6}$/i', $string)) {
+    if (!preg_match('/^#[a-f0-9]{6}$/i', $value)) {
         return false;
     }
 
     return true;
+}
+
+/**
+ * Check if a file is an animated webp
+ * @param string $source
+ * @return bool
+ */
+function isWebpAnimated(string $source): bool
+{
+    return str_contains(file_get_contents($source), 'ANMF');
 }
