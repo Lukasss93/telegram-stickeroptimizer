@@ -21,16 +21,30 @@
     - webp support
 - Imagick
 - MariaDB ≥ 10.2.3 or Postgresql ≥ 9.5 or SQLite with JSON1 extension
-- SystemD
-- Crontab
+- SystemD (to process async jobs)
+- Crontab (to update cached statistics)
+- GIT
 
 ## ⚙ First configuration
-TODO:
-- configurate cron
-- configurate queue worker for news system
-- add missing stats
-- add changelog for bot
-- reimport old user list to send first news
+- Configure a cron:<br>
+  `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
+- Configure a SystemD Unit:<br>
+  `systemctl edit --force --full stickeroptimizer-news.service`
+   ```shell
+   [Unit]
+   Description=stickeroptimizer.news
+   StartLimitBurst=0
+   
+   [Service]
+   Restart=always
+   WorkingDirectory=<project-root>
+   ExecStart=/bin/sh -c 'php artisan queue:work --queue=news --memory=512 >> <project-root>/storage/logs/worker-news.log'
+   User=<user>
+   Group=<group>
+   
+   [Install]
+   WantedBy=default.target
+   ```
 
 ## 🚀 First deploy
 1. `git clone https://github.com/<username>/telegram-stickeroptimizer.git`
@@ -67,5 +81,5 @@ Please see the [changelog.md](changelog.md) for more information on what has cha
 - [Luca Patera](https://github.com/Lukasss93)
 - [All Contributors](https://github.com/Lukasss93/telegram-stickeroptimizer/contributors)
 
-## License
+## 📖 License
 This is an open-source software licensed under the [MIT license](LICENSE.md).
