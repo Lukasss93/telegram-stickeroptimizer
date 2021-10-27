@@ -47,11 +47,13 @@ class Statistic extends Model
 
         return [
             'stickers_new' => self::query()
-                ->where('action', 'optimized')
+                ->where('action', 'sticker')
+                ->where('category', 'optimized')
                 ->whereDate('collected_at', $date->toDateString())
                 ->count(),
             'stickers_total' => self::query()
-                ->where('action', 'optimized')
+                ->where('action', 'sticker')
+                ->where('category', 'optimized')
                 ->count(),
             'users_new_today' => Chat::query()
                 ->whereDate('created_at', $date->toDateString())

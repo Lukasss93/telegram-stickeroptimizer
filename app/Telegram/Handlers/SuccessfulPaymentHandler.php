@@ -10,6 +10,6 @@ class SuccessfulPaymentHandler
     {
         $bot->sendMessage(__('donate.thanks'));
 
-        stats('donation', 'successfull payment');
+        stats('donation', 'payment');
     }
 }

@@ -33,5 +33,7 @@ class StickerHandler
         }
 
         OptimizeStickerJob::dispatch($bot->chatId(), $replyID, $fileID);
+
+        stats('sticker', 'handler');
     }
 }

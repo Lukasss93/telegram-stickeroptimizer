@@ -9,5 +9,7 @@ class PreCheckoutQueryHandler
     public function __invoke(Nutgram $bot): void
     {
         $bot->answerPreCheckoutQuery(true);
+
+        stats('precheckout', 'payment');
     }
 }

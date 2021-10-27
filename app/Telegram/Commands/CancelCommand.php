@@ -22,5 +22,7 @@ class CancelCommand
         } catch (Throwable) {
 
         }
+
+        stats('cancel', 'command');
     }
 }

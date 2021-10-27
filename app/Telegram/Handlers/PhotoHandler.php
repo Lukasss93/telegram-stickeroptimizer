@@ -25,5 +25,7 @@ class PhotoHandler
         }
 
         OptimizeStickerJob::dispatch($bot->chatId(), $replyID, $fileID);
+
+        stats('photo', 'handler');
     }
 }

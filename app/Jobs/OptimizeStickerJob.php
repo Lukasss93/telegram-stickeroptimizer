@@ -76,6 +76,9 @@ class OptimizeStickerJob implements ShouldQueue
                 'allow_sending_without_reply' => true,
             ]);
 
+            //save statistic
+            stats('sticker', 'optimized');
+
         } catch (NotReadableException) {
             $bot->sendMessage(trans('common.invalid_file'));
         }
