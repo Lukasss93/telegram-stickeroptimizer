@@ -45,19 +45,26 @@
    [Install]
    WantedBy=default.target
    ```
+  `sudo systemctl start stickeroptimizer-news.service`
 
 ## 🚀 First deploy
+0. `cd <vhost-folder>`
 1. `git clone https://github.com/<username>/telegram-stickeroptimizer.git`
-2. `composer install`
-3. `php artisan migrate`
-4. `cp .env.example .env`
-5. `php artisan key:generate`
-6. Edit the `.env` file with your preferences
-7. `php artisan storage:link`
-8. `php artisan nutgram:register-commands`
-9. `php artisan nutgram:hook:set https://<domain>.<tls>/hook`
+2. `cd telegram-stickeroptimizer`
+3. `composer install`
+4. `php artisan migrate`
+5. `cp .env.example .env`
+6. `php artisan key:generate`
+7. Edit the `.env` file with your preferences
+8. `sudo chmod -R 775 bootstrap/`
+9. `sudo chmod -R 775 storage/`
+10. `php artisan storage:link`
+11. `php artisan nutgram:register-commands`
+12. `php artisan nutgram:hook:set https://<domain>.<tls>/hook`
 
-## 🌠 CD
+## 🌠 Continuous deployment
+This project will be updated in production at every pushed commit to master branch.<br>
+Check this github workflow: [deploy.yml](.github/workflows/deploy.yml)
 1. `php artisan down`
 2. `git reset --hard`
 3. `git pull "https://<username>:<token>@github.com/<username>/telegram-stickeroptimizer.git" master `
