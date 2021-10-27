@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cff46922698fd00d5178c62189dcac33",
+    "content-hash": "9b4ba50095a19808b236afa0c93625f1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1313,16 +1313,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.68.0",
+            "version": "v8.68.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "08781be9c1e3f83b0c38ce9539e1dc4664e33a14"
+                "reference": "abe985ff1fb82dd04aab03bc1dc56e83fe61a59f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/08781be9c1e3f83b0c38ce9539e1dc4664e33a14",
-                "reference": "08781be9c1e3f83b0c38ce9539e1dc4664e33a14",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/abe985ff1fb82dd04aab03bc1dc56e83fe61a59f",
+                "reference": "abe985ff1fb82dd04aab03bc1dc56e83fe61a59f",
                 "shasum": ""
             },
             "require": {
@@ -1481,7 +1481,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-10-26T12:52:38+00:00"
+            "time": "2021-10-27T12:31:46+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -6293,16 +6293,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.11",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "0b072d51c5a9c6f3412f7ea3ab043d6603cb2582"
+                "reference": "679333688725c7dd043ff35c547100ccf512f051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/0b072d51c5a9c6f3412f7ea3ab043d6603cb2582",
-                "reference": "0b072d51c5a9c6f3412f7ea3ab043d6603cb2582",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/679333688725c7dd043ff35c547100ccf512f051",
+                "reference": "679333688725c7dd043ff35c547100ccf512f051",
                 "shasum": ""
             },
             "require": {
@@ -6349,7 +6349,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.2.11"
+                "source": "https://github.com/composer/ca-bundle/tree/1.3.0"
             },
             "funding": [
                 {
@@ -6365,7 +6365,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-25T20:32:43+00:00"
+            "time": "2021-10-27T07:42:23+00:00"
         },
         {
             "name": "composer/composer",
@@ -6373,12 +6373,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "135f806f6f503e8ec11773fb78b0eade8b738cb2"
+                "reference": "a861d664699ff24e7bad5f56cd9415b62390acc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/135f806f6f503e8ec11773fb78b0eade8b738cb2",
-                "reference": "135f806f6f503e8ec11773fb78b0eade8b738cb2",
+                "url": "https://api.github.com/repos/composer/composer/zipball/a861d664699ff24e7bad5f56cd9415b62390acc4",
+                "reference": "a861d664699ff24e7bad5f56cd9415b62390acc4",
                 "shasum": ""
             },
             "require": {
@@ -6464,7 +6464,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-26T19:48:56+00:00"
+            "time": "2021-10-27T18:35:16+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -7945,16 +7945,16 @@
         },
         {
             "name": "lukasss93/laravel-larex-crowdin",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lukasss93/laravel-larex-crowdin.git",
-                "reference": "522a984802b1ea1d34a0f77a18559734357ebf6c"
+                "reference": "99b7ac0c8ff3c9cadd8a4a1e4da0f5b2fe2c3448"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lukasss93/laravel-larex-crowdin/zipball/522a984802b1ea1d34a0f77a18559734357ebf6c",
-                "reference": "522a984802b1ea1d34a0f77a18559734357ebf6c",
+                "url": "https://api.github.com/repos/Lukasss93/laravel-larex-crowdin/zipball/99b7ac0c8ff3c9cadd8a4a1e4da0f5b2fe2c3448",
+                "reference": "99b7ac0c8ff3c9cadd8a4a1e4da0f5b2fe2c3448",
                 "shasum": ""
             },
             "require": {
@@ -7998,7 +7998,7 @@
             "description": "Laravel Larex Crowdin",
             "support": {
                 "issues": "https://github.com/Lukasss93/laravel-larex-crowdin/issues",
-                "source": "https://github.com/Lukasss93/laravel-larex-crowdin/tree/v1.0.1"
+                "source": "https://github.com/Lukasss93/laravel-larex-crowdin/tree/v1.0.2"
             },
             "funding": [
                 {
@@ -8006,7 +8006,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-13T11:24:23+00:00"
+            "time": "2021-10-27T20:57:35+00:00"
         },
         {
             "name": "mockery/mockery",
