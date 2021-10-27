@@ -7,7 +7,7 @@
 [![link](https://img.shields.io/badge/news-%40LKS93C-blue)](https://t.me/LKS93C)
 [![link](https://img.shields.io/badge/support-%40Lukasss93Support-orange)](https://t.me/Lukasss93Support)
 
-> Optimize an image or sticker to a png file to make its size smaller than or equal to 350Kb,
+> Optimize an image or sticker to a png file to make its size smaller than or equal to 512Kb,
 > so that you will be able to add it to a sticker pack using the [@stickers](https://t.me/stickers) bot.
 
 ## Requirements
@@ -22,6 +22,24 @@
 - MariaDB >= 10.2.3 or Postgresql >= 9.5 or SQLite with JSON1 extension
 - SystemD
 - Crontab
+
+## First deploy
+1. `git clone https://github.com/<username>/telegram-stickeroptimizer`
+2. `composer install`
+3. `php artisan migrate`
+4. `cp .env.example .env`
+5. `php artisan key:generate`
+6. Edit the `.env` file with your preferences
+7. `php artisan storage:link`
+
+## CD
+1. `php artisan down`
+2. `git reset --hard`
+3. `git pull "https://<username>:<token>@github.com/<username>/telegram-stickeroptimizer.git" master `
+4. `php composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress `
+5. `php artisan migrate --force --step `
+6. `php artisan optimize`
+7. `php artisan up`
 
 ## License
 This is an open-source software licensed under the [MIT license](LICENSE.md).
