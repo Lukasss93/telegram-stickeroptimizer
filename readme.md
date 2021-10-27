@@ -24,13 +24,15 @@
 - Crontab
 
 ## First deploy
-1. `git clone https://github.com/<username>/telegram-stickeroptimizer`
+1. `git clone https://github.com/<username>/telegram-stickeroptimizer.git`
 2. `composer install`
 3. `php artisan migrate`
 4. `cp .env.example .env`
 5. `php artisan key:generate`
 6. Edit the `.env` file with your preferences
 7. `php artisan storage:link`
+8. `php artisan nutgram:register-commands`
+9. `php artisan nutgram:hook:set https://<domain>.<tls>/hook`
 
 ## CD
 1. `php artisan down`
