@@ -68,7 +68,6 @@
                                     {{ '@'.config('bot.username') }}
                                 </a></p>
                             <p>Version: v{{ config('app.version') }}</p>
-                            <p>Changelog: <a href="{{ config('app.changelog') }}">Telegraph</a></p>
                         </div>
                     </div>
                 </div>

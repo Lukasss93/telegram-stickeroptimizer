@@ -8,7 +8,7 @@ about,changelog,<b>Changelog:</b> :value,<b>Changelog:</b> :value
 about,developer,👤 Developer,👤 Developer
 about,email,<b>Email:</b> :value,<b>Email:</b> :value
 about,website,<b>Website:</b> :value,<b>Website:</b> :value
-start,description,"Just send me an image or sticker, and I will convert it to a png file and optimized it to make its size smaller than or equal to 350Kb, so that you will be able to add it to a sticker pack using the @stickers bot.",Inviami una foto o uno sticker e io lo convertirò in un file png ottimizzato per renderlo minore o uguale a 350Kb così che sia pronto per aggiungerlo ad uno sticker pack utilizzando il bot @stickers.
+start,description,"Just send me an image or sticker, and I will convert it to a png file and optimized it to make its size smaller than or equal to 512Kb, so that you will be able to add it to a sticker pack using the @stickers bot.",Inviami una foto o uno sticker e io lo convertirò in un file png ottimizzato per renderlo minore o uguale a 512Kb così che sia pronto per aggiungerlo ad uno sticker pack utilizzando il bot @stickers.
 maintenance,title,Bot currently in maintenance mode.,Bot in manutenzione.
 maintenance,back,It will be back soon!,Tornerà presto online!
 maintenance,offline,Bot currently offline.,Bot offline.
