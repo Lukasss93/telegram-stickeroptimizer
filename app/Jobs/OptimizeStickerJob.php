@@ -16,6 +16,8 @@ use Illuminate\Support\Str;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Facades\Image;
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Attributes\ChatActions;
+use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
 
 class OptimizeStickerJob implements ShouldQueue
@@ -41,6 +43,11 @@ class OptimizeStickerJob implements ShouldQueue
     {
         try {
 
+            //set sending status
+            $bot->sendChatAction(ChatActions::UPLOAD_PHOTO, [
+                'chat_id' => $this->chatID,
+            ]);
+
             //get chat settings
             $chatSettings = Chat::find($this->chatID)?->settings();
 
@@ -62,6 +69,8 @@ class OptimizeStickerJob implements ShouldQueue
 
             //send optimized image
             $bot->sendDocument(InputFile::make($file->detach(), Str::uuid().'.png'), [
+                'caption' => message('donate.caption'),
+                'parse_mode' => ParseMode::HTML,
                 'chat_id' => $this->chatID,
                 'reply_to_message_id' => $this->replyID,
                 'allow_sending_without_reply' => true,

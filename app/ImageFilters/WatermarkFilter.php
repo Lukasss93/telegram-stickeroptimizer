@@ -29,6 +29,11 @@ class WatermarkFilter implements FilterInterface
      */
     public function applyFilter(Image $image): Image
     {
+        //skip if watermark opacity is 0
+        if ($this->settings->get('watermark.opacity') === 0) {
+            return $image;
+        }
+
         //create a new layer
         $layer = imagecreatetruecolor($image->getWidth(), $image->getHeight());
         imagesavealpha($layer, true);
