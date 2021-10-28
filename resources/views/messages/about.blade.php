@@ -1,6 +1,6 @@
 <b>@lang('about.bot')</b><br>
 @lang('about.name',['value'=>config('app.name')])<br>
-@lang('about.username',['value'=>config('bot.username')])<br>
+@lang('about.username',['value'=>'@'.config('bot.username')])<br>
 @lang('about.version',['value'=>config('app.version')])<br>
 
 @if(config('app.source'))
