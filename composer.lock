@@ -4303,16 +4303,16 @@
         },
         {
             "name": "sergix44/nutgram",
-            "version": "0.15.9",
+            "version": "0.15.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SergiX44/Nutgram.git",
-                "reference": "9efd9f0b280ce8be9fec974d53639ce6a40cfcf3"
+                "reference": "5cbb0e73554400eda59c80f481189a115b8e4e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SergiX44/Nutgram/zipball/9efd9f0b280ce8be9fec974d53639ce6a40cfcf3",
-                "reference": "9efd9f0b280ce8be9fec974d53639ce6a40cfcf3",
+                "url": "https://api.github.com/repos/SergiX44/Nutgram/zipball/5cbb0e73554400eda59c80f481189a115b8e4e0c",
+                "reference": "5cbb0e73554400eda59c80f481189a115b8e4e0c",
                 "shasum": ""
             },
             "require": {
@@ -4371,7 +4371,7 @@
             ],
             "support": {
                 "issues": "https://github.com/SergiX44/Nutgram/issues",
-                "source": "https://github.com/SergiX44/Nutgram/tree/0.15.9"
+                "source": "https://github.com/SergiX44/Nutgram/tree/0.15.10"
             },
             "funding": [
                 {
@@ -4379,7 +4379,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-26T17:02:49+00:00"
+            "time": "2021-10-28T22:52:57+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
