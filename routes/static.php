@@ -2,4 +2,4 @@
 
 use SergiX44\Nutgram\Nutgram;
 
-Route::get('/hook', fn () => app(Nutgram::class)->run());
+Route::post('/hook', fn () => app(Nutgram::class)->run());
