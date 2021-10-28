@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
+use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Facades\Image;
 use SergiX44\Nutgram\Nutgram;
@@ -41,6 +42,8 @@ class OptimizeStickerJob implements ShouldQueue
      */
     public function handle(Nutgram $bot): void
     {
+        $file = $bot->getFile($this->fileID);
+
         try {
 
             //set sending status
@@ -52,7 +55,7 @@ class OptimizeStickerJob implements ShouldQueue
             $chatSettings = Chat::find($this->chatID)?->settings();
 
             //load image
-            $image = Image::make($bot->getFile($this->fileID)?->url());
+            $image = Image::make($file?->url());
 
             //scale image
             $image->filter(ScaleFilter::make());
@@ -63,12 +66,12 @@ class OptimizeStickerJob implements ShouldQueue
             //compress image
             $quality = 100;
             do {
-                $file = $image->stream('png', $quality);
+                $stream = $image->stream('png', $quality);
                 $quality--;
-            } while ($file->getSize() > TelegramLimit::STICKER_MAX_SIZE);
+            } while ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE);
 
             //send optimized image
-            $bot->sendDocument(InputFile::make($file->detach(), Str::uuid().'.png'), [
+            $bot->sendDocument(InputFile::make($stream->detach(), Str::uuid().'.png'), [
                 'caption' => message('donate.caption'),
                 'parse_mode' => ParseMode::HTML,
                 'chat_id' => $this->chatID,
@@ -81,6 +84,12 @@ class OptimizeStickerJob implements ShouldQueue
 
         } catch (NotReadableException) {
             $bot->sendMessage(trans('common.invalid_file'));
+        } catch (InvalidArgumentException) {
+            $bot->sendMessage(trans('common.invalid_file'));
+
+            $bot->sendDocument($file->file_id, [
+                'chat_id' => config('developer.id'),
+            ]);
         }
     }
 }
