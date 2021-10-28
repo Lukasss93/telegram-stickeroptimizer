@@ -64,14 +64,19 @@ class OptimizeStickerJob implements ShouldQueue
             $image->filter(WatermarkFilter::make($chatSettings));
 
             //compress image
-            $quality = 100;
-            do {
-                $stream = $image->stream('png', $quality);
-                $quality--;
-            } while ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE);
+            $ext = 'png';
+            $stream = $image->stream('png');
+            if ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE) {
+                $quality = 100;
+                do {
+                    $stream = $image->stream('webp', $quality);
+                    $quality--;
+                } while ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE);
+                $ext = 'webp';
+            }
 
             //send optimized image
-            $bot->sendDocument(InputFile::make($stream->detach(), Str::uuid().'.png'), [
+            $bot->sendDocument(InputFile::make($stream->detach(), Str::uuid().'.'.$ext), [
                 'caption' => message('donate.caption'),
                 'parse_mode' => ParseMode::HTML,
                 'chat_id' => $this->chatID,
