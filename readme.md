@@ -25,6 +25,9 @@
 - Crontab (to update cached statistics)
 - GIT
 
+## 🗃️ Flow chart
+![flow](.assets/flow/flow.png)
+
 ## ⚙ First configuration
 - Configure a cron:<br>
   `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
