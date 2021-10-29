@@ -2,7 +2,7 @@
 
 All notable changes to this bot will be documented in this file.
 
-## v2.0 - [UNRELEASED]
+## v2.0 - 2021-10-29
 
 ❇️ @newstickeroptimizerbot **Update v2.0** ❇️
 
