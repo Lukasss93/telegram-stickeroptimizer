@@ -56,7 +56,7 @@ return [
         Lukasss93\Larex\Linters\DuplicateKeyLinter::class,
         Lukasss93\Larex\Linters\ConcurrentKeyLinter::class,
         Lukasss93\Larex\Linters\NoValueLinter::class,
-        Lukasss93\Larex\Linters\DuplicateValueLinter::class,
+        // Lukasss93\Larex\Linters\DuplicateValueLinter::class,
         Lukasss93\Larex\Linters\UntranslatedStringsLinter::class,
         Lukasss93\Larex\Linters\UnusedStringsLinter::class,
         Lukasss93\Larex\Linters\ValidHtmlValueLinter::class,
@@ -73,7 +73,7 @@ return [
          * Directories which should be looked inside.
          * NOTE: It's recursive.
          */
-        'dirs' => ['resources/views'],
+        'dirs' => ['resources/views', 'app'],
 
         /**
          * Patterns by which files should be queried.
@@ -93,5 +93,5 @@ return [
      * End of line used by:
      * - LaravelExporter.
      */
-    'eol' => PHP_EOL,
+    'eol' => '\n',
 ];

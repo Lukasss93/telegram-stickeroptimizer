@@ -65,7 +65,7 @@ class DonateConversation extends InlineMenu
             InlineKeyboardButton::make('100€', callback_data: 'donate.telegram.value.100@donationInvoice')
         );
 
-        $this->addButtonRow(InlineKeyboardButton::make('🔙 '.trans('app.back'),
+        $this->addButtonRow(InlineKeyboardButton::make('🔙 '.trans('common.back'),
             callback_data: 'donate.telegram.back@start'));
 
         $this->showMenu();
