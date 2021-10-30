@@ -5,7 +5,10 @@ return [
     'token' => env('TELEGRAM_TOKEN', ''),
 
     // Extra or specific configurations
-    'config' => [],
+    'config' => [
+        'read_timeout' => 20,
+        'timeout' => 20,
+    ],
 
     // Set if the service provider should automatically load
     // handlers from /routes/telegram.php
