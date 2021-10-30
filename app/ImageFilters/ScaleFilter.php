@@ -14,7 +14,6 @@ class ScaleFilter implements FilterInterface
     {
         $image->resize(512, 512, function ($constraint) {
             $constraint->aspectRatio();
-            $constraint->upsize();
         });
 
         return $image;
