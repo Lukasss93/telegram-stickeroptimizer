@@ -37,6 +37,7 @@ use SergiX44\Nutgram\Telegram\Types\User\User;
  * @method static Builder|Chat whereType($value)
  * @method static Builder|Chat whereUpdatedAt($value)
  * @method static Builder|Chat whereUsername($value)
+ * @method static Builder|Chat whereSettings($setting, $operator, $value = null, $filterOnMissing = null)
  * @mixin Eloquent
  */
 class Chat extends Model
@@ -77,5 +78,34 @@ class Chat extends Model
         $chat = self::find($user->id);
 
         return $chat ?? null;
+    }
+
+    public function scopeWhereSettings(
+        Builder $query,
+        string $setting,
+        string $operator,
+        $value,
+        bool $filterOnMissing = null
+    ): Builder {
+        return $query->where(function (Builder $query) use ($value, $operator, $setting, $filterOnMissing) {
+            return $query->when(
+                $filterOnMissing,
+                function (Builder $query) use ($value, $operator, $setting) {
+                    return $query
+                        ->whereDoesntHave('modelSettings')
+                        ->orWhereHas(
+                            'modelSettings',
+                            fn (Builder $query) => $query->where("settings->$setting", $operator, $value)
+                        );
+                },
+                function (Builder $query) use ($value, $operator, $setting) {
+                    $query->whereHas(
+                        'modelSettings',
+                        fn (Builder $query) => $query->where("settings->$setting", $operator, $value)
+                    );
+                }
+
+            );
+        });
     }
 }

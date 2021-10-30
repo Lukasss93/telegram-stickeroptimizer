@@ -38,10 +38,12 @@ class BotNewsCommand extends Command
         //get chats (started, not blocked)
         $chats = Chat::query()
             ->select('chat_id')
-            ->whereNotNull('started_at')
-            ->whereNull('blocked_at')
-            //TODO: filter muted notifications
-            ->unless($confirm, fn (Builder $query) => $query->where('chat_id', config('developer.id')))
+            ->when($confirm,
+                fn (Builder $query) => $query
+                    ->whereNotNull('started_at')
+                    ->whereNull('blocked_at')
+                    ->whereSettings('news', '=', true, true),
+                fn (Builder $query) => $query->where('chat_id', config('developer.id')))
             ->cursor();
 
         $bar = $this->output->createProgressBar($chats->count());
