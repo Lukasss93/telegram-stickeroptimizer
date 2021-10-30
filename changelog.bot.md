@@ -2,6 +2,15 @@
 
 All notable changes to this bot will be documented in this file.
 
+## v2.0.1 - 2021-10-30
+
+❇️ @newstickeroptimizerbot **Update v2.0.1** ❇️
+
+**Changelog:**<br>
+🐞 Fix missing translation in donate conversation<br>
+🐞 Fix missing muted notifications filtering<br>
+🐞 Fix image scaling
+
 ## v2.0 - 2021-10-29
 
 ❇️ @newstickeroptimizerbot **Update v2.0** ❇️
