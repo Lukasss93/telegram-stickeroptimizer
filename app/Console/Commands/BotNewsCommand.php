@@ -52,7 +52,7 @@ class BotNewsCommand extends Command
 
         foreach ($chats as $chat) {
             /** @var Chat $chat */
-            SendNews::dispatch($chat->chat_id, $message_id);
+            SendNews::dispatch($chat->chat_id, $message_id)->onConnection('database');
             $bar->advance();
         }
 

@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\TelegramUserBlockedException;
+use App\Exceptions\TelegramUserDeactivatedException;
 use App\Jobs\Middleware\RateLimited;
 use App\Models\Chat;
 use Illuminate\Bus\Queueable;
@@ -9,7 +11,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Str;
 use SergiX44\Nutgram\Nutgram;
 use Throwable;
 
@@ -46,16 +47,10 @@ class SendNews implements ShouldQueue
         try {
             //forward message
             $bot->forwardMessage($this->chat_id, config('bot.channel'), $this->message_id);
-        } catch (Throwable $e) {
-            if (Str::contains($e->getMessage(), 'user is deactivated')) {
-                Chat::find($this->chat_id)?->delete();
-
-                return;
-            }
-
-            if (!Str::contains($e->getMessage(), ['bot was blocked by the user'])) {
-                throw $e;
-            }
+        } catch (TelegramUserBlockedException) {
+            Chat::where('chat_id', $this->chat_id)->update(['blocked_at' => now()]);
+        } catch (TelegramUserDeactivatedException) {
+            Chat::find($this->chat_id)?->delete();
         }
     }
 
