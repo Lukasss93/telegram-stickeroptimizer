@@ -80,5 +80,5 @@ $bot->onCommand('cancel', CancelCommand::class)->description('Close a conversati
 |--------------------------------------------------------------------------
 */
 
-$bot->onException(ExceptionsHandler::class);
-$bot->onApiError(ExceptionsHandler::class);
+$bot->onApiError([ExceptionsHandler::class, 'api']);
+$bot->onException([ExceptionsHandler::class, 'global']);
