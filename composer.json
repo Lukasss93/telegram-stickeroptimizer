@@ -10,7 +10,7 @@
         "sticker",
         "optimizer"
     ],
-    "license": "MIT",
+    "license": "AGPL-3.0-only",
     "require": {
         "php": "^8.0",
         "ext-gd": "*",
