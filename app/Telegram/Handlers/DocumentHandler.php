@@ -23,7 +23,7 @@ class DocumentHandler
             return;
         }
 
-        OptimizeStickerJob::dispatch($bot->chatId(), $replyID, $fileID);
+        OptimizeStickerJob::dispatchSync($bot->chatId(), $replyID, $fileID);
 
         stats('document', 'handler');
     }

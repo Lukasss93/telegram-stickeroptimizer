@@ -32,7 +32,7 @@ class StickerHandler
             return;
         }
 
-        OptimizeStickerJob::dispatch($bot->chatId(), $replyID, $fileID);
+        OptimizeStickerJob::dispatchSync($bot->chatId(), $replyID, $fileID);
 
         stats('sticker', 'handler');
     }

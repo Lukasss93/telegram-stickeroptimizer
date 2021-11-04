@@ -30,7 +30,7 @@ class BotNewsCommand extends Command
      */
     public function handle(): int
     {
-        $message_id = (int) $this->argument('id');
+        $message_id = (int)$this->argument('id');
         $confirm = $this->option('confirm');
 
         $this->warn('Dispatching news...');
@@ -52,7 +52,7 @@ class BotNewsCommand extends Command
 
         foreach ($chats as $chat) {
             /** @var Chat $chat */
-            SendNews::dispatch($chat->chat_id, $message_id)->onConnection('database');
+            SendNews::dispatch($chat->chat_id, $message_id);
             $bar->advance();
         }
 
