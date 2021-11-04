@@ -213,10 +213,18 @@ function isHexColor(string $value): bool
 
 /**
  * Check if a file is an animated webp
- * @param string $source
+ * @param string|resource $source
  * @return bool
  */
-function isWebpAnimated(string $source): bool
+function isAnAnimatedWebp(mixed $source): bool
 {
-    return str_contains(file_get_contents($source), 'ANMF');
+    if (is_string($source)) {
+        return str_contains(file_get_contents($source), 'ANMF');
+    }
+
+    if (is_resource($source)) {
+        return str_contains(stream_get_contents($source), 'ANMF');
+    }
+
+    throw new InvalidArgumentException('The source parameter must be string or resource.');
 }

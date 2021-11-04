@@ -54,6 +54,11 @@ class OptimizeStickerJob implements ShouldQueue
             //get chat settings
             $chatSettings = Chat::find($this->chatID)?->settings();
 
+            //check if resource is an animated webp
+            if (isAnAnimatedWebp(fopen($file?->url(), 'rb'))) {
+                throw new NotReadableException();
+            }
+
             //load image
             $image = Image::make($file?->url());
 
