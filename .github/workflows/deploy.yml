@@ -15,13 +15,14 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
           script: |
-            cd stickeroptimizer.lucapatera.it
-            /opt/plesk/php/8.0/bin/php artisan down
+            cd ${{ secrets.PROJECT_PATH}}
+            php artisan down
             git reset --hard
             git pull "https://Lukasss93:${{ secrets.GIT_TOKEN }}@github.com/Lukasss93/telegram-stickeroptimizer.git" master
-            /opt/plesk/php/8.0/bin/php composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
-            /opt/plesk/php/8.0/bin/php artisan migrate --force --step
-            /opt/plesk/php/8.0/bin/php artisan optimize
-            /opt/plesk/php/8.0/bin/php artisan storage:link
-            /opt/plesk/php/8.0/bin/php artisan up
+            php composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
+            php artisan migrate --force --step
+            php artisan optimize
+            php artisan storage:link
+            php artisan nutgram:register-commands
+            php artisan up
             echo 'DONE!'
