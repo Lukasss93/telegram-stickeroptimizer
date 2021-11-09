@@ -33,10 +33,10 @@ class DonateConversation extends InlineMenu
 
         foreach (config('donation.third_party_providers.text') as $service => $value) {
             $this->addButtonRow(InlineKeyboardButton::make($service,
-                callback_data: "donate.third.$service@menuThirdParty"));
+                callback_data: "$service@menuThirdParty"));
         }
 
-        $this->addButtonRow(InlineKeyboardButton::make('❌ '.__('common.close'),
+        $this->addButtonRow(InlineKeyboardButton::make('❌ '.trans('common.close'),
             callback_data: 'donate.cancel@end'));
 
         $this->showMenu();
@@ -57,12 +57,12 @@ class DonateConversation extends InlineMenu
 
         $this->clearButtons();
         $this->addButtonRow(
-            InlineKeyboardButton::make('1€', callback_data: 'donate.telegram.value.1@donationInvoice'),
-            InlineKeyboardButton::make('5€', callback_data: 'donate.telegram.value.5@donationInvoice'),
-            InlineKeyboardButton::make('10€', callback_data: 'donate.telegram.value.10@donationInvoice'),
-            InlineKeyboardButton::make('25€', callback_data: 'donate.telegram.value.25@donationInvoice'),
-            InlineKeyboardButton::make('50€', callback_data: 'donate.telegram.value.50@donationInvoice'),
-            InlineKeyboardButton::make('100€', callback_data: 'donate.telegram.value.100@donationInvoice')
+            InlineKeyboardButton::make('1€', callback_data: '1@donationInvoice'),
+            InlineKeyboardButton::make('5€', callback_data: '5@donationInvoice'),
+            InlineKeyboardButton::make('10€', callback_data: '10@donationInvoice'),
+            InlineKeyboardButton::make('25€', callback_data: '25@donationInvoice'),
+            InlineKeyboardButton::make('50€', callback_data: '50@donationInvoice'),
+            InlineKeyboardButton::make('100€', callback_data: '100@donationInvoice')
         );
 
         $this->addButtonRow(InlineKeyboardButton::make('🔙 '.trans('common.back'),
@@ -76,16 +76,17 @@ class DonateConversation extends InlineMenu
     /**
      * Telegram invoice actions
      * @param Nutgram $bot
+     * @param string $data
      * @throws InvalidArgumentException
      * @throws JsonException
      */
-    public function donationInvoice(Nutgram $bot): void
+    public function donationInvoice(Nutgram $bot, string $data): void
     {
-        $value = (int)last(explode('.', $bot->callbackQuery()->data));
+        $value = (int)$data;
 
         $this->bot->sendInvoice(
-            __('donate.donation'),
-            __('donate.support_by_donating'),
+            trans('donate.donation'),
+            trans('donate.support_by_donating'),
             'donation',
             config('donation.provider_token'),
             'EUR',
@@ -100,12 +101,11 @@ class DonateConversation extends InlineMenu
     /**
      * Third-party providers actions
      * @param Nutgram $bot
+     * @param string $service
      * @throws InvalidArgumentException
      */
-    public function menuThirdParty(Nutgram $bot): void
+    public function menuThirdParty(Nutgram $bot, string $service): void
     {
-        $service = last(explode('.', $bot->callbackQuery()->data));
-
         $text = config("donation.third_party_providers.text.$service");
 
         $photo = qrcode($text, $service, true);

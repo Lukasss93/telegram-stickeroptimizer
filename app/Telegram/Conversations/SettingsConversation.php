@@ -33,21 +33,21 @@ class SettingsConversation extends InlineMenu
                 'disable_web_page_preview' => true,
             ])->addButtonRow(
                 InlineKeyboardButton::make(
-                    !$this->settings->get('news') ? __('settings.enable_news') : __('settings.disable_news'),
+                    !$this->settings->get('news') ? trans('settings.enable_news') : trans('settings.disable_news'),
                     callback_data: 'settings:news@handleNews'),
             )->addButtonRow(
                 InlineKeyboardButton::make(
-                    __('settings.language.title'),
+                    trans('settings.language.title'),
                     callback_data: 'settings:languages@handleLanguages'
                 )
             )->addButtonRow(
                 InlineKeyboardButton::make(
-                    __('settings.watermark.title'),
+                    trans('settings.watermark.title'),
                     callback_data: 'settings:watermark@handleWatermark'
                 )
             )->addButtonRow(
                 InlineKeyboardButton::make(
-                    '❌ '.__('common.close'),
+                    '❌ '.trans('common.close'),
                     callback_data: 'donate.cancel@end')
             )->showMenu();
 
@@ -80,7 +80,7 @@ class SettingsConversation extends InlineMenu
             ->chunk(2)
             ->each(fn ($row) => $this->addButtonRow(...$row->values()));
 
-        $this->addButtonRow(InlineKeyboardButton::make(__('settings.back'), callback_data: 'languages:back@start'));
+        $this->addButtonRow(InlineKeyboardButton::make(trans('settings.back'), callback_data: 'languages:back@start'));
 
         $this->showMenu();
     }
