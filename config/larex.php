@@ -93,5 +93,5 @@ return [
      * End of line used by:
      * - LaravelExporter.
      */
-    'eol' => '\n',
+    'eol' => "\n",
 ];

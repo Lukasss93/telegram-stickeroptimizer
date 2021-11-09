@@ -79,3 +79,4 @@ watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore de
 common,too_large_file,Too large file!,File troppo grande!
 common,animated_not_supported,Animated stickers are not supported!,Gli sticker animati non sono supportati!
 common,invalid_file,Invalid file!,File non valido!
+common,open_url,Open url,Apri url

@@ -4,11 +4,11 @@
 @lang('about.version',['value'=>config('app.version')])<br>
 
 @if(config('app.source'))
-@lang('about.source',['value'=>'<a href="'.config('app.source').'">Github</a>'])<br>
+@lang('about.source',['value'=>'<a href="'.config('app.source').'">'.trans('common.open_url').'</a>'])<br>
 @endif
 
 @if(config('app.changelog'))
-@lang('about.changelog',['value'=>'<a href="'.config('app.changelog').'">Telegraph</a>'])<br>
+@lang('about.changelog',['value'=>'<a href="'.config('app.changelog').'">'.trans('common.open_url').'</a>'])<br>
 @endif
 <br>
 

@@ -19,5 +19,6 @@ return [
     'too_large_file' => 'Too large file!',
     'animated_not_supported' => 'Animated stickers are not supported!',
     'invalid_file' => 'Invalid file!',
+    'open_url' => 'Open url',
 
 ];
