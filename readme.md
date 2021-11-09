@@ -35,28 +35,6 @@
 ## 🗃️ Flow chart
 ![flow](.assets/flow/flow.png)
 
-## ⚙ First configuration
-- Configure a cron:<br>
-  `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
-- Configure a SystemD Unit:<br>
-  `systemctl edit --force --full stickeroptimizer-news.service`
-   ```shell
-   [Unit]
-   Description=stickeroptimizer.news
-   StartLimitBurst=0
-   
-   [Service]
-   Restart=always
-   WorkingDirectory=<project-root>
-   ExecStart=/bin/sh -c 'php artisan queue:work --queue=news --memory=512 >> <project-root>/storage/logs/worker-news.log'
-   User=<user>
-   Group=<group>
-   
-   [Install]
-   WantedBy=default.target
-   ```
-  `sudo systemctl start stickeroptimizer-news.service`
-
 ## 🚀 First deploy
 
 0. `cd <vhost-folder>`
@@ -65,12 +43,15 @@
 3. `php artisan migrate`
 4. `cp .env.example .env`
 5. Edit the `.env` file with your preferences
-6. `composer install`
-7. `sudo chmod -R 775 bootstrap/`
-8. `sudo chmod -R 775 storage/`
-9. `php artisan storage:link`
-10. `php artisan nutgram:register-commands`
-11. `php artisan nutgram:hook:set https://<domain>.<tls>/hook`
+6. `wget https://getcomposer.org/download/latest-2.x/composer.phar`
+7. `php composer.phar install`
+8. `sudo chmod -R 775 bootstrap/`
+9. `sudo chmod -R 775 storage/`
+10. `php artisan storage:link`
+11. Create a new cron: `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1`
+12. Configure a SystemD Unit to execute: `php artisan queue:work --queue=news --memory=512`
+13. `php artisan nutgram:register-commands`
+14. `php artisan nutgram:hook:set https://<domain>.<tls>/hook`
 
 ## 🌠 Continuous deployment
 This project will be updated in production at every pushed commit to master branch.<br>
