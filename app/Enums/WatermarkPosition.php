@@ -19,7 +19,7 @@ class WatermarkPosition extends Enum
     public const BOTTOM_CENTER = 'bottom-center';
     public const BOTTOM_RIGHT = 'bottom-right';
 
-    public static function getEmojiFromValue(string $value): string
+    public static function getEmojiFromValue(?string $value): string
     {
         return match ($value) {
             self::TOP_LEFT => '↖',
@@ -35,7 +35,7 @@ class WatermarkPosition extends Enum
         };
     }
 
-    public static function getValueFromEmoji(string $emoji): string
+    public static function getValueFromEmoji(?string $emoji): string
     {
         return match ($emoji) {
             '↖' => self::TOP_LEFT,
@@ -51,7 +51,7 @@ class WatermarkPosition extends Enum
         };
     }
 
-    public static function getX(string $value): string
+    public static function getX(?string $value): string
     {
         return match ($value) {
             self::TOP_LEFT, self::MIDDLE_LEFT, self::BOTTOM_LEFT => 'left',
@@ -61,7 +61,7 @@ class WatermarkPosition extends Enum
         };
     }
 
-    public static function getY(string $value): string
+    public static function getY(?string $value): string
     {
         return match ($value) {
             self::TOP_LEFT, self::TOP_CENTER, self::TOP_RIGHT => 'top',
