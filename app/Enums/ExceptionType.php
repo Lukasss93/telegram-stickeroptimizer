@@ -8,6 +8,7 @@ use App\Exceptions\TelegramMessageToDeleteNotFoundException;
 use App\Exceptions\TelegramMessageToEditNotFoundException;
 use App\Exceptions\TelegramUserBlockedException;
 use App\Exceptions\TelegramUserDeactivatedException;
+use App\Exceptions\TelegramWrongFileIdException;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
@@ -18,6 +19,7 @@ class ExceptionType extends Enum
     public const SAME_CONTENT = '.*specified new message content and reply markup are exactly the same.*';
     public const MSG_TO_EDIT_NOT_FOUND = '.*message to edit not found.*';
     public const MSG_TO_DELETE_NOT_FOUND = '.*message to delete not found.*';
+    public const WRONG_FILE_ID = '.*wrong file_id or the file is temporarily unavailable.*';
 
     public static function getExceptionFromType(string $type): string
     {
@@ -27,6 +29,7 @@ class ExceptionType extends Enum
             self::SAME_CONTENT => TelegramMessageNotModifiedException::class,
             self::MSG_TO_EDIT_NOT_FOUND => TelegramMessageToEditNotFoundException::class,
             self::MSG_TO_DELETE_NOT_FOUND => TelegramMessageToDeleteNotFoundException::class,
+            self::WRONG_FILE_ID => TelegramWrongFileIdException::class,
             default => throw new InvalidArgumentException('Unknown exception type')
         };
     }

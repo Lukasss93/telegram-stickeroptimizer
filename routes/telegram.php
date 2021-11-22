@@ -6,6 +6,7 @@ use App\Enums\ExceptionType;
 use App\Exceptions\TelegramMessageNotModifiedException;
 use App\Exceptions\TelegramUserBlockedException;
 use App\Exceptions\TelegramUserDeactivatedException;
+use App\Exceptions\TelegramWrongFileIdException;
 use App\Telegram\Commands\AboutCommand;
 use App\Telegram\Commands\CancelCommand;
 use App\Telegram\Commands\HelpCommand;
@@ -94,6 +95,8 @@ $bot->onApiError(ExceptionType::MSG_TO_EDIT_NOT_FOUND,
     fn (Nutgram $bot, $e) => throw new TelegramUserBlockedException($e->getMessage()));
 $bot->onApiError(ExceptionType::MSG_TO_DELETE_NOT_FOUND,
     fn (Nutgram $bot, $e) => throw new TelegramUserBlockedException($e->getMessage()));
+$bot->onApiError(ExceptionType::WRONG_FILE_ID,
+    fn (Nutgram $bot, $e) => throw new TelegramWrongFileIdException($e->getMessage()));
 
 $bot->onApiError([ExceptionsHandler::class, 'api']);
 $bot->onException([ExceptionsHandler::class, 'global']);

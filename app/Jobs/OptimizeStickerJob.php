@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Enums\TelegramLimit;
+use App\Exceptions\TelegramWrongFileIdException;
 use App\ImageFilters\ScaleFilter;
 use App\ImageFilters\WatermarkFilter;
 use App\Models\Chat;
@@ -42,9 +43,15 @@ class OptimizeStickerJob implements ShouldQueue
      */
     public function handle(Nutgram $bot): void
     {
-        $file = $bot->getFile($this->fileID);
+        $file = null;
 
         try {
+            $file = $bot->getFile($this->fileID);
+
+            //check if file exists
+            if ($file === null) {
+                throw new InvalidArgumentException('Invalid file');
+            }
 
             //set sending status
             $bot->sendChatAction(ChatActions::UPLOAD_PHOTO, [
@@ -55,12 +62,12 @@ class OptimizeStickerJob implements ShouldQueue
             $chatSettings = Chat::find($this->chatID)?->settings();
 
             //check if resource is an animated webp
-            if (isAnAnimatedWebp(fopen($file?->url(), 'rb'))) {
+            if (isAnAnimatedWebp(fopen($file->url(), 'rb'))) {
                 throw new NotReadableException();
             }
 
             //load image
-            $image = Image::make($file?->url());
+            $image = Image::make($file->url());
 
             //scale image
             $image->filter(ScaleFilter::make());
@@ -92,14 +99,16 @@ class OptimizeStickerJob implements ShouldQueue
             //save statistic
             stats('sticker', 'optimized');
 
-        } catch (NotReadableException) {
+        } catch (TelegramWrongFileIdException | NotReadableException) {
             $bot->sendMessage(trans('common.invalid_file'));
         } catch (InvalidArgumentException) {
             $bot->sendMessage(trans('common.invalid_file'));
 
-            $bot->sendDocument($file->file_id, [
-                'chat_id' => config('developer.id'),
-            ]);
+            if ($file !== null) {
+                $bot->sendDocument($file->file_id, [
+                    'chat_id' => config('developer.id'),
+                ]);
+            }
         }
     }
 }
