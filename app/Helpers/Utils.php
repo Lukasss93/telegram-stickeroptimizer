@@ -155,7 +155,7 @@ function stats(string $action, string $category = null, array $value = null, int
         'action' => $action,
         'category' => $category,
         'value' => $value,
-        'chat_id' => $chat_id ?? app(Nutgram::class)->update()?->getChat()?->id,
+        'chat_id' => $chat_id ?? app(Nutgram::class)->update()?->getUser()?->id,
     ]);
 }
 
