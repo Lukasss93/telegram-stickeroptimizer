@@ -2,6 +2,14 @@
 
 All notable changes to this bot will be documented in this file.
 
+## v2.1 - 2021-11-27
+
+❇️ @newstickeroptimizerbot **Update v2.1** ❇️
+
+**Changelog:**<br>
+🌎 Added new language: Polish<br>
+🐞 Minor fixes and improvements<br>
+
 ## v2.0 - 2021-10-29
 
 ❇️ @newstickeroptimizerbot **Update v2.0** ❇️
