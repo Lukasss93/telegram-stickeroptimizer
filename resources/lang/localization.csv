@@ -1,82 +1,82 @@
-group,key,en,it
-about,bot,🤖 Bot,🤖 Bot
-about,name,<b>Name:</b> :value,<b>Nome:</b> :value
-about,username,<b>Username:</b> :value,<b>Username:</b> :value
-about,version,<b>Version:</b> :value,<b>Versione:</b> :value
-about,source,<b>Source code:</b> :value,<b>Source code:</b> :value
-about,changelog,<b>Changelog:</b> :value,<b>Changelog:</b> :value
-about,developer,👤 Developer,👤 Developer
-about,email,<b>Email:</b> :value,<b>Email:</b> :value
-about,website,<b>Website:</b> :value,<b>Website:</b> :value
-start,description,"Just send me an image or sticker, and I will convert it to a png file and optimized it to make its size smaller than or equal to 512Kb, so that you will be able to add it to a sticker pack using the @stickers bot.",Inviami una foto o uno sticker e io lo convertirò in un file png ottimizzato per renderlo minore o uguale a 512Kb così che sia pronto per aggiungerlo ad uno sticker pack utilizzando il bot @stickers.
-maintenance,title,Bot currently in maintenance mode.,Bot in manutenzione.
-maintenance,back,It will be back soon!,Tornerà presto online!
-maintenance,offline,Bot currently offline.,Bot offline.
-privacy,title,Privacy Policy,Privacy Policy
-privacy,description,Read the privacy policy clicking the button below.,Leggi la privacy policy cliccando il bottone in basso.
-common,from,From:,Da:
-common,message,Message:,Messaggio:
-common,cancel,Cancel,Annulla
-feedback,ask,Please enter a feedback about the bot:,Per favore inserisci un feedback riguardo il bot:
-feedback,cancelled,Feedback cancelled.,Feedback annullato.
-feedback,new,New feedback!,Nuovo feedback!
-feedback,thanks,Thank you for your feedback!,Grazie per il tuo feedback!
-feedback,wrong,Invalid content. Please send only text.,Contenuto invalido. Per favore inserisci solo del testo.
-donate,donation,Donation,Donazione
-donate,support_by_donating,Support this bot by donating,Supporta questo bot donando
-donate,select_amount,Select the amount you wish to donate:,Seleziona la quantità che desideri donare:
-donate,consider_donation,"If you want to support my work, please consider making a donation.","Se vuoi supportare il mio lavoro, per favore considera una donazione."
-donate,appreciated,That'll be very much appreciated 😊,Verrà molto apprezzato 😊
-donate,terms,Terms and conditions for donation payments,Termini e condizioni per le donazioni
-donate,thanks,Thank you for your donation!,Grazie per la tua donazione!
-donate,with,Donate with :service,Dona con :service
-common,close,Close,Chiudi
-common,back,Back,Indietro
-stats,title,<b>📊 Statistics</b>,<b>📊 Statistiche</b>
-stats,stickers.today,<b>🆕 Stickers optimized today:</b> :value,<b>🆕 Sticker ottimizzati oggi:</b> :value
-stats,stickers.total,<b>🖼 Total stickers optimized:</b> :value,<b>🖼 Totale sticker ottimizzati:</b> :value
-stats,users.today.new,<b>🆕 New users today:</b> :value,<b>🆕 Nuovi utenti oggi:</b> :value
-stats,users.today.active,<b>✳️ Active users today:</b> :value,<b>✳️ Utenti attivi oggi:</b> :value
-stats,users.total,<b>👥 Total users:</b> :value,<b>👥 Utenti totali:</b> :value
-stats,last_update,<i>Last update:</i> :value,<i>Ultimo aggiornamento:</i> :value
-settings,back,🔙 Back,🔙 Indietro
-settings,description,Here you can change the bot settings.,Qui puoi cambiare le impostazioni del bot.
-settings,disable_news,📰 Disable news,📰 Disabilita news
-settings,disabled,❌ Disabled,❌ Disabilitato
-settings,enable_news,📰 Enable news,📰 Abilita news
-settings,enabled,✅ Enabled,✅ Abilitato
-settings,language.click,Click here,Clicca qui
-settings,language.description,Here you can change the bot language.,Qui puoi cambiare la lingua del bot.
-settings,language.more,Do you want more languages?,Vuoi altre lingue?
-settings,language.title,💬 Language,💬 Lingua
-settings,news,📰 News,📰 News
-settings,title,⚙️ Settings,⚙️ Impostazioni
-settings,watermark.title,🔏 Watermark,🔏 Watermark
-settings,watermark.description,Protect your stickers with a watermark.,Proteggi i tuoi sticker con un watermark.
-common,general,General,Generale
-common,opacity,Opacity,Opacità
-common,position,Position,Posizione
-common,text,Text,Testo
-common,content,Content,Contenuto
-common,size,Size,Dimensione
-common,color,Color,Colore
-common,border,Border,Bordo
-watermark,opacity.set,👓 Set opacity,👓 Imposta opacità
-watermark,position.set,🎛 Set position,🎛 Imposta posizione
-watermark,text.content.set,📝 Set text content,📝 Imposta testo
-watermark,text.size.set,🔢 Set text size,🔢 Imposta dimensione testo
-watermark,text.color.set,🖍 Set text color,🖍 Imposta colore testo
-watermark,border.size.set,🔢 Set border size,🔢 Imposta dimensione bordo
-watermark,border.color.set,🖍 Set border color,🖍 Imposta colore bordo
-watermark,opacity.send,Enter the opacity value (0-100):,Inserisci un valore per l'opacità (0-100):
-common,invalid_value,Invalid value!,Valore non valido!
-watermark,position.send,Enter the watermark position:,Inserisci la posizione del watermark:
-watermark,text.content.send,Enter the watermark text:,Inserisci il testo del watermark:
-watermark,text.size.send,Enter the text size (1-100):,Inserisci la dimensione del testo (1-100):
-watermark,border.size.send,Enter the border size (0-10):,Inserisci la dimensione del bordo (0-10):
-watermark,text.color.send,Enter the text color (HEX):,Inserisci il colore del testo (HEX):
-watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore del bordo (HEX):
-common,too_large_file,Too large file!,File troppo grande!
-common,animated_not_supported,Animated stickers are not supported!,Gli sticker animati non sono supportati!
-common,invalid_file,Invalid file!,File non valido!
-common,open_url,Open url,Apri url
+group,key,en,it,pl
+about,bot,🤖 Bot,🤖 Bot,🤖 Bot
+about,name,<b>Name:</b> :value,<b>Nome:</b> :value,<b>Nazwa:</b> :value
+about,username,<b>Username:</b> :value,<b>Username:</b> :value,<b>Nazwa użytkownika:</b> :value
+about,version,<b>Version:</b> :value,<b>Versione:</b> :value,<b>Wersja:</b> :value
+about,source,<b>Source code:</b> :value,<b>Source code:</b> :value,<b>Kod źródłowy:</b> :value
+about,changelog,<b>Changelog:</b> :value,<b>Changelog:</b> :value,<b>Lista zmian:</b> :value
+about,developer,👤 Developer,👤 Developer,👤 Programista
+about,email,<b>Email:</b> :value,<b>Email:</b> :value,<b>E-mail:</b> :value
+about,website,<b>Website:</b> :value,<b>Website:</b> :value,<b>Strona internetowa:</b> :value
+start,description,"Just send me an image or sticker, and I will convert it to a png file and optimized it to make its size smaller than or equal to 512Kb, so that you will be able to add it to a sticker pack using the @stickers bot.",Inviami una foto o uno sticker e io lo convertirò in un file png ottimizzato per renderlo minore o uguale a 512Kb così che sia pronto per aggiungerlo ad uno sticker pack utilizzando il bot @stickers.,"Wystarczy wysłać mi obrazek lub naklejkę a ja przekonwertuję go do pliku png i zoptymalizuję, aby jego rozmiar był mniejszy lub równy 512Kb, aby było możliwe dodać go do pakietu naklejek za pomocą bota @stickers."
+maintenance,title,Bot currently in maintenance mode.,Bot in manutenzione.,Bot jest obecnie w trybie konserwacji.
+maintenance,back,It will be back soon!,Tornerà presto online!,Wkrótce wróci!
+maintenance,offline,Bot currently offline.,Bot offline.,Bot jest obecnie offline.
+privacy,title,Privacy Policy,Privacy Policy,Polityka prywatności
+privacy,description,Read the privacy policy clicking the button below.,Leggi la privacy policy cliccando il bottone in basso.,Przeczytaj politykę prywatności klikając poniższy przycisk.
+common,from,From:,Da:,Od:
+common,message,Message:,Messaggio:,Wiadomość:
+common,cancel,Cancel,Annulla,Anuluj
+common,close,Close,Chiudi,Zamknij
+common,back,Back,Indietro,Powrót
+common,general,General,Generale,Ogólne
+common,opacity,Opacity,Opacità,Przezroczystość
+common,position,Position,Posizione,Pozycja na ekranie
+common,text,Text,Testo,Tekst
+common,content,Content,Contenuto,Zawartość
+common,size,Size,Dimensione,Rozmiar
+common,color,Color,Colore,Kolor
+common,border,Border,Bordo,Obramowanie
+common,invalid_value,Invalid value!,Valore non valido!,Nieprawidłowa wartość!
+common,too_large_file,Too large file!,File troppo grande!,Zbyt duży plik!
+common,animated_not_supported,Animated stickers are not supported!,Gli sticker animati non sono supportati!,Animowane naklejki nie są obsługiwane!
+common,invalid_file,Invalid file!,File non valido!,Nieprawidłowy plik!
+common,open_url,Open url,Apri url,Otwórz adres url
+feedback,ask,Please enter a feedback about the bot:,Per favore inserisci un feedback riguardo il bot:,Wprowadź opinię o bocie:
+feedback,cancelled,Feedback cancelled.,Feedback annullato.,Przekazanie opinii anulowane.
+feedback,new,New feedback!,Nuovo feedback!,Nowa opinia!
+feedback,thanks,Thank you for your feedback!,Grazie per il tuo feedback!,Dziękujemy za Twoją opinię!
+feedback,wrong,Invalid content. Please send only text.,Contenuto invalido. Per favore inserisci solo del testo.,Nieprawidłowa zawartość. Proszę wprowadzić tylko tekst.
+donate,donation,Donation,Donazione,Darowizna
+donate,support_by_donating,Support this bot by donating,Supporta questo bot donando,Wspomóż tego bota poprzez dotację
+donate,select_amount,Select the amount you wish to donate:,Seleziona la quantità che desideri donare:,"Wybierz kwotę, jaką chcesz przekazać:"
+donate,consider_donation,"If you want to support my work, please consider making a donation.","Se vuoi supportare il mio lavoro, per favore considera una donazione.","Jeśli chcesz wesprzeć moją pracę, rozważ przekazanie darowizny."
+donate,appreciated,That'll be very much appreciated 😊,Verrà molto apprezzato 😊,To będzie bardzo miłe 😊
+donate,terms,Terms and conditions for donation payments,Termini e condizioni per le donazioni,Zasady i warunki płatności darowizn
+donate,thanks,Thank you for your donation!,Grazie per la tua donazione!,Dziękujemy za wsparcie!
+donate,with,Donate with :service,Dona con :service,Wesprzyj za pomocą :service
+stats,title,<b>📊 Statistics</b>,<b>📊 Statistiche</b>,<b>📊 Statystyki</b>
+stats,stickers.today,<b>🆕 Stickers optimized today:</b> :value,<b>🆕 Sticker ottimizzati oggi:</b> :value,<b>🆕 Naklejki zoptymalizowane dziś:</b> :value
+stats,stickers.total,<b>🖼 Total stickers optimized:</b> :value,<b>🖼 Totale sticker ottimizzati:</b> :value,<b>🖼 Wszystkie zoptymalizowane naklejki:</b> :value
+stats,users.today.new,<b>🆕 New users today:</b> :value,<b>🆕 Nuovi utenti oggi:</b> :value,<b>🆕 Nowi użytkownicy dzisiaj:</b> :value
+stats,users.today.active,<b>✳️ Active users today:</b> :value,<b>✳️ Utenti attivi oggi:</b> :value,<b>✳️ Aktywni użytkownicy dzisiaj:</b> :value
+stats,users.total,<b>👥 Total users:</b> :value,<b>👥 Utenti totali:</b> :value,<b>👥 Wszyscy użytkownicy:</b> :value
+stats,last_update,<i>Last update:</i> :value,<i>Ultimo aggiornamento:</i> :value,<i>Ostatnia aktualizacja:</i> :value
+settings,back,🔙 Back,🔙 Indietro,🔙 Powrót
+settings,description,Here you can change the bot settings.,Qui puoi cambiare le impostazioni del bot.,Tutaj możesz zmienić ustawienia bota.
+settings,disable_news,📰 Disable news,📰 Disabilita news,📰 Wyłącz wiadomości
+settings,disabled,❌ Disabled,❌ Disabilitato,❌ Wyłączone
+settings,enable_news,📰 Enable news,📰 Abilita news,📰 Włącz aktualności
+settings,enabled,✅ Enabled,✅ Abilitato,✅ Włączone
+settings,language.click,Click here,Clicca qui,Kliknij tutaj
+settings,language.description,Here you can change the bot language.,Qui puoi cambiare la lingua del bot.,Tutaj możesz zmienić język bota.
+settings,language.more,Do you want more languages?,Vuoi altre lingue?,Chcesz więcej języków?
+settings,language.title,💬 Language,💬 Lingua,💬 Język
+settings,news,📰 News,📰 News,📰 Aktualności
+settings,title,⚙️ Settings,⚙️ Impostazioni,⚙️ Ustawienia
+settings,watermark.title,🔏 Watermark,🔏 Watermark,🔏 Znak wodny
+settings,watermark.description,Protect your stickers with a watermark.,Proteggi i tuoi sticker con un watermark.,Chroń swoje naklejki za pomocą znaku wodnego.
+watermark,opacity.set,👓 Set opacity,👓 Imposta opacità,👓 Ustaw przezroczystość
+watermark,opacity.send,Enter the opacity value (0-100):,Inserisci un valore per l'opacità (0-100):,Wprowadź wartość przezroczystości (0-100):
+watermark,position.set,🎛 Set position,🎛 Imposta posizione,🎛 Ustaw pozycję
+watermark,position.send,Enter the watermark position:,Inserisci la posizione del watermark:,Wprowadź pozycję znaku wodnego:
+watermark,text.content.set,📝 Set text content,📝 Imposta testo,📝 Ustaw treść tekstu
+watermark,text.content.send,Enter the watermark text:,Inserisci il testo del watermark:,Wprowadź tekst znaku wodnego:
+watermark,text.size.set,🔢 Set text size,🔢 Imposta dimensione testo,🔢 Ustaw rozmiar tekstu
+watermark,text.size.send,Enter the text size (1-100):,Inserisci la dimensione del testo (1-100):,Wprowadź rozmiar tekstu (1-100):
+watermark,text.color.set,🖍 Set text color,🖍 Imposta colore testo,🖍 Ustaw kolor tekstu
+watermark,text.color.send,Enter the text color (HEX):,Inserisci il colore del testo (HEX):,Wprowadź kolor tekstu (HEX):
+watermark,border.size.set,🔢 Set border size,🔢 Imposta dimensione bordo,🔢 Ustaw rozmiar obramowania
+watermark,border.size.send,Enter the border size (0-10):,Inserisci la dimensione del bordo (0-10):,Wprowadź rozmiar obramowania (0-10):
+watermark,border.color.set,🖍 Set border color,🖍 Imposta colore bordo,🖍 Ustaw kolor obramowania
+watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore del bordo (HEX):,Wprowadź kolor obramowania (HEX):
