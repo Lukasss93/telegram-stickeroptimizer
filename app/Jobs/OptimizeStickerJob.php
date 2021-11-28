@@ -78,12 +78,12 @@ class OptimizeStickerJob implements ShouldQueue
             //compress image
             $ext = 'png';
             $stream = $image->stream('png');
-            if ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE) {
+            if ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE->value) {
                 $quality = 100;
                 do {
                     $stream = $image->stream('webp', $quality);
                     $quality--;
-                } while ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE);
+                } while ($stream->getSize() > TelegramLimit::STICKER_MAX_SIZE->value);
                 $ext = 'webp';
             }
 

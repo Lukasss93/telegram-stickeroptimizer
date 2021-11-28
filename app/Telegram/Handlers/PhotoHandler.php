@@ -15,7 +15,7 @@ class PhotoHandler
         $fileSize = $file->file_size;
         $fileID = $file->file_id;
 
-        if ($fileSize >= TelegramLimit::DOWNLOAD) {
+        if ($fileSize >= TelegramLimit::DOWNLOAD->value) {
             $bot->sendMessage(trans('common.too_large_file'), [
                 'reply_to_message_id' => $replyID,
                 'allow_sending_without_reply' => true,

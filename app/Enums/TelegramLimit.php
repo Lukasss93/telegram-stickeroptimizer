@@ -2,10 +2,8 @@
 
 namespace App\Enums;
 
-use App\Contracts\Enum;
-
-class TelegramLimit extends Enum
+enum TelegramLimit: int
 {
-    public const DOWNLOAD = 20971520;
-    public const STICKER_MAX_SIZE = 524288;
+    case DOWNLOAD = 20971520;
+    case STICKER_MAX_SIZE = 524288;
 }

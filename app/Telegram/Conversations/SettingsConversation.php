@@ -102,7 +102,7 @@ class SettingsConversation extends InlineMenu
             ->clearButtons()
             ->menuText(message('settings.watermark', [
                 'opacity' => $this->settings->get('watermark.opacity'),
-                'position' => WatermarkPosition::getEmojiFromValue($this->settings->get('watermark.position')),
+                'position' => WatermarkPosition::tryFrom($this->settings->get('watermark.position'))?->emoji(),
                 'textContent' => $this->settings->get('watermark.text.content'),
                 'textSize' => $this->settings->get('watermark.text.size'),
                 'textColor' => $this->settings->get('watermark.text.color'),
@@ -171,10 +171,9 @@ class SettingsConversation extends InlineMenu
     {
         $keyboard = ReplyKeyboardMarkup::make();
 
-        foreach (WatermarkPosition::all()->chunk(3) as $positions) {
+        foreach (collect(WatermarkPosition::cases())->chunk(3) as $positions) {
             $keyboard->addRow(
-                ...$positions->values()->map(
-                fn ($value) => KeyboardButton::make(WatermarkPosition::getEmojiFromValue($value))
+                ...$positions->values()->map(fn (WatermarkPosition $value) => KeyboardButton::make($value->emoji())
             )->toArray());
         }
 

@@ -48,8 +48,8 @@ class WatermarkFilter implements FilterInterface
             height: $image->getHeight() - self::BOX_PADDING - 10
         );
         $box->setTextAlign(
-            WatermarkPosition::getX($this->settings->get('watermark.position')),
-            WatermarkPosition::getY($this->settings->get('watermark.position')),
+            WatermarkPosition::tryFrom($this->settings->get('watermark.position'))?->getX(),
+            WatermarkPosition::tryFrom($this->settings->get('watermark.position'))?->getY(),
         );
 
         //set text style

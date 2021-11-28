@@ -12,7 +12,7 @@
     ],
     "license": "AGPL-3.0-only",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "ext-gd": "*",
         "ext-zip": "*",
         "chillerlan/php-qrcode": "^4.3",

@@ -3,10 +3,6 @@
 /** @var Nutgram $bot */
 
 use App\Enums\ExceptionType;
-use App\Exceptions\TelegramMessageNotModifiedException;
-use App\Exceptions\TelegramUserBlockedException;
-use App\Exceptions\TelegramUserDeactivatedException;
-use App\Exceptions\TelegramWrongFileIdException;
 use App\Telegram\Commands\AboutCommand;
 use App\Telegram\Commands\CancelCommand;
 use App\Telegram\Commands\HelpCommand;
@@ -85,18 +81,12 @@ $bot->onCommand('cancel', CancelCommand::class)->description('Close a conversati
 |--------------------------------------------------------------------------
 */
 
-$bot->onApiError(ExceptionType::USER_BLOCKED,
-    fn (Nutgram $bot, $e) => throw new TelegramUserBlockedException($e->getMessage()));
-$bot->onApiError(ExceptionType::USER_DEACTIVATED,
-    fn (Nutgram $bot, $e) => throw new TelegramUserDeactivatedException($e->getMessage()));
-$bot->onApiError(ExceptionType::SAME_CONTENT,
-    fn (Nutgram $bot, $e) => throw new TelegramMessageNotModifiedException($e->getMessage()));
-$bot->onApiError(ExceptionType::MSG_TO_EDIT_NOT_FOUND,
-    fn (Nutgram $bot, $e) => throw new TelegramUserBlockedException($e->getMessage()));
-$bot->onApiError(ExceptionType::MSG_TO_DELETE_NOT_FOUND,
-    fn (Nutgram $bot, $e) => throw new TelegramUserBlockedException($e->getMessage()));
-$bot->onApiError(ExceptionType::WRONG_FILE_ID,
-    fn (Nutgram $bot, $e) => throw new TelegramWrongFileIdException($e->getMessage()));
+$bot->onApiError(...ExceptionType::USER_BLOCKED->toNutgramException());
+$bot->onApiError(...ExceptionType::USER_DEACTIVATED->toNutgramException());
+$bot->onApiError(...ExceptionType::SAME_CONTENT->toNutgramException());
+$bot->onApiError(...ExceptionType::MSG_TO_EDIT_NOT_FOUND->toNutgramException());
+$bot->onApiError(...ExceptionType::MSG_TO_DELETE_NOT_FOUND->toNutgramException());
+$bot->onApiError(...ExceptionType::WRONG_FILE_ID->toNutgramException());
 
 $bot->onApiError([ExceptionsHandler::class, 'api']);
 $bot->onException([ExceptionsHandler::class, 'global']);
