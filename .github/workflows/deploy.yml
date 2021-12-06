@@ -17,13 +17,13 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           script: |
             cd ${{ secrets.PROJECT_PATH}}
-            php8.0 artisan down
+            php8.1 artisan down
             git reset --hard
             git pull "https://Lukasss93:${{ secrets.GIT_TOKEN }}@github.com/Lukasss93/telegram-stickeroptimizer.git" master
-            php8.0 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
-            php8.0 artisan migrate --force --step
-            php8.0 artisan optimize
-            php8.0 artisan storage:link
-            php8.0 artisan nutgram:register-commands
-            php8.0 artisan up
+            php8.1 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
+            php8.1 artisan migrate --force --step
+            php8.1 artisan optimize
+            php8.1 artisan storage:link
+            php8.1 artisan nutgram:register-commands
+            php8.1 artisan up
             echo 'DONE!'
