@@ -25,7 +25,7 @@
         "laravel/tinker": "^2.6",
         "pe46dro/gd-text": "^1.2",
         "sentry/sentry-laravel": "^2.10",
-        "sergix44/nutgram": "^1.0"
+        "sergix44/nutgram": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
