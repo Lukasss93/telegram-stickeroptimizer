@@ -13,15 +13,15 @@
 
 ## 🛠 Built with
 
-- Programming language: PHP 8
-- Language framework: [Laravel 8](https://github.com/laravel/laravel)
-- Bot framework: [Nutgram 0.16](https://github.com/SergiX44/Nutgram)
+- Programming language: PHP 8.1
+- Language framework: [Laravel 8.x](https://github.com/laravel/laravel)
+- Bot framework: [Nutgram 1.x](https://github.com/SergiX44/Nutgram)
 
 ## 🛡 Requirements
 
 - Apache / nginx
 - SSL support
-- PHP ≥ 8
+- PHP ≥ 8.1
     - ext-json
     - ext-pdo
     - ext-gd
