@@ -28,6 +28,7 @@ class SettingsConversation extends InlineMenu
             ->menuText(message('settings.main', [
                 'news' => $this->settings->get('news'),
                 'language' => language($this->settings->get('language')),
+                'watermark' => $this->settings->get('watermark.opacity') > 0,
             ]), [
                 'parse_mode' => ParseMode::HTML,
                 'disable_web_page_preview' => true,
