@@ -37,7 +37,7 @@ function message(string $view, array $values = []): string
         return (string)Str::of(view("messages.$view", $values)->render())
             ->replaceMatches('/\r\n|\r|\n/', '')
             ->replace(['<br>', '<BR>'], "\n");
-    }, 'messages.'.$view);
+    }, 'messages.'.$view, false);
 }
 
 /**
