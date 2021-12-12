@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\WatermarkPosition;
 use Eloquent;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Builder;
@@ -56,7 +55,7 @@ class Chat extends Model
         'language' => 'en',
         'watermark' => [
             'opacity' => 0,
-            'position' => WatermarkPosition::MIDDLE_CENTER,
+            'position' => 'middle-center',
             'text' => [
                 'content' => null,
                 'size' => 14,
