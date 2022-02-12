@@ -68,4 +68,4 @@ Please see the [changelog.md](changelog.md) for more information on what has cha
 - [All Contributors](https://github.com/Lukasss93/telegram-stickeroptimizer/contributors)
 
 ## 📖 License
-This is an open-source software licensed under the [MIT license](LICENSE.md).
+Please see the [LICENSE.md](LICENSE.md) file for more information.
