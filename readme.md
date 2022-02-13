@@ -14,8 +14,8 @@
 ## 🛠 Built with
 
 - Programming language: PHP 8.1
-- Language framework: [Laravel 8.x](https://github.com/laravel/laravel)
-- Bot framework: [Nutgram 1.x](https://github.com/SergiX44/Nutgram)
+- Language framework: [Laravel](https://github.com/laravel/laravel)
+- Bot framework: [Nutgram](https://github.com/SergiX44/Nutgram)
 
 ## 🛡 Requirements
 
