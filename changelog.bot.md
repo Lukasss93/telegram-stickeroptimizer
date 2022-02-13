@@ -2,6 +2,16 @@
 
 All notable changes to this bot will be documented in this file.
 
+
+## v2.2 - 2022-02-13
+
+❇️ @newstickeroptimizerbot **Update v2.2** ❇️
+
+**Changelog:**<br>
+🔏 Added watermark status in main settings message<br>
+🐞 Fixed watermark button<br>
+🐞 Minor fixes and improvements<br>
+
 ## v2.1 - 2021-11-27
 
 ❇️ @newstickeroptimizerbot **Update v2.1** ❇️
