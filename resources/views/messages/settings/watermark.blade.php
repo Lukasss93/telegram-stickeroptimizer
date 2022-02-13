@@ -16,3 +16,5 @@
 <b>@lang('common.border')</b><br>
 @lang('common.size'): <b>{{$borderSize}}px</b><br>
 @lang('common.color'): <code>{{$borderColor}}</code><br>
+<br>
+<i>@lang('watermark.to_disable')</i>

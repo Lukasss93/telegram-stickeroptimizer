@@ -80,3 +80,4 @@ watermark,border.size.set,🔢 Set border size,🔢 Imposta dimensione bordo,�
 watermark,border.size.send,Enter the border size (0-10):,Inserisci la dimensione del bordo (0-10):,Wprowadź rozmiar obramowania (0-10):
 watermark,border.color.set,🖍 Set border color,🖍 Imposta colore bordo,🖍 Ustaw kolor obramowania
 watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore del bordo (HEX):,Wprowadź kolor obramowania (HEX):
+watermark,to_disable,"To disable the watermark, set the opacity to 0.","Per disabilitare il watermark, imposta l'opacità a 0.",

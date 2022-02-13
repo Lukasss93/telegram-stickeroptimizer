@@ -34,5 +34,6 @@ return [
             'send' => 'Inserisci il colore del bordo (HEX):',
         ],
     ],
+    'to_disable' => 'Per disabilitare il watermark, imposta l\'opacità a 0.',
 
 ];

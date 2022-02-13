@@ -34,5 +34,6 @@ return [
             'send' => 'Enter the border color (HEX):',
         ],
     ],
+    'to_disable' => 'To disable the watermark, set the opacity to 0.',
 
 ];
