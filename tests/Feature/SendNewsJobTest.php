@@ -2,83 +2,68 @@
 
 namespace Tests\Feature;
 
+use App\Exceptions\TelegramUserBlockedException;
+use App\Exceptions\TelegramUserDeactivatedException;
 use App\Jobs\SendNews;
 use App\Models\Chat;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Queue;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Exceptions\TelegramException;
-use SergiX44\Nutgram\Telegram\Types\Message;
-use Tests\TestCase;
+use SergiX44\Nutgram\Telegram\Types\Message\Message;
 
-class SendNewsJobTest extends TestCase
-{
-    use DatabaseTransactions;
+uses(DatabaseTransactions::class);
 
-    public function testSendNewsDispatched(): void
-    {
-        Queue::fake();
-        SendNews::dispatch(12345689, 123);
-        Queue::assertPushedOn('news', SendNews::class);
-    }
+it('dispatches job', function () {
+    Queue::fake();
+    SendNews::dispatch(12345689, 123);
+    Queue::assertPushedOn('news', SendNews::class);
+});
 
-    public function testSendNewsRun(): void
-    {
-        $chat = Chat::create(['chat_id' => 123456789, 'type' => 'private', 'first_name' => 'Test User']);
+it('runs job', function () {
+    $chat = Chat::create(['chat_id' => 123456789, 'first_name' => 'Test User']);
 
-        $this->mock(Nutgram::class)
-            ->shouldReceive('forwardMessage')
-            ->andReturn(new Message());
+    $this->mock(Nutgram::class)
+        ->shouldReceive('forwardMessage')
+        ->andReturn(new Message(bot()));
 
-        SendNews::dispatch($chat->chat_id, 123);
+    SendNews::dispatch($chat->chat_id, 123);
 
-        $this->assertDatabaseHas('chats', ['chat_id' => $chat->chat_id]);
+    $this->assertDatabaseHas('chats', ['chat_id' => $chat->chat_id]);
+});
 
-    }
+it('throws TelegramUserDeactivatedException', function () {
+    $chat = Chat::create(['chat_id' => 123456789, 'first_name' => 'Test User']);
 
-    public function testSendNewsThrowsTelegramExceptionUserIsDeactivated(): void
-    {
-        $chat = Chat::create(['chat_id' => 123456789, 'type' => 'private', 'first_name' => 'Test User']);
+    $this->mock(Nutgram::class)
+        ->shouldReceive('forwardMessage')
+        ->andThrowExceptions([new TelegramUserDeactivatedException('Forbidden: user is deactivated')]);
 
-        $this->mock(Nutgram::class)
-            ->shouldReceive('forwardMessage')
-            ->andThrowExceptions([new TelegramException('Forbidden: user is deactivated')]);
+    SendNews::dispatch($chat->chat_id, 123);
 
-        SendNews::dispatch($chat->chat_id, 123);
+    $this->assertDatabaseMissing('chats', ['chat_id' => $chat->chat_id]);
+});
 
-        $this->assertDatabaseMissing('chats', ['chat_id' => $chat->chat_id]);
+it('throws TelegramUserBlockedException', function () {
+    $chat = Chat::create(['chat_id' => 123456789, 'first_name' => 'Test User']);
 
-    }
+    $this->mock(Nutgram::class)
+        ->shouldReceive('forwardMessage')
+        ->andThrowExceptions([new TelegramUserBlockedException('Forbidden: bot was blocked by the user')]);
 
-    public function testSendNewsThrowsTelegramExceptionBotBlockedByUser(): void
-    {
-        $chat = Chat::create(['chat_id' => 123456789, 'type' => 'private', 'first_name' => 'Test User']);
+    SendNews::dispatch($chat->chat_id, 123);
 
-        $this->mock(Nutgram::class)
-            ->shouldReceive('forwardMessage')
-            ->andThrowExceptions([new TelegramException('Forbidden: bot was blocked by the user')]);
+    $this->assertDatabaseHas('chats', ['chat_id' => $chat->chat_id]);
+});
 
-        SendNews::dispatch($chat->chat_id, 123);
+it('throws Exception', function () {
+    $chat = Chat::create(['chat_id' => 123456789, 'first_name' => 'Test User']);
 
-        $this->assertDatabaseHas('chats', ['chat_id' => $chat->chat_id]);
+    $this->mock(Nutgram::class)
+        ->shouldReceive('forwardMessage')
+        ->andThrowExceptions([new Exception('Another exception')]);
 
-    }
+    SendNews::dispatch($chat->chat_id, 123);
 
-    public function testSendNewsThrowsException(): void
-    {
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage('Another exception');
-
-        $chat = Chat::create(['chat_id' => 123456789, 'type' => 'private', 'first_name' => 'Test User']);
-
-        $this->mock(Nutgram::class)
-            ->shouldReceive('forwardMessage')
-            ->andThrowExceptions([new Exception('Another exception')]);
-
-        SendNews::dispatch($chat->chat_id, 123);
-
-        $this->assertDatabaseHas('chats', ['chat_id' => $chat->chat_id]);
-
-    }
-}
+    $this->assertDatabaseHas('chats', ['chat_id' => $chat->chat_id]);
+})->throws(Exception::class, 'Another exception');
