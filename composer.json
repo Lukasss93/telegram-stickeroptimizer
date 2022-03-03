@@ -24,19 +24,26 @@
         "laravel/tinker": "^2.7",
         "pe46dro/gd-text": "^1.2",
         "sentry/sentry-laravel": "^2.11",
-        "sergix44/nutgram": "^1.3"
+        "sergix44/nutgram": "dev-testable"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12.2",
-        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.16",
         "laravel/sail": "^1.0.1",
         "lukasss93/laravel-larex": "^v4.0",
         "lukasss93/laravel-larex-crowdin": "^v2.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5"
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ignition": "^1.0"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "H:\\Programmazione\\Progetti\\Nutgram"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
