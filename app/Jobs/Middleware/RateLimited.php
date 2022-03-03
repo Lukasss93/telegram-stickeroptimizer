@@ -19,7 +19,10 @@ class RateLimited
      */
     public function handle(mixed $job, callable $next): void
     {
-        usleep($this->ms * 1000);
+        if(!app()->runningUnitTests()){
+            usleep($this->ms * 1000);
+        }
+
         $next($job);
     }
 }
