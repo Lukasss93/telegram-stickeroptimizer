@@ -38,17 +38,14 @@
         "phpunit/phpunit": "^9.5",
         "spatie/laravel-ignition": "^1.0"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "H:\\Programmazione\\Progetti\\Nutgram"
-        }
-    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,
-        "process-timeout": 0
+        "process-timeout": 0,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
@@ -102,6 +99,9 @@
         ],
         "larex:export --watch": [
             "@php artisan larex:export --watch"
+        ],
+        "tests": [
+            "@php ./vendor/bin/pest --colors=always"
         ]
     }
 }
