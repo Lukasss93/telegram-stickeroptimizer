@@ -1,0 +1,18 @@
+{
+    "$schema": "http://laravel-ide.com/schema/laravel-ide-v1.json",
+    "completion": {
+        "view": [
+            {
+                "functions": ["message"],
+                "parameters": [1]
+            }
+        ]
+    },
+    "view": {
+        "paths": [
+            {
+                "path": "resources/views/messages"
+            }
+        ]
+    }
+}
