@@ -13,11 +13,9 @@ class CancelCommand
         try {
             $bot->endConversation();
 
-            $message = $bot->sendMessage('Removing keyboard...', [
+            $bot->sendMessage('Removing keyboard...', [
                 'reply_markup' => ReplyKeyboardRemove::make(true),
-            ]);
-
-            $bot->deleteMessage($message->chat->id, $message->message_id);
+            ])?->delete();
 
         } catch (Throwable) {
 
