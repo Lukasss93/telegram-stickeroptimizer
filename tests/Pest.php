@@ -41,6 +41,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
+/**
+ * @return FakeNutgram
+ */
 function bot()
 {
     return app(FakeNutgram::class);
