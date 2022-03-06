@@ -72,7 +72,7 @@ it('sends /privacy command', function () {
     bot()
         ->hearText('/privacy')
         ->reply()
-        ->assertReply([
+        ->assertReplyMessage([
             'text' => message('privacy'),
             'parse_mode' => ParseMode::HTML,
             'disable_web_page_preview' => true,
@@ -96,7 +96,7 @@ it('sends /cancel command', function () {
         ->reply()
         ->assertNoConversation(123, 321)
         ->assertCalled('sendMessage')
-        ->assertReply([
+        ->assertReplyMessage([
             'text' => 'Removing keyboard...',
             'reply_markup' => ReplyKeyboardRemove::make(true),
         ])
