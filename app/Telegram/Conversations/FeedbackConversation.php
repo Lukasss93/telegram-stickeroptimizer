@@ -72,7 +72,7 @@ class FeedbackConversation extends Conversation
         $bot->sendMessage(message('feedback.received', [
             'from' => "{$bot->user()?->first_name} {$bot->user()?->last_name}",
             'username' => $bot->user()?->username,
-            'user_id' => $bot->user()?->id,
+            'user_id' => $bot->userId(),
             'message' => $this->feedback,
         ]), [
             'chat_id' => config('developer.id'),
