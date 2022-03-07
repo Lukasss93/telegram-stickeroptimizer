@@ -3,8 +3,8 @@
 namespace App\Telegram\Conversations;
 
 use App\Enums\WatermarkPosition;
+use App\Facades\ImageUtils;
 use App\Models\Chat;
-use App\Support\ImageUtils;
 use Glorand\Model\Settings\Managers\TableSettingsManager;
 use Illuminate\Support\Facades\App;
 use InvalidArgumentException;

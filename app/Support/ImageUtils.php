@@ -16,7 +16,7 @@ class ImageUtils
      * @param string $value
      * @return bool
      */
-    public static function isHexColor(string $value): bool
+    public function isHexColor(string $value): bool
     {
         if (!preg_match('/^#[a-f0-9]{6}$/i', $value)) {
             return false;
@@ -30,7 +30,7 @@ class ImageUtils
      * @param string|resource $source
      * @return bool
      */
-    public static function isAnAnimatedWebp(mixed $source): bool
+    public function isAnAnimatedWebp(mixed $source): bool
     {
         if (is_string($source)) {
             return str_contains(file_get_contents($source), 'ANMF');
@@ -50,7 +50,7 @@ class ImageUtils
      * @param bool $asResource
      * @return mixed
      */
-    public static function qrcode(string $content, string $name = null, bool $asResource = false): mixed
+    public function qrcode(string $content, string $name = null, bool $asResource = false): mixed
     {
         $path = storage_path("app/temp/$name.png");
 

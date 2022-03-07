@@ -2,7 +2,7 @@
 
 namespace App\Telegram\Conversations;
 
-use App\Support\ImageUtils;
+use App\Facades\ImageUtils;
 use JsonException;
 use Psr\SimpleCache\InvalidArgumentException;
 use SergiX44\Nutgram\Conversations\InlineMenu;
