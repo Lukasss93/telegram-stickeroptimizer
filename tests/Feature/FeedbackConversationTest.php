@@ -29,6 +29,10 @@ beforeEach(function () {
         ->assertActiveConversation();
 });
 
+it('sends /feedback command', function () {
+    $this->test;
+});
+
 it('gets feedback', function () {
     $this->test
         ->hearText('wow')

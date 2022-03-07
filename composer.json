@@ -38,6 +38,12 @@
         "phpunit/phpunit": "^9.5",
         "spatie/laravel-ignition": "^1.0"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "H:\\Programmazione\\Progetti\\Nutgram"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
