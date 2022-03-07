@@ -4,6 +4,7 @@ namespace App\Telegram\Conversations;
 
 use App\Enums\WatermarkPosition;
 use App\Models\Chat;
+use App\Support\ImageUtils;
 use Glorand\Model\Settings\Managers\TableSettingsManager;
 use Illuminate\Support\Facades\App;
 use InvalidArgumentException;
@@ -263,7 +264,7 @@ class SettingsConversation extends InlineMenu
     {
         $value = strtoupper($bot->message()->text);
 
-        if (isHexColor($value)) {
+        if (ImageUtils::isHexColor($value)) {
             $this->settings->set('watermark.text.color', $value);
             $this->handleWatermark($bot, true);
         } else {
@@ -318,7 +319,7 @@ class SettingsConversation extends InlineMenu
     {
         $value = strtoupper($bot->message()->text);
 
-        if (isHexColor($value)) {
+        if (ImageUtils::isHexColor($value)) {
             $this->settings->set('watermark.border.color', $value);
             $this->handleWatermark($bot, true);
         } else {

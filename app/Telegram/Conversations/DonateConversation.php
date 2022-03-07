@@ -2,6 +2,7 @@
 
 namespace App\Telegram\Conversations;
 
+use App\Support\ImageUtils;
 use JsonException;
 use Psr\SimpleCache\InvalidArgumentException;
 use SergiX44\Nutgram\Conversations\InlineMenu;
@@ -108,7 +109,7 @@ class DonateConversation extends InlineMenu
     {
         $text = config("donation.third_party_providers.text.$service");
 
-        $photo = qrcode($text, $service, true);
+        $photo = ImageUtils::qrcode($text, $service, true);
 
         $this->bot->sendPhoto($photo, [
             'caption' => message('donate.third', [

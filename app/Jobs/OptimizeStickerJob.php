@@ -7,6 +7,7 @@ use App\Exceptions\TelegramWrongFileIdException;
 use App\ImageFilters\ScaleFilter;
 use App\ImageFilters\WatermarkFilter;
 use App\Models\Chat;
+use App\Support\ImageUtils;
 use Glorand\Model\Settings\Exceptions\ModelSettingsException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -62,7 +63,7 @@ class OptimizeStickerJob implements ShouldQueue
             $chatSettings = Chat::find($this->chatID)?->settings();
 
             //check if resource is an animated webp
-            if (isAnAnimatedWebp(fopen($file->url(), 'rb'))) {
+            if (ImageUtils::isAnAnimatedWebp(fopen($file->url(), 'rb'))) {
                 throw new NotReadableException();
             }
 
