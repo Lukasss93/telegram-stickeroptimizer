@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc850e8a839786c8e4b655ee76c78891",
+    "content-hash": "d1f180a4deed7e0f7bef9cc5d7ef24dc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -202,16 +202,16 @@
         },
         {
             "name": "chillerlan/php-settings-container",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chillerlan/php-settings-container.git",
-                "reference": "ec834493a88682dd69652a1eeaf462789ed0c5f5"
+                "reference": "125dd573b45ffc7cabecf385986a356ba2c6f602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chillerlan/php-settings-container/zipball/ec834493a88682dd69652a1eeaf462789ed0c5f5",
-                "reference": "ec834493a88682dd69652a1eeaf462789ed0c5f5",
+                "url": "https://api.github.com/repos/chillerlan/php-settings-container/zipball/125dd573b45ffc7cabecf385986a356ba2c6f602",
+                "reference": "125dd573b45ffc7cabecf385986a356ba2c6f602",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "phan/phan": "^4.0",
+                "phan/phan": "^5.3",
                 "phpunit/phpunit": "^9.5"
             },
             "type": "library",
@@ -244,6 +244,7 @@
             "keywords": [
                 "PHP7",
                 "Settings",
+                "configuration",
                 "container",
                 "helper"
             ],
@@ -261,7 +262,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2021-09-06T15:17:01+00:00"
+            "time": "2022-03-09T13:18:58+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -1508,16 +1509,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.3.1",
+            "version": "v9.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c1c4404511b83fbf90ccbcdf864d4a85537f35e4"
+                "reference": "29f0aaade82eadd20ef881b4efb88b0dad4e9a5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c1c4404511b83fbf90ccbcdf864d4a85537f35e4",
-                "reference": "c1c4404511b83fbf90ccbcdf864d4a85537f35e4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/29f0aaade82eadd20ef881b4efb88b0dad4e9a5b",
+                "reference": "29f0aaade82eadd20ef881b4efb88b0dad4e9a5b",
                 "shasum": ""
             },
             "require": {
@@ -1683,7 +1684,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-03-03T15:15:10+00:00"
+            "time": "2022-03-08T16:17:00+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -2674,6 +2675,91 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.13.2"
             },
             "time": "2021-11-30T19:35:32+00:00"
+        },
+        {
+            "name": "nutgram/nutgram",
+            "version": "dev-testable",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nutgram/nutgram.git",
+                "reference": "3c897d6f9320c8b10b043dc3324b199af1373243"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nutgram/nutgram/zipball/3c897d6f9320c8b10b043dc3324b199af1373243",
+                "reference": "3c897d6f9320c8b10b043dc3324b199af1373243",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.2",
+                "illuminate/macroable": "^8.0|^9.0",
+                "league/container": "^4.2",
+                "netresearch/jsonmapper": "^4.0",
+                "opis/closure": "^3.6",
+                "php": ">=8.0",
+                "psr/simple-cache": "^1.0|^2.0|^3.0"
+            },
+            "require-dev": {
+                "ext-reflection": "*",
+                "illuminate/testing": "^8.0|^9.0",
+                "orchestra/testbench": "^6.0|^7.0",
+                "pestphp/pest": "^1.1",
+                "pestphp/pest-plugin-mock": "^1.0",
+                "roave/security-advisories": "dev-latest",
+                "vimeo/psalm": "^4.11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SergiX44\\Nutgram\\NutgramServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SergiX44\\Nutgram\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergio Brighenti",
+                    "email": "sergio@brighenti.me",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Luca Patera",
+                    "email": "luca.patera@outlook.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Telegram bot library that doesn't drive you nuts",
+            "homepage": "https://github.com/SergiX44/Nutgram",
+            "keywords": [
+                "api",
+                "bot",
+                "framework",
+                "laravel",
+                "library",
+                "nutgram",
+                "telegram"
+            ],
+            "support": {
+                "issues": "https://github.com/nutgram/nutgram/issues",
+                "source": "https://github.com/nutgram/nutgram/tree/testable"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/SergiX44",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-09T23:30:17+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -4230,89 +4316,6 @@
                 }
             ],
             "time": "2022-02-14T20:00:19+00:00"
-        },
-        {
-            "name": "sergix44/nutgram",
-            "version": "dev-testable",
-            "dist": {
-                "type": "path",
-                "url": "H:/Programmazione/Progetti/Nutgram",
-                "reference": "6035e8d18164d4c135856c59d08b9f9210df9cd2"
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.2",
-                "illuminate/macroable": "^8.0|^9.0",
-                "league/container": "^4.2",
-                "netresearch/jsonmapper": "^4.0",
-                "opis/closure": "^3.6",
-                "php": ">=8.0",
-                "psr/simple-cache": "^1.0|^2.0|^3.0"
-            },
-            "require-dev": {
-                "ext-reflection": "*",
-                "illuminate/testing": "^8.0|^9.0",
-                "orchestra/testbench": "^6.0|^7.0",
-                "pestphp/pest": "^1.1",
-                "pestphp/pest-plugin-mock": "^1.0",
-                "roave/security-advisories": "dev-latest",
-                "vimeo/psalm": "^4.11"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "SergiX44\\Nutgram\\NutgramServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SergiX44\\Nutgram\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "SergiX44\\Nutgram\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/pest"
-                ],
-                "psalm": [
-                    "vendor/bin/psalm"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sergio Brighenti",
-                    "email": "sergio@brighenti.me",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Luca Patera",
-                    "email": "luca.patera@outlook.it",
-                    "role": "Developer"
-                }
-            ],
-            "description": "The Telegram bot library that doesn't drive you nuts",
-            "homepage": "https://github.com/SergiX44/Nutgram",
-            "keywords": [
-                "api",
-                "bot",
-                "framework",
-                "laravel",
-                "library",
-                "nutgram",
-                "telegram"
-            ],
-            "transport-options": {
-                "relative": false
-            }
         },
         {
             "name": "symfony/console",
@@ -6937,16 +6940,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "9bd89e83cecdf8c37b64909454249eaed98b2c89"
+                "reference": "b56450eed252f6801410d810c8e1727224ae0743"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/9bd89e83cecdf8c37b64909454249eaed98b2c89",
-                "reference": "9bd89e83cecdf8c37b64909454249eaed98b2c89",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/b56450eed252f6801410d810c8e1727224ae0743",
+                "reference": "b56450eed252f6801410d810c8e1727224ae0743",
                 "shasum": ""
             },
             "require": {
@@ -6983,7 +6986,7 @@
             ],
             "support": {
                 "issues": "https://github.com/voku/portable-ascii/issues",
-                "source": "https://github.com/voku/portable-ascii/tree/2.0.0"
+                "source": "https://github.com/voku/portable-ascii/tree/2.0.1"
             },
             "funding": [
                 {
@@ -7007,7 +7010,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-24T18:59:03+00:00"
+            "time": "2022-03-08T17:03:00+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -7290,6 +7293,94 @@
             "time": "2021-05-14T21:18:09+00:00"
         },
         {
+            "name": "brianium/paratest",
+            "version": "v6.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paratestphp/paratest.git",
+                "reference": "5123a31dbf0b5deeaec17b00c0c5f31732c14483"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/5123a31dbf0b5deeaec17b00c0c5f31732c14483",
+                "reference": "5123a31dbf0b5deeaec17b00c0c5f31732c14483",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-pcre": "*",
+                "ext-reflection": "*",
+                "ext-simplexml": "*",
+                "php": "^7.3 || ^8.0",
+                "phpunit/php-code-coverage": "^9.2.11",
+                "phpunit/php-file-iterator": "^3.0.6",
+                "phpunit/php-timer": "^5.0.3",
+                "phpunit/phpunit": "^9.5.14",
+                "sebastian/environment": "^5.1.3",
+                "symfony/console": "^5.4.0 || ^6.0.0",
+                "symfony/process": "^5.4.0 || ^6.0.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0.0",
+                "ext-posix": "*",
+                "infection/infection": "^0.26.5",
+                "malukenho/mcbumpface": "^1.1.5",
+                "squizlabs/php_codesniffer": "^3.6.2",
+                "symfony/filesystem": "^v5.4.0 || ^6.0.0",
+                "vimeo/psalm": "^4.20.0"
+            },
+            "bin": [
+                "bin/paratest"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParaTest\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Scaturro",
+                    "email": "scaturrob@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Filippo Tessarotto",
+                    "email": "zoeslam@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Parallel testing for PHP",
+            "homepage": "https://github.com/paratestphp/paratest",
+            "keywords": [
+                "concurrent",
+                "parallel",
+                "phpunit",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/paratestphp/paratest/issues",
+                "source": "https://github.com/paratestphp/paratest/tree/v6.4.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/Slamdunk",
+                    "type": "github"
+                },
+                {
+                    "url": "https://paypal.me/filippotessarotto",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2022-02-18T13:23:47+00:00"
+        },
+        {
             "name": "composer/pcre",
             "version": "3.0.0",
             "source": {
@@ -7522,16 +7613,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.3.2",
+            "version": "3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "35eae239ef515d55ebb24e9d4715cad09a4f58ed"
+                "reference": "82331b861727c15b1f457ef05a8729e508e7ead5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/35eae239ef515d55ebb24e9d4715cad09a4f58ed",
-                "reference": "35eae239ef515d55ebb24e9d4715cad09a4f58ed",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/82331b861727c15b1f457ef05a8729e508e7ead5",
+                "reference": "82331b861727c15b1f457ef05a8729e508e7ead5",
                 "shasum": ""
             },
             "require": {
@@ -7546,14 +7637,14 @@
             "require-dev": {
                 "doctrine/coding-standard": "9.0.0",
                 "jetbrains/phpstorm-stubs": "2021.1",
-                "phpstan/phpstan": "1.4.0",
+                "phpstan/phpstan": "1.4.6",
                 "phpstan/phpstan-strict-rules": "^1.1",
-                "phpunit/phpunit": "9.5.11",
+                "phpunit/phpunit": "9.5.16",
                 "psalm/plugin-phpunit": "0.16.1",
                 "squizlabs/php_codesniffer": "3.6.2",
                 "symfony/cache": "^5.2|^6.0",
                 "symfony/console": "^2.7|^3.0|^4.0|^5.0|^6.0",
-                "vimeo/psalm": "4.16.1"
+                "vimeo/psalm": "4.22.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -7613,7 +7704,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.3.2"
+                "source": "https://github.com/doctrine/dbal/tree/3.3.3"
             },
             "funding": [
                 {
@@ -7629,7 +7720,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-05T16:33:45+00:00"
+            "time": "2022-03-09T15:39:50+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -8082,16 +8173,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.13.5",
+            "version": "v1.13.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "aeb6eeb55b22c328d2f301145b97288127691d48"
+                "reference": "6205041336b09b965af1d6af29261584e787bf52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/aeb6eeb55b22c328d2f301145b97288127691d48",
-                "reference": "aeb6eeb55b22c328d2f301145b97288127691d48",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/6205041336b09b965af1d6af29261584e787bf52",
+                "reference": "6205041336b09b965af1d6af29261584e787bf52",
                 "shasum": ""
             },
             "require": {
@@ -8138,7 +8229,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2022-02-17T19:59:03+00:00"
+            "time": "2022-03-07T15:35:47+00:00"
         },
         {
             "name": "loilo/fuse",
@@ -8819,6 +8910,109 @@
             "time": "2022-01-13T17:09:04+00:00"
         },
         {
+            "name": "pestphp/pest-plugin-parallel",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pestphp/pest-plugin-parallel.git",
+                "reference": "67c0a49754e26cbe5ecd6965631351c0ede956fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-parallel/zipball/67c0a49754e26cbe5ecd6965631351c0ede956fa",
+                "reference": "67c0a49754e26cbe5ecd6965631351c0ede956fa",
+                "shasum": ""
+            },
+            "require": {
+                "brianium/paratest": "^6.3",
+                "pestphp/pest-plugin": "^1.0",
+                "php": "^7.3 || ^8.0"
+            },
+            "conflict": {
+                "laravel/framework": "<8.55",
+                "nunomaduro/collision": "<5.8",
+                "pestphp/pest": "<1.16"
+            },
+            "require-dev": {
+                "pestphp/pest": "dev-master",
+                "pestphp/pest-dev-tools": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "pest": {
+                    "plugins": [
+                        "Pest\\Parallel\\Plugin"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Autoload.php",
+                    "build/RunnerWorker.php",
+                    "build/BaseRunner.php"
+                ],
+                "psr-4": {
+                    "Pest\\Parallel\\": "src/"
+                },
+                "exclude-from-classmap": [
+                    "ParaTest\\Runners\\PHPUnit\\Worker\\RunnerWorker",
+                    "ParaTest\\Runners\\PHPUnit\\BaseRunner"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Pest Parallel Plugin",
+            "keywords": [
+                "framework",
+                "parallel",
+                "pest",
+                "php",
+                "plugin",
+                "test",
+                "testing",
+                "unit"
+            ],
+            "support": {
+                "source": "https://github.com/pestphp/pest-plugin-parallel/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/lukeraymonddowning",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/octoper",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/olivernybroe",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/owenvoke",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-09-06T20:21:59+00:00"
+        },
+        {
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "source": {
@@ -9158,16 +9352,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.14",
+            "version": "9.2.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "9f4d60b6afe5546421462b76cd4e633ebc364ab4"
+                "reference": "2e9da11878c4202f97915c1cb4bb1ca318a63f5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9f4d60b6afe5546421462b76cd4e633ebc364ab4",
-                "reference": "9f4d60b6afe5546421462b76cd4e633ebc364ab4",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2e9da11878c4202f97915c1cb4bb1ca318a63f5f",
+                "reference": "2e9da11878c4202f97915c1cb4bb1ca318a63f5f",
                 "shasum": ""
             },
             "require": {
@@ -9223,7 +9417,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.14"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.15"
             },
             "funding": [
                 {
@@ -9231,7 +9425,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-28T12:38:02+00:00"
+            "time": "2022-03-07T09:28:20+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -9476,16 +9670,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.17",
+            "version": "9.5.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f"
+                "reference": "1b5856028273bfd855e60a887278857d872ec67a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f",
-                "reference": "5c5abcfaa2cbd44b2203995d7a339ef910fe0c8f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1b5856028273bfd855e60a887278857d872ec67a",
+                "reference": "1b5856028273bfd855e60a887278857d872ec67a",
                 "shasum": ""
             },
             "require": {
@@ -9563,7 +9757,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.17"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.18"
             },
             "funding": [
                 {
@@ -9575,7 +9769,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-05T16:54:31+00:00"
+            "time": "2022-03-08T06:52:28+00:00"
         },
         {
             "name": "psr/cache",
@@ -10718,16 +10912,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.2.1",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "090518ff676e17a038dfe77490018363ff66af20"
+                "reference": "ab8d1f938d3ffd20af25ad788a9d019e1123068c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/090518ff676e17a038dfe77490018363ff66af20",
-                "reference": "090518ff676e17a038dfe77490018363ff66af20",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/ab8d1f938d3ffd20af25ad788a9d019e1123068c",
+                "reference": "ab8d1f938d3ffd20af25ad788a9d019e1123068c",
                 "shasum": ""
             },
             "require": {
@@ -10785,7 +10979,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-04T12:52:17+00:00"
+            "time": "2022-03-08T15:12:58+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
@@ -10988,7 +11182,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "sergix44/nutgram": 20
+        "nutgram/nutgram": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
