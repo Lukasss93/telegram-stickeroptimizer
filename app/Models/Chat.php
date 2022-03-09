@@ -14,7 +14,6 @@ use SergiX44\Nutgram\Telegram\Types\User\User;
  * App\Models\Chat
  *
  * @property int $chat_id
- * @property string $type
  * @property string $first_name
  * @property string|null $last_name
  * @property string|null $username
@@ -33,7 +32,6 @@ use SergiX44\Nutgram\Telegram\Types\User\User;
  * @method static Builder|Chat whereLanguageCode($value)
  * @method static Builder|Chat whereLastName($value)
  * @method static Builder|Chat whereStatus($value)
- * @method static Builder|Chat whereType($value)
  * @method static Builder|Chat whereUpdatedAt($value)
  * @method static Builder|Chat whereUsername($value)
  * @method static Builder|Chat whereSettings($setting, $operator, $value = null, $filterOnMissing = null)
