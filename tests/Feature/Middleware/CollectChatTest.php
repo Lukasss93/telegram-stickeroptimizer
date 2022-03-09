@@ -1,5 +1,6 @@
 <?php
 
+use App\Telegram\Middleware\CollectChat;
 use Illuminate\Support\Carbon;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
@@ -12,6 +13,7 @@ beforeEach(function () {
 
 it('fails if user is unset', function () {
     bot()
+        ->overrideMiddleware(CollectChat::class)
         ->hearUpdateType(UpdateTypes::MESSAGE, ['text' => 'foo'])
         ->reply()
         ->assertNoReply();
@@ -19,6 +21,7 @@ it('fails if user is unset', function () {
 
 it('passes if chat type is not private', function () {
     bot()
+        ->overrideMiddleware(CollectChat::class)
         ->hearMessage([
             'chat' => ['type' => 'group'],
             'from' => ['id' => 1234567890],
@@ -39,6 +42,7 @@ it('passes if chat type is private', function () {
     Carbon::setTestNow($time);
 
     bot()
+        ->overrideMiddleware(CollectChat::class)
         ->hearMessage([
             'chat' => ['type' => 'private'],
             'from' => ['id' => 1234567890],
