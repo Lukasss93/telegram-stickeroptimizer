@@ -30,12 +30,20 @@ class OptimizeStickerJob implements ShouldQueue
     private int $chatID;
     private int $replyID;
     private string $fileID;
+    private int $fileSize;
 
-    public function __construct(int $chatID, int $replyID, string $fileID)
+    /**
+     * @param int $chatID
+     * @param int $replyID
+     * @param string $fileID
+     * @param int $fileSize
+     */
+    public function __construct(int $chatID, int $replyID, string $fileID, int $fileSize)
     {
         $this->chatID = $chatID;
         $this->replyID = $replyID;
         $this->fileID = $fileID;
+        $this->fileSize = $fileSize;
     }
 
     /**
@@ -47,6 +55,17 @@ class OptimizeStickerJob implements ShouldQueue
         $file = null;
 
         try {
+            //check file size
+            if ($this->fileSize >= TelegramLimit::DOWNLOAD->value) {
+                $bot->sendMessage(trans('common.too_large_file'), [
+                    'reply_to_message_id' => $this->replyID,
+                    'allow_sending_without_reply' => true,
+                ]);
+
+                return;
+            }
+
+            //get file
             $file = $bot->getFile($this->fileID);
 
             //check if file exists
