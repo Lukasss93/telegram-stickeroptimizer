@@ -30,5 +30,6 @@
         <server name="SESSION_DRIVER" value="array"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
         <server name="DONATION_ENABLED" value="true"/>
+        <server name="DONATION_PROVIDER_TOKEN" value="123456789:TEST:AbCdEFGhIJK1LMn1"/>
     </php>
 </phpunit>
