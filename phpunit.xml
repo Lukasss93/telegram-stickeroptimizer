@@ -31,5 +31,6 @@
         <server name="TELESCOPE_ENABLED" value="false"/>
         <server name="DONATION_ENABLED" value="true"/>
         <server name="DONATION_PROVIDER_TOKEN" value="123456789:TEST:AbCdEFGhIJK1LMn1"/>
+        <server name="DONATION_THIRD_PARTY_PROVIDERS_TEXT_BTC" value="12345678901234567890"/>
     </php>
 </phpunit>
