@@ -3,11 +3,11 @@
 namespace App\Jobs;
 
 use App\Enums\TelegramLimit;
-use App\Exceptions\TelegramWrongFileIdException;
+use App\Exceptions\TooLargeFileException;
+use App\Facades\ImageUtils;
 use App\ImageFilters\ScaleFilter;
 use App\ImageFilters\WatermarkFilter;
 use App\Models\Chat;
-use App\Support\ImageUtils;
 use Glorand\Model\Settings\Exceptions\ModelSettingsException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -22,6 +22,7 @@ use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\ChatActions;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
+use Throwable;
 
 class OptimizeStickerJob implements ShouldQueue
 {
@@ -57,12 +58,7 @@ class OptimizeStickerJob implements ShouldQueue
         try {
             //check file size
             if ($this->fileSize >= TelegramLimit::DOWNLOAD->value) {
-                $bot->sendMessage(trans('common.too_large_file'), [
-                    'reply_to_message_id' => $this->replyID,
-                    'allow_sending_without_reply' => true,
-                ]);
-
-                return;
+                throw new TooLargeFileException(trans('common.too_large_file'));
             }
 
             //get file
@@ -78,13 +74,13 @@ class OptimizeStickerJob implements ShouldQueue
                 'chat_id' => $this->chatID,
             ]);
 
-            //get chat settings
-            $chatSettings = Chat::find($this->chatID)?->settings();
-
             //check if resource is an animated webp
             if (ImageUtils::isAnAnimatedWebp(fopen($file->url(), 'rb'))) {
                 throw new NotReadableException();
             }
+
+            //get chat settings
+            $chatSettings = Chat::find($this->chatID)?->settings();
 
             //load image
             $image = Image::make($file->url());
@@ -119,16 +115,14 @@ class OptimizeStickerJob implements ShouldQueue
             //save statistic
             stats('sticker', 'optimized');
 
-        } catch (TelegramWrongFileIdException | NotReadableException) {
+        } catch (TooLargeFileException $e) {
+            $bot->sendMessage($e->getMessage(), [
+                'chat_id' => $this->chatID,
+                'reply_to_message_id' => $this->replyID,
+                'allow_sending_without_reply' => true,
+            ]);
+        } catch (Throwable) {
             $bot->sendMessage(trans('common.invalid_file'));
-        } catch (InvalidArgumentException) {
-            $bot->sendMessage(trans('common.invalid_file'));
-
-            if ($file !== null) {
-                $bot->sendDocument($file->file_id, [
-                    'chat_id' => config('developer.id'),
-                ]);
-            }
         }
     }
 }
