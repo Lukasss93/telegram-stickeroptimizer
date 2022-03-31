@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Support\Str;
+use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Types\Media\File;
 use SergiX44\Nutgram\Testing\FakeNutgram;
 
 uses(Tests\TestCase::class)->in('Feature');
@@ -47,4 +50,29 @@ expect()->extend('toBeOne', function () {
 function bot()
 {
     return app(FakeNutgram::class);
+}
+
+function partialMockBot($callback)
+{
+    $mock = Mockery::mock(bot())->makePartial();
+    $callback($mock);
+    test()->swap(Nutgram::class, $mock);
+}
+
+/**
+ * @param string $filePath
+ * @return \Mockery\MockInterface|File
+ */
+function mockFile(string $filePath)
+{
+    $fullPath = base_path('tests'.DIRECTORY_SEPARATOR.$filePath);
+
+    $file = Mockery::mock(new File(bot()));
+    $file->file_id = Str::random(3);
+    $file->file_unique_id = Str::random(6);
+    $file->file_size = filesize($fullPath);
+    $file->file_path = $fullPath;
+    $file->shouldReceive('url')->andReturn($fullPath);
+
+    return $file;
 }
