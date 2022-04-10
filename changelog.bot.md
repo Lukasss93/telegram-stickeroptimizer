@@ -2,6 +2,12 @@
 
 All notable changes to this bot will be documented in this file.
 
+## v2.2.1 - 2022-04-11
+
+❇️ @newstickeroptimizerbot **Update v2.2.1** ❇️
+
+**Changelog:**<br>
+🐞 Minor fixes and improvements<br>
 
 ## v2.2 - 2022-02-13
 
