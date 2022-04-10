@@ -16,6 +16,9 @@
             <directory suffix=".php">./app/Jobs</directory>
             <directory suffix=".php">./app/Telegram</directory>
         </include>
+        <exclude>
+            <file>./app/Telegram/Handlers/ExceptionsHandler.php</file>
+        </exclude>
     </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>
