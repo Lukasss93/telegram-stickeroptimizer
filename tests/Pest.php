@@ -68,6 +68,15 @@ function bot()
     return app(FakeNutgram::class);
 }
 
+/**
+ * @param callable $callable
+ * @return FakeNutgram
+ */
+function botFromCallable(callable $callable)
+{
+    return $callable();
+}
+
 function partialMockBot($callback)
 {
     $mock = Mockery::mock(bot())->makePartial();
