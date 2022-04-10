@@ -19,6 +19,7 @@ use UnexpectedValueException;
 class SettingsConversation extends InlineMenu
 {
     protected TableSettingsManager $settings;
+    protected bool $reopen = false;
 
     public function start(Nutgram $bot): void
     {
@@ -50,7 +51,7 @@ class SettingsConversation extends InlineMenu
             )->addButtonRow(
                 InlineKeyboardButton::make(
                     '❌ '.trans('common.close'),
-                    callback_data: 'donate.cancel@end')
+                    callback_data: 'settings:cancel@end')
             )->showMenu();
 
         stats('settings', 'command');
@@ -98,7 +99,7 @@ class SettingsConversation extends InlineMenu
         $this->handleLanguages($bot);
     }
 
-    protected function handleWatermark(Nutgram $bot, bool $reopen = false): void
+    protected function handleWatermark(Nutgram $bot): void
     {
         $this
             ->clearButtons()
@@ -116,25 +117,33 @@ class SettingsConversation extends InlineMenu
             ]);
 
         $this->addButtonRow(
-            InlineKeyboardButton::make(trans('watermark.opacity.set'), callback_data: 'watermark:opacity:set@setOpacity'),
-            InlineKeyboardButton::make(trans('watermark.position.set'), callback_data: 'watermark:position:set@setPosition')
+            InlineKeyboardButton::make(trans('watermark.opacity.set'),
+                callback_data: 'watermark:opacity:set@setOpacity'),
+            InlineKeyboardButton::make(trans('watermark.position.set'),
+                callback_data: 'watermark:position:set@setPosition')
         );
         $this->addButtonRow(
-            InlineKeyboardButton::make(trans('watermark.text.content.set'), callback_data: 'watermark:text:content@setTextContent'),
+            InlineKeyboardButton::make(trans('watermark.text.content.set'),
+                callback_data: 'watermark:text:content@setTextContent'),
         );
         $this->addButtonRow(
-            InlineKeyboardButton::make(trans('watermark.text.size.set'), callback_data: 'watermark:text:size@setTextSize'),
-            InlineKeyboardButton::make(trans('watermark.text.color.set'), callback_data: 'watermark:text:color@setTextColor')
+            InlineKeyboardButton::make(trans('watermark.text.size.set'),
+                callback_data: 'watermark:text:size@setTextSize'),
+            InlineKeyboardButton::make(trans('watermark.text.color.set'),
+                callback_data: 'watermark:text:color@setTextColor')
         );
         $this->addButtonRow(
-            InlineKeyboardButton::make(trans('watermark.border.size.set'), callback_data: 'watermark:border:size@setBorderSize'),
-            InlineKeyboardButton::make(trans('watermark.border.color.set'), callback_data: 'watermark:border:color@setBorderColor')
+            InlineKeyboardButton::make(trans('watermark.border.size.set'),
+                callback_data: 'watermark:border:size@setBorderSize'),
+            InlineKeyboardButton::make(trans('watermark.border.color.set'),
+                callback_data: 'watermark:border:color@setBorderColor')
         );
         $this->addButtonRow(
             InlineKeyboardButton::make(trans('settings.back'), callback_data: 'watermark:back@start')
         );
 
-        $this->showMenu($reopen);
+        $this->showMenu($this->reopen);
+        $this->reopen = false;
     }
 
     protected function setOpacity(Nutgram $bot): void
@@ -162,7 +171,8 @@ class SettingsConversation extends InlineMenu
             }
 
             $this->settings->set('watermark.opacity', $value);
-            $this->handleWatermark($bot, true);
+            $this->reopen = true;
+            $this->handleWatermark($bot);
         } catch (UnexpectedValueException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setOpacity($bot);
@@ -194,7 +204,8 @@ class SettingsConversation extends InlineMenu
         try {
             $value = WatermarkPosition::getValueFromEmoji($bot->message()->text);
             $this->settings->set('watermark.position', $value);
-            $this->handleWatermark($bot, true);
+            $this->reopen = true;
+            $this->handleWatermark($bot);
         } catch (InvalidArgumentException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setPosition($bot);
@@ -215,7 +226,8 @@ class SettingsConversation extends InlineMenu
     {
         $value = $bot->message()->text;
         $this->settings->set('watermark.text.content', $value);
-        $this->handleWatermark($bot, true);
+        $this->reopen = true;
+        $this->handleWatermark($bot);
     }
 
     protected function setTextSize(Nutgram $bot): void
@@ -243,7 +255,8 @@ class SettingsConversation extends InlineMenu
             }
 
             $this->settings->set('watermark.text.size', $value);
-            $this->handleWatermark($bot, true);
+            $this->reopen = true;
+            $this->handleWatermark($bot);
         } catch (UnexpectedValueException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setTextSize($bot);
@@ -262,12 +275,17 @@ class SettingsConversation extends InlineMenu
 
     protected function getTextColor(Nutgram $bot): void
     {
-        $value = strtoupper($bot->message()->text);
+        try {
+            $value = strtoupper($bot->message()->text);
 
-        if (ImageUtils::isHexColor($value)) {
+            if (!ImageUtils::isHexColor($value)) {
+                throw new UnexpectedValueException('Invalid color');
+            }
+
             $this->settings->set('watermark.text.color', $value);
-            $this->handleWatermark($bot, true);
-        } else {
+            $this->reopen = true;
+            $this->handleWatermark($bot);
+        } catch (UnexpectedValueException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setTextColor($bot);
         }
@@ -298,7 +316,8 @@ class SettingsConversation extends InlineMenu
             }
 
             $this->settings->set('watermark.border.size', $value);
-            $this->handleWatermark($bot, true);
+            $this->reopen = true;
+            $this->handleWatermark($bot);
         } catch (UnexpectedValueException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setBorderSize($bot);
@@ -321,7 +340,8 @@ class SettingsConversation extends InlineMenu
 
         if (ImageUtils::isHexColor($value)) {
             $this->settings->set('watermark.border.color', $value);
-            $this->handleWatermark($bot, true);
+            $this->reopen = true;
+            $this->handleWatermark($bot);
         } else {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setTextColor($bot);
