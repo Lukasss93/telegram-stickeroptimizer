@@ -11,12 +11,28 @@
 |
 */
 
+use App\Models\Chat;
 use Illuminate\Support\Str;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Types\Media\File;
 use SergiX44\Nutgram\Testing\FakeNutgram;
 
-uses(Tests\TestCase::class)->in('Feature');
+uses(Tests\TestCase::class)
+    ->beforeEach(function () {
+        $this->chat = Chat::firstOrCreate([
+            'chat_id' => 123456789,
+        ], [
+            'first_name' => 'Tony',
+            'last_name' => 'Stark',
+            'username' => 'tony.stark',
+            'language_code' => 'it',
+            'started_at' => now(),
+            'blocked_at' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    })
+    ->in('Feature');
 
 /*
 |--------------------------------------------------------------------------

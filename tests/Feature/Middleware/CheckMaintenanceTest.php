@@ -26,8 +26,7 @@ it('checks maintenance is off', function () {
 });
 
 it('checks maintenance is on', function () {
-    $chat = Chat::factory()->create();
-    bot()->setData(Chat::class, $chat);
+    bot()->setData(Chat::class, $this->chat);
 
     bot()
         ->hearText('foo')
@@ -36,9 +35,8 @@ it('checks maintenance is on', function () {
 });
 
 it('checks maintenance is on but user is developer', function () {
-    config()->set('developer.id', 123456789);
-    $chat = Chat::factory()->create(['chat_id' => 123456789]);
-    bot()->setData(Chat::class, $chat);
+    config()->set('developer.id', $this->chat->chat_id);
+    bot()->setData(Chat::class, $this->chat);
 
     bot()
         ->hearMessage([
@@ -52,8 +50,7 @@ it('checks maintenance is on but user is developer', function () {
 });
 
 it('checks maintenance is on but bot hears a callback query', function () {
-    $chat = Chat::factory()->create();
-    bot()->setData(Chat::class, $chat);
+    bot()->setData(Chat::class, $this->chat);
 
     bot()
         ->hearCallbackQueryData('aaa')

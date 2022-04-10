@@ -60,9 +60,7 @@ it('fails with an animated webp', function () {
 });
 
 it('passes with a valid image', function () {
-    /** @var Chat $chat */
-    $chat = Chat::factory()->create(['chat_id' => 123456789]);
-    bot()->setData(Chat::class, $chat);
+    bot()->setData(Chat::class, $this->chat);
 
     $file = mockFile('Images/venice.jpg');
 
@@ -71,7 +69,7 @@ it('passes with a valid image', function () {
     });
 
     OptimizeStickerJob::dispatch(
-        chatID: $chat->chat_id,
+        chatID: $this->chat->chat_id,
         replyID: 456,
         fileID: 'abcdef',
         fileSize: $file->file_size,
@@ -82,7 +80,7 @@ it('passes with a valid image', function () {
         ->assertReply('sendDocument', [
             'caption' => message('donate.caption'),
             'parse_mode' => ParseMode::HTML,
-            'chat_id' => $chat->chat_id,
+            'chat_id' => $this->chat->chat_id,
             'reply_to_message_id' => 456,
             'allow_sending_without_reply' => true,
         ], 1)
@@ -100,3 +98,43 @@ it('passes with a valid image', function () {
     ]);
 });
 
+it('passes with a valid image + watermark', function () {
+    $this->chat->settings()->set('watermark.opacity', 100);
+
+    bot()->setData(Chat::class, $this->chat);
+
+    $file = mockFile('Images/venice.jpg');
+
+    partialMockBot(function ($mock) use ($file) {
+        $mock->shouldReceive('getFile')->andReturn($file);
+    });
+
+    OptimizeStickerJob::dispatch(
+        chatID: $this->chat->chat_id,
+        replyID: 456,
+        fileID: 'abcdef',
+        fileSize: $file->file_size,
+    );
+
+    bot()
+        ->assertReply('sendChatAction')
+        ->assertReply('sendDocument', [
+            'caption' => message('donate.caption'),
+            'parse_mode' => ParseMode::HTML,
+            'chat_id' => $this->chat->chat_id,
+            'reply_to_message_id' => 456,
+            'allow_sending_without_reply' => true,
+        ], 1)
+        ->assertRaw(function (Request $request) {
+            /** @var OutgoingResource $document */
+            $document = FormDataParser::parse($request)->files['document'];
+
+            //check sticker size
+            return $document->getSize() <= TelegramLimit::STICKER_MAX_SIZE->value;
+        }, 1);
+
+    $this->assertDatabaseHas('statistics', [
+        'action' => 'sticker',
+        'category' => 'optimized',
+    ]);
+});
