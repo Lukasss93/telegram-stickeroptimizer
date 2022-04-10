@@ -54,7 +54,7 @@
 14. `php artisan nutgram:hook:set https://<domain>.<tls>/hook`
 
 ## 🌠 Continuous deployment
-This project will be updated in production at every pushed commit to master branch.<br>
+This project will be updated in production at every pushed tag to master branch.<br>
 Check this github workflow: [deploy.yml](.github/workflows/deploy.yml)
 
 ## ☑ TODO List
