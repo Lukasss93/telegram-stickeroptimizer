@@ -1,8 +1,8 @@
 name: Deploy
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 jobs:
   tests:
     name: Run tests
