@@ -45,25 +45,35 @@ class Statistic extends Model
     {
         $date = now();
 
+        $stickersNew = self::query()
+            ->where('action', 'sticker')
+            ->where('category', 'optimized')
+            ->whereDate('collected_at', $date->toDateString())
+            ->count();
+
+        $stickersTotal = self::query()
+            ->where('action', 'sticker')
+            ->where('category', 'optimized')
+            ->count();
+
+        $usersNewToday = Chat::query()
+            ->whereDate('created_at', $date->toDateString())
+            ->count();
+
+        $usersActiveToday = self::query()
+            ->distinct()
+            ->whereDate('collected_at', $date->toDateString())
+            ->whereNotNull('chat_id')
+            ->count('chat_id');
+
+        $usersTotal = Chat::count();
+
         return [
-            'stickers_new' => self::query()
-                ->where('action', 'sticker')
-                ->where('category', 'optimized')
-                ->whereDate('collected_at', $date->toDateString())
-                ->count(),
-            'stickers_total' => self::query()
-                ->where('action', 'sticker')
-                ->where('category', 'optimized')
-                ->count(),
-            'users_new_today' => Chat::query()
-                ->whereDate('created_at', $date->toDateString())
-                ->count(),
-            'users_active_today' => self::query()
-                ->distinct()
-                ->whereDate('collected_at', $date->toDateString())
-                ->whereNotNull('chat_id')
-                ->count('chat_id'),
-            'users_total' => Chat::count(),
+            'stickers_new' => number_format($stickersNew, thousands_separator: '˙'),
+            'stickers_total' => number_format($stickersTotal, thousands_separator: '˙'),
+            'users_new_today' => number_format($usersNewToday, thousands_separator: '˙'),
+            'users_active_today' => number_format($usersActiveToday, thousands_separator: '˙'),
+            'users_total' => number_format($usersTotal, thousands_separator: '˙'),
             'last_update' => now()->format('Y-m-d H:i:s e'),
         ];
     }
