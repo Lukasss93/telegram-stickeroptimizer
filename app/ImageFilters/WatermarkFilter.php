@@ -5,21 +5,21 @@ namespace App\ImageFilters;
 use App\Enums\WatermarkPosition;
 use GDText\Box;
 use GDText\Color;
-use Glorand\Model\Settings\Managers\TableSettingsManager;
+use Glorand\Model\Settings\Contracts\SettingsManagerContract;
 use Intervention\Image\Filters\FilterInterface;
 use Intervention\Image\Image;
 
 class WatermarkFilter implements FilterInterface
 {
-    protected TableSettingsManager $settings;
+    protected SettingsManagerContract $settings;
     protected const BOX_PADDING = 10;
 
-    public function __construct(TableSettingsManager $settings)
+    public function __construct(SettingsManagerContract $settings)
     {
         $this->settings = $settings;
     }
 
-    public static function make(TableSettingsManager $settings): self
+    public static function make(SettingsManagerContract $settings): self
     {
         return new self($settings);
     }
@@ -42,8 +42,8 @@ class WatermarkFilter implements FilterInterface
         //initialize box
         $box = new Box($layer);
         $box->setBox(
-            x: 0 + self::BOX_PADDING,
-            y: 0 + self::BOX_PADDING,
+            x: self::BOX_PADDING,
+            y: self::BOX_PADDING,
             width: $image->getWidth() - self::BOX_PADDING - 20,
             height: $image->getHeight() - self::BOX_PADDING - 10
         );
