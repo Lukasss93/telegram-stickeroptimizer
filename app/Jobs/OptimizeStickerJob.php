@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Enums\StickerTemplate;
 use App\Enums\TelegramLimit;
 use App\Exceptions\TooLargeFileException;
 use App\Facades\ImageUtils;
 use App\ImageFilters\ScaleFilter;
 use App\ImageFilters\WatermarkFilter;
 use App\Models\Chat;
-use Glorand\Model\Settings\Exceptions\ModelSettingsException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -49,12 +49,9 @@ class OptimizeStickerJob implements ShouldQueue
 
     /**
      * Handle job logic
-     * @throws ModelSettingsException
      */
     public function handle(Nutgram $bot): void
     {
-        $file = null;
-
         try {
             //check file size
             if ($this->fileSize >= TelegramLimit::DOWNLOAD->value) {
@@ -86,7 +83,7 @@ class OptimizeStickerJob implements ShouldQueue
             $image = Image::make($file->url());
 
             //scale image
-            $image->filter(ScaleFilter::make());
+            $image->filter(ScaleFilter::make(StickerTemplate::from($chatSettings->get('template'))));
 
             //apply watermark
             $image->filter(WatermarkFilter::make($chatSettings));

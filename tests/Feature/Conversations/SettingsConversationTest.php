@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StickerTemplate;
 use App\Enums\WatermarkPosition;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
@@ -23,6 +24,12 @@ beforeEach(function () {
                 InlineKeyboardButton::make(
                     text: trans('settings.watermark.title'),
                     callback_data: 'settings:watermark'
+                )
+            )
+            ->addRow(
+                InlineKeyboardButton::make(
+                    text: trans('settings.template.change'),
+                    callback_data: 'settings:template'
                 )
             )->addRow(
                 InlineKeyboardButton::make(
@@ -48,6 +55,7 @@ beforeEach(function () {
                     'news' => $this->chat->settings()->get('news'),
                     'language' => language($this->chat->settings()->get('language')),
                     'watermark' => $this->chat->settings()->get('watermark.opacity') > 0,
+                    'template' => StickerTemplate::from($this->chat->settings()->get('template'))->getLabel(),
                 ]),
                 'parse_mode' => ParseMode::HTML,
                 'disable_web_page_preview' => true,
@@ -148,35 +156,7 @@ it('clicks on news button', function () {
         ->hearCallbackQueryData('settings:news')
         ->reply()
         ->assertReply('answerCallbackQuery')
-        ->assertReplyMessage([
-            'text' => message('settings.main', [
-                'news' => $this->chat->settings()->get('news'),
-                'language' => language($this->chat->settings()->get('language')),
-                'watermark' => $this->chat->settings()->get('watermark.opacity') > 0,
-            ]),
-            'parse_mode' => ParseMode::HTML,
-            'disable_web_page_preview' => true,
-            'reply_markup' => InlineKeyboardMarkup::make()
-                ->addRow(InlineKeyboardButton::make(
-                    text: trans('settings.enable_news'),
-                    callback_data: 'settings:news')
-                )
-                ->addRow(
-                    InlineKeyboardButton::make(
-                        text: trans('settings.language.title'),
-                        callback_data: 'settings:languages'
-                    )
-                )->addRow(
-                    InlineKeyboardButton::make(
-                        text: trans('settings.watermark.title'),
-                        callback_data: 'settings:watermark'
-                    )
-                )->addRow(
-                    InlineKeyboardButton::make(
-                        text: '❌ '.trans('common.close'),
-                        callback_data: 'settings:cancel')
-                ),
-        ], 1)
+        ->assertReply('editMessageText', index: 1)
         ->assertActiveConversation();
 
     expect($this->chat->settings()->get('news'))->toBe(false);
@@ -309,6 +289,17 @@ it('sets the watermark border color', function () {
         ->assertReply('sendMessage', index: 1);
 
     expect($this->chat->settings()->get('watermark.border.color'))->toBe('#000000');
+});
+
+it('sets the template "Icon"', function () {
+    botFromCallable($this->mainMenu)
+        ->hearCallbackQueryData('settings:template')
+        ->reply()
+        ->assertReply('answerCallbackQuery')
+        ->assertReply('editMessageText', index: 1)
+        ->assertActiveConversation();
+
+    expect($this->chat->settings()->get('template'))->toBe(StickerTemplate::ICON());
 });
 
 it('closes the settings menu', function () {

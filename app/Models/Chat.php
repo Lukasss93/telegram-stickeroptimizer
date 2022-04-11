@@ -64,6 +64,7 @@ class Chat extends Model
                 'color' => '#000000',
             ],
         ],
+        'template' => 'sticker',
     ];
 
     public static function findFromUser(?User $user): ?Chat

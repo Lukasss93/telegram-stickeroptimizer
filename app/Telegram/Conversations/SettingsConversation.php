@@ -2,6 +2,7 @@
 
 namespace App\Telegram\Conversations;
 
+use App\Enums\StickerTemplate;
 use App\Enums\WatermarkPosition;
 use App\Facades\ImageUtils;
 use App\Models\Chat;
@@ -31,6 +32,7 @@ class SettingsConversation extends InlineMenu
                 'news' => $this->settings->get('news'),
                 'language' => language($this->settings->get('language')),
                 'watermark' => $this->settings->get('watermark.opacity') > 0,
+                'template' => StickerTemplate::from($this->settings->get('template'))->getLabel(),
             ]), [
                 'parse_mode' => ParseMode::HTML,
                 'disable_web_page_preview' => true,
@@ -47,6 +49,12 @@ class SettingsConversation extends InlineMenu
                 InlineKeyboardButton::make(
                     trans('settings.watermark.title'),
                     callback_data: 'settings:watermark@handleWatermark'
+                )
+            )
+            ->addButtonRow(
+                InlineKeyboardButton::make(
+                    trans('settings.template.change'),
+                    callback_data: 'settings:template@handleTemplate'
                 )
             )->addButtonRow(
                 InlineKeyboardButton::make(
@@ -348,5 +356,14 @@ class SettingsConversation extends InlineMenu
         }
     }
 
+    protected function handleTemplate(Nutgram $bot): void
+    {
+        $current = $this->settings->get('template');
+        $this->settings->set(
+            'template',
+            $current === StickerTemplate::STICKER() ? StickerTemplate::ICON() : StickerTemplate::STICKER()
+        );
 
+        $this->start($bot);
+    }
 }
