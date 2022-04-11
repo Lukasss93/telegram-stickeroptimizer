@@ -15,6 +15,7 @@
         "php": "^8.1",
         "ext-gd": "*",
         "ext-zip": "*",
+        "archtechx/enums": "^0.3.0",
         "chillerlan/php-qrcode": "^4.3",
         "fruitcake/laravel-cors": "^2.0.5",
         "glorand/laravel-model-settings": "^5.0",
@@ -22,9 +23,9 @@
         "intervention/image": "^2.7",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
+        "nutgram/nutgram": "^2.1",
         "pe46dro/gd-text": "^1.2",
-        "sentry/sentry-laravel": "^2.11",
-        "nutgram/nutgram": "^2.1"
+        "sentry/sentry-laravel": "^2.11"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12.2",
