@@ -66,6 +66,10 @@ settings,news,📰 News,📰 News,📰 Aktualności
 settings,title,⚙️ Settings,⚙️ Impostazioni,⚙️ Ustawienia
 settings,watermark.title,🔏 Watermark,🔏 Watermark,🔏 Znak wodny
 settings,watermark.description,Protect your stickers with a watermark.,Proteggi i tuoi sticker con un watermark.,Chroń swoje naklejki za pomocą znaku wodnego.
+settings,template.title,🖼 Template: :type,🖼 Template: :type,
+settings,template.sticker,Sticker,Sticker,
+settings,template.icon,Icon,Icona,
+settings,template.change,🖼 Change template,🖼 Cambia template,
 watermark,opacity.set,👓 Set opacity,👓 Imposta opacità,👓 Ustaw przezroczystość
 watermark,opacity.send,Enter the opacity value (0-100):,Inserisci un valore per l'opacità (0-100):,Wprowadź wartość przezroczystości (0-100):
 watermark,position.set,🎛 Set position,🎛 Imposta posizione,🎛 Ustaw pozycję

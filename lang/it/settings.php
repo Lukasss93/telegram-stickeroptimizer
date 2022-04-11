@@ -20,5 +20,11 @@ return [
         'title' => '🔏 Watermark',
         'description' => 'Proteggi i tuoi sticker con un watermark.',
     ],
+    'template' => [
+        'title' => '🖼 Template: :type',
+        'sticker' => 'Sticker',
+        'icon' => 'Icona',
+        'change' => '🖼 Cambia template',
+    ],
 
 ];
