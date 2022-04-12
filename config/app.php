@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'version' => '2.2.1',
+    'version' => '2.3',
     'source' => env('APP_SOURCE'),
     'changelog' => env('APP_CHANGELOG'),
 
