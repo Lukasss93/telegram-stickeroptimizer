@@ -23,7 +23,7 @@
         "intervention/image": "^2.7",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
-        "nutgram/nutgram": "^2.1",
+        "nutgram/nutgram": "^3.0",
         "pe46dro/gd-text": "^1.2",
         "sentry/sentry-laravel": "^2.11"
     },
