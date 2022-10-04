@@ -81,7 +81,6 @@ beforeEach(function () {
         return ($this->mainMenu)()
             ->hearCallbackQueryData('settings:languages')
             ->reply()
-            ->assertReply('answerCallbackQuery')
             ->assertReply('editMessageText', [
                 'text' => message('settings.language', [
                     'language' => language($this->chat->settings()->get('language')),
@@ -90,14 +89,14 @@ beforeEach(function () {
                 'parse_mode' => ParseMode::HTML,
                 'disable_web_page_preview' => true,
                 'reply_markup' => $keyboard,
-            ], 1)
+            ])
+            ->assertReply('answerCallbackQuery', index: 1)
             ->assertActiveConversation();
     };
     $this->watermarkMenu = function (): FakeNutgram {
         return ($this->mainMenu)()
             ->hearCallbackQueryData('settings:watermark')
             ->reply()
-            ->assertReply('answerCallbackQuery')
             ->assertReply('editMessageText', [
                 'text' => message('settings.watermark', [
                     'opacity' => $this->chat->settings()->get('watermark.opacity'),
@@ -142,7 +141,8 @@ beforeEach(function () {
                     ->addRow(
                         InlineKeyboardButton::make(trans('settings.back'), callback_data: 'watermark:back')
                     ),
-            ], 1)
+            ])
+            ->assertReply('answerCallbackQuery', index: 1)
             ->assertActiveConversation();
     };
 });
@@ -155,8 +155,8 @@ it('clicks on news button', function () {
     botFromCallable($this->mainMenu)
         ->hearCallbackQueryData('settings:news')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('editMessageText', index: 1)
+        ->assertReply('editMessageText')
+        ->assertReply('answerCallbackQuery', index: 1)
         ->assertActiveConversation();
 
     expect($this->chat->settings()->get('news'))->toBe(false);
@@ -176,9 +176,9 @@ it('sets the bot language', function () {
     botFromCallable($this->languageMenu)
         ->hearCallbackQueryData('language:it')
         ->reply()
-        ->assertReply('answerCallbackQuery')
         ->assertRaw(fn ($i) => $this->chat->settings()->get('language') === 'it')
         ->assertRaw(fn ($i) => app()->getLocale() === 'it')
+        ->assertReply('answerCallbackQuery', index:1)
         ->assertActiveConversation();
 });
 
@@ -190,9 +190,9 @@ it('sets the watermark opacity', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:opacity:set')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.opacity.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.opacity.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText(50)
         ->reply()
         ->assertReply('deleteMessage')
@@ -205,9 +205,9 @@ it('sets the watermark position', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:position:set')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.position.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.position.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText(WatermarkPosition::MIDDLE_CENTER->emoji())
         ->reply()
         ->assertReply('deleteMessage')
@@ -220,9 +220,9 @@ it('sets the watermark text content', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:text:content')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.text.content.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.text.content.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText('Hello there!')
         ->reply()
         ->assertReply('deleteMessage')
@@ -235,9 +235,9 @@ it('sets the watermark text size', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:text:size')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.text.size.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.text.size.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText(20)
         ->reply()
         ->assertReply('deleteMessage')
@@ -250,9 +250,9 @@ it('sets the watermark text color', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:text:color')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.text.color.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.text.color.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText('#000000')
         ->reply()
         ->assertReply('deleteMessage')
@@ -265,9 +265,9 @@ it('sets the watermark border size', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:border:size')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.border.size.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.border.size.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText(5)
         ->reply()
         ->assertReply('deleteMessage')
@@ -280,9 +280,9 @@ it('sets the watermark border color', function () {
     botFromCallable($this->watermarkMenu)
         ->hearCallbackQueryData('watermark:border:color')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
-        ->assertReplyText(trans('watermark.border.color.send'), 2)
+        ->assertReply('deleteMessage')
+        ->assertReplyText(trans('watermark.border.color.send'), 1)
+        ->assertReply('answerCallbackQuery', index: 2)
         ->hearText('#000000')
         ->reply()
         ->assertReply('deleteMessage')
@@ -295,8 +295,8 @@ it('sets the template "Icon"', function () {
     botFromCallable($this->mainMenu)
         ->hearCallbackQueryData('settings:template')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('editMessageText', index: 1)
+        ->assertReply('editMessageText')
+        ->assertReply('answerCallbackQuery', index: 1)
         ->assertActiveConversation();
 
     expect($this->chat->settings()->get('template'))->toBe(StickerTemplate::ICON());
@@ -306,7 +306,7 @@ it('closes the settings menu', function () {
     botFromCallable($this->mainMenu)
         ->hearCallbackQueryData('settings:cancel')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1)
+        ->assertReply('deleteMessage')
+        ->assertReply('answerCallbackQuery', index: 1)
         ->assertNoConversation();
 });

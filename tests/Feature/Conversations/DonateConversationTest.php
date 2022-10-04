@@ -46,7 +46,6 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
     $this->test
         ->hearCallbackQueryData('donate.telegram')
         ->reply()
-        ->assertReply('answerCallbackQuery')
         ->assertReplyMessage([
             'text' => message('donate.telegram'),
             'reply_markup' => InlineKeyboardMarkup::make()
@@ -60,10 +59,10 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
                 )
                 ->addRow(InlineKeyboardButton::make('🔙 '.trans('common.back'),
                     callback_data: 'donate.telegram.back')),
-        ], 1)
+        ])
+        ->assertReply('answerCallbackQuery', index: 1)
         ->hearCallbackQueryData($value)
         ->reply()
-        ->assertReply('answerCallbackQuery')
         ->assertReplyMessage([
             'title' => trans('donate.donation'),
             'description' => trans('donate.support_by_donating'),
@@ -71,8 +70,9 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
             'provider_token' => config('donation.provider_token'),
             'currency' => 'EUR',
             'prices' => json_encode([['label' => "{$value}€", 'amount' => $value * 100]]),
-        ], 1, 'sendInvoice')
-        ->assertReply('deleteMessage', index: 2);
+        ], 0, 'sendInvoice')
+        ->assertReply('deleteMessage', index: 1)
+        ->assertReply('answerCallbackQuery', index: 2);
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.telegram',
@@ -117,13 +117,14 @@ it('clicks on a third-party donation button', function () {
     $this->test
         ->hearCallbackQueryData($providerKey)
         ->reply()
-        ->assertReply('answerCallbackQuery')
         ->assertReplyMessage([
             'caption' => message('donate.third', [
                 'service' => $providerKey,
                 'text' => $providerValue,
             ]),
-        ], 1, 'sendPhoto');
+        ], 0, 'sendPhoto')
+        ->assertReply('deleteMessage', index: 1)
+        ->assertReply('answerCallbackQuery', index: 2);
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.third',
@@ -136,8 +137,8 @@ it('closes donate menu', function () {
     $this->test
         ->hearCallbackQueryData('donate.cancel')
         ->reply()
-        ->assertReply('answerCallbackQuery')
-        ->assertReply('deleteMessage', index: 1);
+        ->assertReply('deleteMessage')
+        ->assertReply('answerCallbackQuery', index: 1);
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.cancel',
