@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: telegram-stickeroptimizer-db
+    image: mariadb
+    volumes:
+      - db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: botdb
+      MYSQL_USER: botdb
+      MYSQL_PASSWORD: botdb
+    ports:
+      - "3306:3306"
+    networks:
+      - telegram-stickeroptimizer-network
+
+  dev:
+    container_name: telegram-stickeroptimizer-web-app
+    image: chialab/php-dev:8.1-apache
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html
+      - ./.docker/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./.docker/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    networks:
+      - telegram-stickeroptimizer-network
+
+volumes:
+  db-volume:
+    name: telegram-stickeroptimizer-db-volume
+
+networks:
+  telegram-stickeroptimizer-network:
+    driver: bridge
