@@ -18,11 +18,12 @@
         "archtechx/enums": "^0.3.0",
         "chillerlan/php-qrcode": "^4.3",
         "fruitcake/laravel-cors": "^2.0.5",
-        "glorand/laravel-model-settings": "^5.0",
+        "lukasss93/laravel-model-settings": "^6.0.0",
         "guzzlehttp/guzzle": "^7.4",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "nutgram/nutgram": "^3.0",
         "pe46dro/gd-text": "^1.2",
         "sentry/sentry-laravel": "^2.11"
