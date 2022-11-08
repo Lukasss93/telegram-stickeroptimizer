@@ -4,11 +4,11 @@ namespace App\Telegram\Conversations;
 
 use App\Enums\StickerTemplate;
 use App\Enums\WatermarkPosition;
-use App\Facades\ImageUtils;
 use App\Models\Chat;
-use Glorand\Model\Settings\Managers\TableSettingsManager;
 use Illuminate\Support\Facades\App;
+use Illuminate\Validation\ValidationException;
 use InvalidArgumentException;
+use Lukasss93\ModelSettings\Managers\TableSettingsManager;
 use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
@@ -173,15 +173,10 @@ class SettingsConversation extends InlineMenu
             }
 
             $value = (int)$value;
-
-            if ($value < 0 || $value > 100) {
-                throw new UnexpectedValueException('Invalid range');
-            }
-
             $this->settings->set('watermark.opacity', $value);
             $this->reopen = true;
             $this->handleWatermark($bot);
-        } catch (UnexpectedValueException) {
+        } catch (UnexpectedValueException|ValidationException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setOpacity($bot);
         }
@@ -257,15 +252,10 @@ class SettingsConversation extends InlineMenu
             }
 
             $value = (int)$value;
-
-            if ($value < 1 || $value > 100) {
-                throw new UnexpectedValueException('Invalid range');
-            }
-
             $this->settings->set('watermark.text.size', $value);
             $this->reopen = true;
             $this->handleWatermark($bot);
-        } catch (UnexpectedValueException) {
+        } catch (UnexpectedValueException|ValidationException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setTextSize($bot);
         }
@@ -285,15 +275,10 @@ class SettingsConversation extends InlineMenu
     {
         try {
             $value = strtoupper($bot->message()->text);
-
-            if (!ImageUtils::isHexColor($value)) {
-                throw new UnexpectedValueException('Invalid color');
-            }
-
             $this->settings->set('watermark.text.color', $value);
             $this->reopen = true;
             $this->handleWatermark($bot);
-        } catch (UnexpectedValueException) {
+        } catch (ValidationException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setTextColor($bot);
         }
@@ -318,15 +303,10 @@ class SettingsConversation extends InlineMenu
             }
 
             $value = (int)$value;
-
-            if ($value < 0 || $value > 10) {
-                throw new UnexpectedValueException('Invalid range');
-            }
-
             $this->settings->set('watermark.border.size', $value);
             $this->reopen = true;
             $this->handleWatermark($bot);
-        } catch (UnexpectedValueException) {
+        } catch (UnexpectedValueException|ValidationException) {
             $bot->sendMessage(trans('common.invalid_value'));
             $this->setBorderSize($bot);
         }
@@ -344,15 +324,14 @@ class SettingsConversation extends InlineMenu
 
     protected function getBorderColor(Nutgram $bot): void
     {
-        $value = strtoupper($bot->message()->text);
-
-        if (ImageUtils::isHexColor($value)) {
+        try {
+            $value = strtoupper($bot->message()->text);
             $this->settings->set('watermark.border.color', $value);
             $this->reopen = true;
             $this->handleWatermark($bot);
-        } else {
+        } catch (ValidationException) {
             $bot->sendMessage(trans('common.invalid_value'));
-            $this->setTextColor($bot);
+            $this->setBorderColor($bot);
         }
     }
 

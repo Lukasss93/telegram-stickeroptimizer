@@ -5,9 +5,9 @@ namespace App\ImageFilters;
 use App\Enums\WatermarkPosition;
 use GDText\Box;
 use GDText\Color;
-use Glorand\Model\Settings\Contracts\SettingsManagerContract;
 use Intervention\Image\Filters\FilterInterface;
 use Intervention\Image\Image;
+use Lukasss93\ModelSettings\Contracts\SettingsManagerContract;
 
 class WatermarkFilter implements FilterInterface
 {

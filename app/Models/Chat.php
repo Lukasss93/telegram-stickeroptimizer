@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Rules\HexColorRule;
 use Eloquent;
-use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Lukasss93\ModelSettings\Traits\HasSettingsTable;
 use SergiX44\Nutgram\Telegram\Types\User\User;
 
 /**
@@ -48,24 +49,41 @@ class Chat extends Model
     protected static $unguarded = true;
     protected $dates = ['started_at', 'blocked_at'];
 
-    public array $defaultSettings = [
-        'news' => true,
-        'language' => 'en',
-        'watermark' => [
-            'opacity' => 0,
-            'position' => 'middle-center',
-            'text' => [
-                'content' => null,
-                'size' => 14,
-                'color' => '#ffffff',
+    //protected bool $initSettings = true;
+
+    public function defaultSettings(): array
+    {
+        return [
+            'news' => true,
+            'language' => 'en',
+            'watermark' => [
+                'opacity' => 0,
+                'position' => 'middle-center',
+                'text' => [
+                    'content' => null,
+                    'size' => 14,
+                    'color' => '#ffffff',
+                ],
+                'border' => [
+                    'size' => 0,
+                    'color' => '#000000',
+                ],
             ],
-            'border' => [
-                'size' => 0,
-                'color' => '#000000',
-            ],
-        ],
-        'template' => 'sticker',
-    ];
+            'template' => 'sticker',
+        ];
+    }
+
+    public function settingsRules(): array
+    {
+        return [
+            'watermark.opacity' => 'integer|min:0|max:100',
+            'watermark.text.content' => 'nullable|max:100',
+            'watermark.text.size' => 'integer|min:1|max:100',
+            'watermark.text.color' => [new HexColorRule],
+            'watermark.border.size' => 'integer|min:0|max:10',
+            'watermark.border.color' => [new HexColorRule],
+        ];
+    }
 
     public static function findFromUser(?User $user): ?Chat
     {
