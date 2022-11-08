@@ -58,12 +58,12 @@ class DonateConversation extends InlineMenu
 
         $this->clearButtons();
         $this->addButtonRow(
-            InlineKeyboardButton::make('1€', callback_data: '1@donationInvoice'),
-            InlineKeyboardButton::make('5€', callback_data: '5@donationInvoice'),
-            InlineKeyboardButton::make('10€', callback_data: '10@donationInvoice'),
-            InlineKeyboardButton::make('25€', callback_data: '25@donationInvoice'),
-            InlineKeyboardButton::make('50€', callback_data: '50@donationInvoice'),
-            InlineKeyboardButton::make('100€', callback_data: '100@donationInvoice')
+            InlineKeyboardButton::make('1$', callback_data: '1@donationInvoice'),
+            InlineKeyboardButton::make('5$', callback_data: '5@donationInvoice'),
+            InlineKeyboardButton::make('10$', callback_data: '10@donationInvoice'),
+            InlineKeyboardButton::make('25$', callback_data: '25@donationInvoice'),
+            InlineKeyboardButton::make('50$', callback_data: '50@donationInvoice'),
+            InlineKeyboardButton::make('100$', callback_data: '100@donationInvoice')
         );
 
         $this->addButtonRow(InlineKeyboardButton::make('🔙 '.trans('common.back'),
@@ -90,8 +90,8 @@ class DonateConversation extends InlineMenu
             trans('donate.support_by_donating'),
             'donation',
             config('donation.provider_token'),
-            'EUR',
-            [['label' => "{$value}€", 'amount' => $value * 100]]
+            'USD',
+            [['label' => "{$value}$", 'amount' => $value * 100]]
         );
 
         $this->end();

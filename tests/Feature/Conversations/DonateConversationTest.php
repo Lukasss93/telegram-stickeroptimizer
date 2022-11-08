@@ -50,12 +50,12 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
             'text' => message('donate.telegram'),
             'reply_markup' => InlineKeyboardMarkup::make()
                 ->addRow(
-                    InlineKeyboardButton::make('1€', callback_data: '1'),
-                    InlineKeyboardButton::make('5€', callback_data: '5'),
-                    InlineKeyboardButton::make('10€', callback_data: '10'),
-                    InlineKeyboardButton::make('25€', callback_data: '25'),
-                    InlineKeyboardButton::make('50€', callback_data: '50'),
-                    InlineKeyboardButton::make('100€', callback_data: '100')
+                    InlineKeyboardButton::make('1$', callback_data: '1'),
+                    InlineKeyboardButton::make('5$', callback_data: '5'),
+                    InlineKeyboardButton::make('10$', callback_data: '10'),
+                    InlineKeyboardButton::make('25$', callback_data: '25'),
+                    InlineKeyboardButton::make('50$', callback_data: '50'),
+                    InlineKeyboardButton::make('100$', callback_data: '100')
                 )
                 ->addRow(InlineKeyboardButton::make('🔙 '.trans('common.back'),
                     callback_data: 'donate.telegram.back')),
@@ -68,8 +68,8 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
             'description' => trans('donate.support_by_donating'),
             'payload' => 'donation',
             'provider_token' => config('donation.provider_token'),
-            'currency' => 'EUR',
-            'prices' => json_encode([['label' => "{$value}€", 'amount' => $value * 100]]),
+            'currency' => 'USD',
+            'prices' => json_encode([['label' => "{$value}$", 'amount' => $value * 100]]),
         ], 0, 'sendInvoice')
         ->assertReply('deleteMessage', index: 1)
         ->assertReply('answerCallbackQuery', index: 2);
