@@ -49,7 +49,7 @@ class Chat extends Model
     protected static $unguarded = true;
     protected $dates = ['started_at', 'blocked_at'];
 
-    //protected bool $initSettings = true;
+    protected bool $initSettings = true;
 
     public function defaultSettings(): array
     {
