@@ -20,5 +20,6 @@ return [
     'animated_not_supported' => 'Animowane naklejki nie są obsługiwane!',
     'invalid_file' => 'Nieprawidłowy plik!',
     'open_url' => 'Otwórz adres url',
+    'no_data' => 'Nie znaleziono danych.',
 
 ];

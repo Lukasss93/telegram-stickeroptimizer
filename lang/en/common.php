@@ -20,5 +20,6 @@ return [
     'animated_not_supported' => 'Animated stickers are not supported!',
     'invalid_file' => 'Invalid file!',
     'open_url' => 'Open url',
+    'no_data' => 'No data found.',
 
 ];

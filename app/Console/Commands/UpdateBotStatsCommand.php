@@ -16,10 +16,7 @@ class UpdateBotStatsCommand extends Command
     {
         $this->warn('Updating bot stats...');
 
-        Cache::forget('stats');
-        Cache::rememberForever('stats', function () {
-            return Statistic::getStatsForBot();
-        });
+        Cache::put('stats', Statistic::getStatsForBot());
 
         $this->info('Bot stats updated successfully.');
 

@@ -15,5 +15,6 @@ return [
         'total' => '<b>👥 Wszyscy użytkownicy:</b> :value',
     ],
     'last_update' => '<i>Ostatnia aktualizacja:</i> :value',
+    'wait' => 'Proszę czekać na kolejną aktualizację statystyk.',
 
 ];

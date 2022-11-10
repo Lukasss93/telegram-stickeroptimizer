@@ -15,5 +15,6 @@ return [
         'total' => '<b>👥 Utenti totali:</b> :value',
     ],
     'last_update' => '<i>Ultimo aggiornamento:</i> :value',
+    'wait' => 'Attendi il prossimo aggiornamento delle statistiche.',
 
 ];

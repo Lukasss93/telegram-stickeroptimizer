@@ -20,5 +20,6 @@ return [
     'animated_not_supported' => 'Gli sticker animati non sono supportati!',
     'invalid_file' => 'File non valido!',
     'open_url' => 'Apri url',
+    'no_data' => 'Non sono stati trovati dati.',
 
 ];

@@ -32,6 +32,7 @@ common,too_large_file,Too large file!,File troppo grande!,Zbyt duży plik!
 common,animated_not_supported,Animated stickers are not supported!,Gli sticker animati non sono supportati!,Animowane naklejki nie są obsługiwane!
 common,invalid_file,Invalid file!,File non valido!,Nieprawidłowy plik!
 common,open_url,Open url,Apri url,Otwórz adres url
+common,no_data,No data found.,Non sono stati trovati dati.,Nie znaleziono danych.
 feedback,ask,Please enter a feedback about the bot:,Per favore inserisci un feedback riguardo il bot:,Wprowadź opinię o bocie:
 feedback,cancelled,Feedback cancelled.,Feedback annullato.,Przekazanie opinii anulowane.
 feedback,new,New feedback!,Nuovo feedback!,Nowa opinia!
@@ -52,6 +53,7 @@ stats,users.today.new,<b>🆕 New users today:</b> :value,<b>🆕 Nuovi utenti o
 stats,users.today.active,<b>✳️ Active users today:</b> :value,<b>✳️ Utenti attivi oggi:</b> :value,<b>✳️ Aktywni użytkownicy dzisiaj:</b> :value
 stats,users.total,<b>👥 Total users:</b> :value,<b>👥 Utenti totali:</b> :value,<b>👥 Wszyscy użytkownicy:</b> :value
 stats,last_update,<i>Last update:</i> :value,<i>Ultimo aggiornamento:</i> :value,<i>Ostatnia aktualizacja:</i> :value
+stats,wait,Please wait next statistics update.,Attendi il prossimo aggiornamento delle statistiche.,Proszę czekać na kolejną aktualizację statystyk.
 settings,back,🔙 Back,🔙 Indietro,🔙 Powrót
 settings,description,Here you can change the bot settings.,Qui puoi cambiare le impostazioni del bot.,Tutaj możesz zmienić ustawienia bota.
 settings,disable_news,📰 Disable news,📰 Disabilita news,📰 Wyłącz wiadomości
