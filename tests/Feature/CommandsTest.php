@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Cache;
 use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
 use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
@@ -42,7 +43,7 @@ it('sends /about command', function () {
     ]);
 });
 
-it('sends /stats command', function () {
+it('sends /stats command with filled content', function () {
     $stats = [
         'stickers_new' => 1,
         'stickers_total' => 2,
@@ -52,15 +53,26 @@ it('sends /stats command', function () {
         'last_update' => 6,
     ];
 
-    Cache::shouldReceive('sear')
-        ->once()
-        ->with('stats', Closure::class)
-        ->andReturn($stats);
+    Cache::put('stats', $stats);
 
     bot()
         ->hearText('/stats')
         ->reply()
-        ->assertReplyText(message('stats', $stats));
+        ->assertReplyText(message('stats.full', $stats));
+
+    $this->assertDatabaseHas('statistics', [
+        'action' => 'stats',
+        'category' => 'command',
+    ]);
+
+    Cache::forget('stats');
+});
+
+it('sends /stats command with empty content', function () {
+    bot()
+        ->hearText('/stats')
+        ->reply()
+        ->assertReplyText(message('stats.empty'));
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'stats',
