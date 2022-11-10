@@ -5,14 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v2.3.1 - 2022-11-10
+
+### Changed
+
+- Use a new laravel-model-settings package
+- Optimized /stats command
+
+### Fixed
+
+- Fixed 1€ donation amount changing it to 1$
+
 ## v2.3 - 2022-04-12
 
 ### Added
+
 - Added ability to change the template
 
 ## v2.2.1 - 2022-04-11
 
 ### Fixed
+
 - Added missing bot tests
 - Fix missing thousands separator in /stats command
 
