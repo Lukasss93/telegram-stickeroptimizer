@@ -25,7 +25,6 @@ use App\Telegram\Middleware\CheckRateLimit;
 use App\Telegram\Middleware\CollectChat;
 use App\Telegram\Middleware\SetLocale;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\MessageTypes;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,13 +45,11 @@ $bot->middleware(CheckOffline::class);
 */
 
 $bot->onMyChatMember(UpdateChatStatusHandler::class);
-
-$bot->onMessageType(MessageTypes::STICKER, StickerHandler::class);
-$bot->onMessageType(MessageTypes::DOCUMENT, DocumentHandler::class);
-$bot->onMessageType(MessageTypes::PHOTO, PhotoHandler::class);
-
+$bot->onSticker(StickerHandler::class);
+$bot->onDocument(DocumentHandler::class);
+$bot->onPhoto(PhotoHandler::class);
 $bot->onPreCheckoutQuery(PreCheckoutQueryHandler::class);
-$bot->onMessageType(MessageTypes::SUCCESSFUL_PAYMENT, SuccessfulPaymentHandler::class);
+$bot->onSuccessfulPayment(SuccessfulPaymentHandler::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -62,8 +59,7 @@ $bot->onMessageType(MessageTypes::SUCCESSFUL_PAYMENT, SuccessfulPaymentHandler::
 
 $bot->onCommand('start', StartCommand::class)->description('Welcome message');
 $bot->onCommand('help', HelpCommand::class)->description('Help message');
-$bot->onCommand('about', AboutCommand::class)->description('About the bots');
-$bot->onCommand('privacy', PrivacyCommand::class)->description('Privacy Policy');
+$bot->onCommand('settings', SettingsConversation::class)->description('Bot Settings');
 
 if (config('donation.enabled')) {
     $bot->onCommand('donate', DonateConversation::class)->description('Make a donation');
@@ -72,7 +68,8 @@ if (config('donation.enabled')) {
 
 $bot->onCommand('stats', StatsCommand::class)->description('Show bot statistics');
 $bot->onCommand('feedback', FeedbackConversation::class)->description('Send a feedback about the bot');
-$bot->onCommand('settings', SettingsConversation::class)->description('Bot Settings');
+$bot->onCommand('about', AboutCommand::class)->description('About the bot');
+$bot->onCommand('privacy', PrivacyCommand::class)->description('Privacy Policy');
 $bot->onCommand('cancel', CancelCommand::class)->description('Close a conversation or a keyboard');
 
 /*
