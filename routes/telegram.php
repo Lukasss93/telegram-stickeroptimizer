@@ -21,9 +21,9 @@ use App\Telegram\Handlers\SuccessfulPaymentHandler;
 use App\Telegram\Handlers\UpdateChatStatusHandler;
 use App\Telegram\Middleware\CheckMaintenance;
 use App\Telegram\Middleware\CheckOffline;
-use App\Telegram\Middleware\CheckRateLimit;
 use App\Telegram\Middleware\CollectChat;
 use App\Telegram\Middleware\SetLocale;
+use App\Telegram\Middleware\Throttle;
 use SergiX44\Nutgram\Nutgram;
 
 /*
@@ -34,7 +34,7 @@ use SergiX44\Nutgram\Nutgram;
 
 $bot->middleware(CollectChat::class);
 $bot->middleware(SetLocale::class);
-$bot->middleware(CheckRateLimit::class);
+$bot->middleware(Throttle::class);
 $bot->middleware(CheckMaintenance::class);
 $bot->middleware(CheckOffline::class);
 

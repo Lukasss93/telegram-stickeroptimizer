@@ -10,7 +10,5 @@ return [
 
     'rate_limit' => [
         'enabled' => env('BOT_RATE_LIMIT_ENABLED', false),
-        'attempts' => (int)env('BOT_RATE_LIMIT_ATTEMPTS', 30),
-        'decay' => (int)env('BOT_RATE_LIMIT_DECAY', 30),
     ],
 ];
