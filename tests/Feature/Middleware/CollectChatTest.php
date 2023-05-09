@@ -3,7 +3,7 @@
 use App\Telegram\Middleware\CollectChat;
 use Illuminate\Support\Carbon;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 
 beforeEach(function () {
     bot()->onText('foo', function (Nutgram $bot) {
@@ -14,7 +14,7 @@ beforeEach(function () {
 it('fails if user is unset', function () {
     bot()
         ->overrideMiddleware(CollectChat::class)
-        ->hearUpdateType(UpdateTypes::MESSAGE, ['text' => 'foo'])
+        ->hearUpdateType(UpdateType::MESSAGE, ['text' => 'foo'])
         ->reply()
         ->assertNoReply();
 });

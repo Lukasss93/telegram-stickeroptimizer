@@ -1,14 +1,14 @@
 <?php
 
 use App\Jobs\OptimizeStickerJob;
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 
 it('creates an optimized sticker from photo', function () {
 
     Queue::fake();
 
     bot()
-        ->hearUpdateType(UpdateTypes::MESSAGE, [
+        ->hearUpdateType(UpdateType::MESSAGE, [
             'message_id' => 1,
             'from' => ['id' => 123],
             'chat' => ['id' => 321],

@@ -11,7 +11,7 @@ use InvalidArgumentException;
 use Lukasss93\ModelSettings\Managers\TableSettingsManager;
 use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\KeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\ReplyKeyboardMarkup;
@@ -24,7 +24,7 @@ class SettingsConversation extends InlineMenu
 
     public function start(Nutgram $bot): void
     {
-        $this->settings = $this->settings ?? $bot->getData(Chat::class)->settings();
+        $this->settings = $this->settings ?? $bot->get(Chat::class)->settings();
 
         $this
             ->clearButtons()

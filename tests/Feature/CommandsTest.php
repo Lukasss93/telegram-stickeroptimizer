@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Cache;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\ReplyKeyboardRemove;
@@ -100,7 +100,7 @@ it('sends /privacy command', function () {
 
 it('sends /cancel command', function () {
     bot()
-        ->hearUpdateType(UpdateTypes::MESSAGE, [
+        ->hearUpdateType(UpdateType::MESSAGE, [
             'text' => '/cancel',
             'from' => ['id' => 123],
             'chat' => ['id' => 321],

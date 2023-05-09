@@ -1,15 +1,14 @@
 <?php
 
-use SergiX44\Nutgram\Telegram\Attributes\ChatMemberStatus;
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\ChatMemberStatus;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 
 it('updates chat status: member', function () {
-
     bot()
-        ->hearUpdateType(UpdateTypes::MY_CHAT_MEMBER, [
+        ->hearUpdateType(UpdateType::MY_CHAT_MEMBER, [
             'chat' => ['id' => 321],
             'from' => ['id' => 321],
-            'new_chat_member' => ['status' => ChatMemberStatus::MEMBER],
+            'new_chat_member' => ['status' => ChatMemberStatus::MEMBER->value],
         ])
         ->reply()
         ->assertNoReply();
@@ -23,7 +22,6 @@ it('updates chat status: member', function () {
         'action' => 'chat.unblocked',
         'category' => 'chat status',
     ]);
-
 });
 
 it('updates chat status: banned', function () {
@@ -31,12 +29,16 @@ it('updates chat status: banned', function () {
     $this->travelTo($now);
 
     bot()
-        ->hearUpdateType(UpdateTypes::MY_CHAT_MEMBER, [
+        ->hearUpdateType(UpdateType::MY_CHAT_MEMBER, [
             'chat' => ['id' => 321],
             'from' => ['id' => 321],
-            'new_chat_member' => ['status' => ChatMemberStatus::KICKED],
+            'new_chat_member' => [
+                'status' => ChatMemberStatus::KICKED->value,
+                'until_date' => 1,
+            ],
         ])
         ->reply()
+        ->dump()
         ->assertNoReply();
 
     $this->assertDatabaseHas('chats', [
@@ -50,5 +52,4 @@ it('updates chat status: banned', function () {
     ]);
 
     $this->travelBack();
-
 });

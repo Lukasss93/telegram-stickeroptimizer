@@ -2,7 +2,7 @@
 
 use App\Models\Statistic;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 
 /**
  * Return a formatted string (in C# like)

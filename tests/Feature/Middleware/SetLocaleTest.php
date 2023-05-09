@@ -15,7 +15,7 @@ it('sets locale from chat settings', function () {
     $chat->settings()->set('language', 'de');
     $chat->refresh();
 
-    bot()->setData(Chat::class, $chat);
+    bot()->set(Chat::class, $chat);
 
     bot()
         ->overrideMiddleware(SetLocale::class)
@@ -28,7 +28,7 @@ it('sets locale from chat settings', function () {
 it('sets locale from fallback', function () {
     $chat = Chat::factory()->create();
 
-    bot()->setData(Chat::class, $chat);
+    bot()->set(Chat::class, $chat);
 
     bot()
         ->overrideMiddleware(SetLocale::class)

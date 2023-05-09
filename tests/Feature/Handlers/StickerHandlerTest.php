@@ -2,14 +2,14 @@
 
 use App\Jobs\OptimizeStickerJob;
 use Illuminate\Support\Facades\Queue;
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 
 it('creates an optimized sticker from sticker', function () {
 
     Queue::fake();
 
     bot()
-        ->hearUpdateType(UpdateTypes::MESSAGE, [
+        ->hearUpdateType(UpdateType::MESSAGE, [
             'message_id' => 1,
             'from' => ['id' => 123],
             'chat' => ['id' => 321],
@@ -39,7 +39,7 @@ it('does not creates an optimized sticker from an animated sticker', function ()
     Queue::fake();
 
     bot()
-        ->hearUpdateType(UpdateTypes::MESSAGE, [
+        ->hearUpdateType(UpdateType::MESSAGE, [
             'message_id' => 1,
             'from' => ['id' => 123],
             'chat' => ['id' => 321],

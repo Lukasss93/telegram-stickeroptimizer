@@ -5,7 +5,7 @@ namespace App\Telegram\Conversations;
 use Psr\SimpleCache\InvalidArgumentException;
 use SergiX44\Nutgram\Conversations\Conversation;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 
@@ -23,13 +23,11 @@ class FeedbackConversation extends Conversation
      */
     public function start(Nutgram $bot): void
     {
-        $message = $bot->sendMessage(message('feedback.ask'), [
-            'reply_markup' => InlineKeyboardMarkup::make()
-                ->addRow(InlineKeyboardButton::make(
-                    text: trans('common.cancel'),
-                    callback_data: 'feedback.cancel'
-                )),
-        ]);
+        $message = $bot->sendMessage(
+            text: message('feedback.ask'),
+            reply_markup: InlineKeyboardMarkup::make()
+                ->addRow(InlineKeyboardButton::make(trans('common.cancel'), callback_data: 'feedback.cancel')),
+        );
 
         $this->chat_id = $message->chat->id;
         $this->message_id = $message->message_id;
@@ -57,9 +55,10 @@ class FeedbackConversation extends Conversation
 
         //check valid input
         if ($bot->message()?->text === null) {
-            $bot->sendMessage(message('feedback.wrong'), [
-                'parse_mode' => ParseMode::HTML,
-            ]);
+            $bot->sendMessage(
+                text: message('feedback.wrong'),
+                parse_mode: ParseMode::HTML,
+            );
             $this->start($bot);
 
             return;
@@ -69,14 +68,15 @@ class FeedbackConversation extends Conversation
         $this->feedback = $bot->message()?->text;
 
         //send feedback to dev
-        $bot->sendMessage(message('feedback.received', [
-            'from' => "{$bot->user()?->first_name} {$bot->user()?->last_name}",
-            'username' => $bot->user()?->username,
-            'user_id' => $bot->userId(),
-            'message' => $this->feedback,
-        ]), [
-            'chat_id' => config('developer.id'),
-        ]);
+        $bot->sendMessage(
+            text: message('feedback.received', [
+                'from' => "{$bot->user()?->first_name} {$bot->user()?->last_name}",
+                'username' => $bot->user()?->username,
+                'user_id' => $bot->userId(),
+                'message' => $this->feedback,
+            ]),
+            chat_id: config('developer.id'),
+        );
 
         $this->success = true;
 

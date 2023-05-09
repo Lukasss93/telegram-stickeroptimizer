@@ -7,7 +7,7 @@ use SergiX44\Nutgram\Nutgram;
 
 class PhotoHandler
 {
-    public function __invoke(Nutgram $bot)
+    public function __invoke(Nutgram $bot): void
     {
         $replyID = $bot->messageId();
         $file = end($bot->message()->photo);

@@ -10,7 +10,7 @@ class SetLocale
 {
     public function __invoke(Nutgram $bot, $next): void
     {
-        $chat = $bot->getData(Chat::class);
+        $chat = $bot->get(Chat::class);
 
         App::setLocale($chat->settings()->get('language') ?? config('app.locale'));
 

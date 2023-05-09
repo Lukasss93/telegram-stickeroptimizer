@@ -4,7 +4,7 @@ use App\Enums\TelegramLimit;
 use App\Jobs\OptimizeStickerJob;
 use App\Models\Chat;
 use GuzzleHttp\Psr7\Request;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Testing\FormDataParser;
 use SergiX44\Nutgram\Testing\OutgoingResource;
 
@@ -60,7 +60,7 @@ it('fails with an animated webp', function () {
 });
 
 it('passes with a valid image', function () {
-    bot()->setData(Chat::class, $this->chat);
+    bot()->set(Chat::class, $this->chat);
 
     $file = mockFile('Images/venice.jpg');
 
@@ -101,7 +101,7 @@ it('passes with a valid image', function () {
 it('passes with a valid image + watermark', function () {
     $this->chat->settings()->set('watermark.opacity', 100);
 
-    bot()->setData(Chat::class, $this->chat);
+    bot()->set(Chat::class, $this->chat);
 
     $file = mockFile('Images/venice.jpg');
 

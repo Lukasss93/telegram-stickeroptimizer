@@ -5,6 +5,7 @@ namespace App\Telegram\Middleware;
 use App\Models\Chat;
 use Illuminate\Support\Facades\DB;
 use SergiX44\Nutgram\Nutgram;
+use SergiX44\Nutgram\Telegram\Properties\ChatType;
 
 class CollectChat
 {
@@ -29,7 +30,7 @@ class CollectChat
                 'blocked_at' => null,
             ]);
 
-            if (!$chat->started_at && $bot->message()?->chat?->type === 'private') {
+            if ($chat->started_at === null && $bot->message()?->chat?->type === ChatType::PRIVATE) {
                 $chat->started_at = now();
                 $chat->save();
             }
@@ -37,7 +38,7 @@ class CollectChat
             return $chat;
         });
 
-        $bot->setData(Chat::class, $chat);
+        $bot->set(Chat::class, $chat);
 
         $next($bot);
     }

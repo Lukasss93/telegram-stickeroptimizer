@@ -1,13 +1,13 @@
 <?php
 
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 
 beforeEach(function () {
     $this->test = bot()
         ->willStartConversation()
-        ->hearUpdateType(UpdateTypes::MESSAGE, [
+        ->hearUpdateType(UpdateType::MESSAGE, [
             'text' => '/feedback',
             'from' => [
                 'id' => 123,

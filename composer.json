@@ -11,6 +11,12 @@
         "optimizer"
     ],
     "license": "AGPL-3.0-only",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../nutgram-laravel"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "ext-gd": "*",
@@ -24,7 +30,7 @@
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",
-        "nutgram/nutgram": "^3.0",
+        "nutgram/laravel": "*",
         "pe46dro/gd-text": "^1.2",
         "sentry/sentry-laravel": "^2.11"
     },

@@ -4,16 +4,17 @@ namespace App\Telegram\Commands;
 
 use Illuminate\Support\Facades\Cache;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 
 class StatsCommand
 {
     public function __invoke(Nutgram $bot): void
     {
-        $bot->sendMessage($this->getMessage(), [
-            'parse_mode' => ParseMode::HTML,
-            'disable_web_page_preview' => true,
-        ]);
+        $bot->sendMessage(
+            text: $this->getMessage(),
+            parse_mode: ParseMode::HTML,
+            disable_web_page_preview: true,
+        );
 
         stats('stats', 'command');
     }

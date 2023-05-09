@@ -7,7 +7,7 @@ use SergiX44\Nutgram\Nutgram;
 
 class StickerHandler
 {
-    public function __invoke(Nutgram $bot)
+    public function __invoke(Nutgram $bot): void
     {
         $sticker = $bot->message()->sticker;
 
@@ -16,10 +16,11 @@ class StickerHandler
         $fileID = $sticker->file_id;
 
         if ($sticker->is_animated || $sticker->is_video) {
-            $bot->sendMessage(trans('common.animated_not_supported'), [
-                'reply_to_message_id' => $replyID,
-                'allow_sending_without_reply' => true,
-            ]);
+            $bot->sendMessage(
+                text: trans('common.animated_not_supported'),
+                reply_to_message_id: $replyID,
+                allow_sending_without_reply: true,
+            );
 
             return;
         }

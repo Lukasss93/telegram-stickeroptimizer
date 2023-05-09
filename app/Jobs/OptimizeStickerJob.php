@@ -19,8 +19,8 @@ use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Facades\Image;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\ChatActions;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ChatAction;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
 use Throwable;
 
@@ -67,9 +67,10 @@ class OptimizeStickerJob implements ShouldQueue
             }
 
             //set sending status
-            $bot->sendChatAction(ChatActions::UPLOAD_PHOTO, [
-                'chat_id' => $this->chatID,
-            ]);
+            $bot->sendChatAction(
+                action: ChatAction::UPLOAD_PHOTO,
+                chat_id: $this->chatID,
+            );
 
             //check if resource is an animated webp
             if (ImageUtils::isAnAnimatedWebp(fopen($file->url(), 'rb'))) {
@@ -101,23 +102,25 @@ class OptimizeStickerJob implements ShouldQueue
             }
 
             //send optimized image
-            $bot->sendDocument(InputFile::make($stream->detach(), Str::uuid().'.'.$ext), [
-                'caption' => message('donate.caption'),
-                'parse_mode' => ParseMode::HTML,
-                'chat_id' => $this->chatID,
-                'reply_to_message_id' => $this->replyID,
-                'allow_sending_without_reply' => true,
-            ]);
+            $bot->sendDocument(
+                document: InputFile::make($stream->detach(), Str::uuid().'.'.$ext),
+                chat_id: $this->chatID,
+                caption: message('donate.caption'),
+                parse_mode: ParseMode::HTML,
+                reply_to_message_id: $this->replyID,
+                allow_sending_without_reply: true,
+            );
 
             //save statistic
             stats('sticker', 'optimized');
 
         } catch (TooLargeFileException $e) {
-            $bot->sendMessage($e->getMessage(), [
-                'chat_id' => $this->chatID,
-                'reply_to_message_id' => $this->replyID,
-                'allow_sending_without_reply' => true,
-            ]);
+            $bot->sendMessage(
+                text: $e->getMessage(),
+                chat_id: $this->chatID,
+                reply_to_message_id: $this->replyID,
+                allow_sending_without_reply: true,
+            );
         } catch (Throwable) {
             $bot->sendMessage(trans('common.invalid_file'));
         }

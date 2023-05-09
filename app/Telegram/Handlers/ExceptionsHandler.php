@@ -26,13 +26,14 @@ class ExceptionsHandler
     {
         report($e);
 
-        $bot->sendMessage(message('exception', [
-            'name' => last(explode('\\', $e::class)),
-            'message' => $e->getMessage(),
-            'line' => $e->getLine(),
-            'file' => str_replace(base_path(), '', $e->getFile()),
-        ]), [
-            'chat_id' => config('developer.id'),
-        ]);
+        $bot->sendMessage(
+            text: message('exception', [
+                'name' => last(explode('\\', $e::class)),
+                'message' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => str_replace(base_path(), '', $e->getFile()),
+            ]),
+            chat_id: config('developer.id'),
+        );
     }
 }

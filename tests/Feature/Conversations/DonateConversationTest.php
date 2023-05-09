@@ -1,7 +1,7 @@
 <?php
 
 use App\Facades\ImageUtils;
-use SergiX44\Nutgram\Telegram\Attributes\UpdateTypes;
+use SergiX44\Nutgram\Telegram\Properties\UpdateType;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 
@@ -89,7 +89,7 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
 
 it('donates via donation invoice', function () {
     bot()
-        ->hearUpdateType(UpdateTypes::PRE_CHECKOUT_QUERY)
+        ->hearUpdateType(UpdateType::PRE_CHECKOUT_QUERY)
         ->reply()
         ->assertReply('answerPreCheckoutQuery')
         ->clearCache()

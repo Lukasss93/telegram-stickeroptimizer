@@ -5,7 +5,7 @@ use App\Telegram\Middleware\CheckOffline;
 use SergiX44\Nutgram\Nutgram;
 
 beforeEach(function () {
-    bot()->setData(Chat::class, $this->chat);
+    bot()->set(Chat::class, $this->chat);
 
     bot()->overrideMiddleware(CheckOffline::class);
     bot()->onText('foo', fn (Nutgram $bot) => $bot->sendMessage('bar'));

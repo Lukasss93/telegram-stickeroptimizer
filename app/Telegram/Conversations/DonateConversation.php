@@ -7,7 +7,7 @@ use JsonException;
 use Psr\SimpleCache\InvalidArgumentException;
 use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
-use SergiX44\Nutgram\Telegram\Attributes\ParseMode;
+use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 
 class DonateConversation extends InlineMenu
@@ -86,12 +86,12 @@ class DonateConversation extends InlineMenu
         $value = (int)$data;
 
         $this->bot->sendInvoice(
-            trans('donate.donation'),
-            trans('donate.support_by_donating'),
-            'donation',
-            config('donation.provider_token'),
-            'USD',
-            [['label' => "{$value}$", 'amount' => $value * 100]]
+            title: trans('donate.donation'),
+            description: trans('donate.support_by_donating'),
+            payload: 'donation',
+            provider_token: config('donation.provider_token'),
+            currency: 'USD',
+            prices: [['label' => "{$value}$", 'amount' => $value * 100]]
         );
 
         $this->end();
@@ -111,13 +111,14 @@ class DonateConversation extends InlineMenu
 
         $photo = ImageUtils::qrcode($text, $service, true);
 
-        $this->bot->sendPhoto($photo, [
-            'caption' => message('donate.third', [
+        $this->bot->sendPhoto(
+            photo: $photo,
+            caption: message('donate.third', [
                 'service' => $service,
                 'text' => $text,
             ]),
-            'parse_mode' => ParseMode::HTML,
-        ]);
+            parse_mode: ParseMode::HTML,
+        );
 
         $this->end();
 

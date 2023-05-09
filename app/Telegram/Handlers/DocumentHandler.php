@@ -7,7 +7,7 @@ use SergiX44\Nutgram\Nutgram;
 
 class DocumentHandler
 {
-    public function __invoke(Nutgram $bot)
+    public function __invoke(Nutgram $bot): void
     {
         $replyID = $bot->messageId();
         $fileSize = $bot->message()->document->file_size;
