@@ -18,7 +18,7 @@ services:
 
   dev:
     container_name: telegram-stickeroptimizer-web-app
-    image: chialab/php-dev:8.1-apache
+    image: chialab/php-dev:8.2-apache
     ports:
       - "80:80"
     depends_on:
