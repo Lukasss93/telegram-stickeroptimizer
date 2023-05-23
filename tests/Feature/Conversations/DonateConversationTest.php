@@ -112,7 +112,7 @@ it('clicks on a third-party donation button', function () {
     $providerKey = array_key_first(config('donation.third_party_providers.text'));
     $providerValue = Arr::first(config('donation.third_party_providers.text'));
 
-    ImageUtils::shouldReceive('qrcode')->andReturn('test.png');
+    ImageUtils::shouldReceive('qrcode')->andReturn(fopen('php://temp', 'rb'));
 
     $this->test
         ->hearCallbackQueryData($providerKey)

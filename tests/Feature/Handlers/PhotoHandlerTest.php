@@ -13,11 +13,13 @@ it('creates an optimized sticker from photo', function () {
             'from' => ['id' => 123],
             'chat' => ['id' => 321],
             'photo' => [
-                'file_id' => 'abc123',
-                'file_unique_id' => 'abcdef123',
-                'width' => 1000,
-                'height' => 500,
-                'file_size' => 2048,
+                [
+                    'file_id' => 'abc123',
+                    'file_unique_id' => 'abcdef123',
+                    'width' => 1000,
+                    'height' => 500,
+                    'file_size' => 2048,
+                ],
             ],
         ])
         ->reply();
