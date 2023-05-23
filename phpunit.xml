@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         verbose="true"
-         cacheResult="false">
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd" bootstrap="vendor/autoload.php"
+         colors="true" cacheResult="false" cacheDirectory=".phpunit.cache">
     <testsuites>
         <testsuite name="Feature">
             <directory>./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <coverage>
+    <source>
         <include>
-            <directory suffix=".php">./app/ImageFilters</directory>
-            <directory suffix=".php">./app/Jobs</directory>
-            <directory suffix=".php">./app/Telegram</directory>
+            <directory>./app/ImageFilters</directory>
+            <directory>./app/Jobs</directory>
+            <directory>./app/Telegram</directory>
         </include>
         <exclude>
             <file>./app/Telegram/Handlers/ExceptionsHandler.php</file>
         </exclude>
-    </coverage>
+    </source>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="TELEGRAM_TOKEN" value="TEST"/>
