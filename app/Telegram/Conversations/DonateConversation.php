@@ -8,6 +8,7 @@ use Psr\SimpleCache\InvalidArgumentException;
 use SergiX44\Nutgram\Conversations\InlineMenu;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
+use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 
 class DonateConversation extends InlineMenu
@@ -112,7 +113,7 @@ class DonateConversation extends InlineMenu
         $photo = ImageUtils::qrcode($text, $service, true);
 
         $this->bot->sendPhoto(
-            photo: $photo,
+            photo: InputFile::make($photo),
             caption: message('donate.third', [
                 'service' => $service,
                 'text' => $text,
