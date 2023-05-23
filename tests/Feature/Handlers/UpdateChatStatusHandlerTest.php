@@ -38,7 +38,6 @@ it('updates chat status: banned', function () {
             ],
         ])
         ->reply()
-        ->dump()
         ->assertNoReply();
 
     $this->assertDatabaseHas('chats', [

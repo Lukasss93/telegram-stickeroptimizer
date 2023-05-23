@@ -34,6 +34,8 @@ it('sends /feedback command', function () {
 });
 
 it('gets feedback', function () {
+    config(['developer.id' => 321]);
+
     $this->test
         ->hearText('wow')
         ->reply()
@@ -44,7 +46,7 @@ it('gets feedback', function () {
                 'user_id' => 123,
                 'message' => 'wow',
             ]),
-            'chat_id' => config('developer.id'),
+            'chat_id' => 321,
         ])
         ->assertReply('deleteMessage', index: 1)
         ->assertReplyText(message('feedback.thanks'), 2)
