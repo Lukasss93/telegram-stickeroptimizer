@@ -17,16 +17,15 @@
         "ext-zip": "*",
         "archtechx/enums": "^0.3.0",
         "chillerlan/php-qrcode": "^4.3",
-        "fruitcake/laravel-cors": "^2.0.5",
-        "lukasss93/laravel-model-settings": "^6.0.0",
+        "lukasss93/laravel-model-settings": "^6.0",
         "guzzlehttp/guzzle": "^7.4",
         "intervention/image": "^2.7",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^10.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",
         "nutgram/laravel": "^1.0",
         "pe46dro/gd-text": "^1.2",
-        "sentry/sentry-laravel": "^2.11"
+        "sentry/sentry-laravel": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12.2",
@@ -35,11 +34,11 @@
         "lukasss93/laravel-larex": "^v4.0",
         "lukasss93/laravel-larex-crowdin": "^v2.0",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^6.1",
-        "pestphp/pest-plugin-laravel": "^1.2",
-        "pestphp/pest-plugin-parallel": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "spatie/laravel-ignition": "^1.0"
+        "nunomaduro/collision": "^7.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "config": {
         "optimize-autoloader": true,
