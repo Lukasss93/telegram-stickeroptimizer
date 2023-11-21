@@ -2,12 +2,17 @@
 
 namespace App\Telegram\Commands;
 
+use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 
-class StartCommand
+class StartCommand extends Command
 {
-    public function __invoke(Nutgram $bot): void
+    protected string $command = 'start';
+
+    protected ?string $description = 'Welcome message';
+
+    public function handle(Nutgram $bot): void
     {
         $bot->sendMessage(
             text: message('start'),

@@ -3,12 +3,17 @@
 namespace App\Telegram\Commands;
 
 use Illuminate\Support\Facades\Cache;
+use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 
-class StatsCommand
+class StatsCommand extends Command
 {
-    public function __invoke(Nutgram $bot): void
+    protected string $command = 'stats';
+
+    protected ?string $description = 'Show bot statistics';
+
+    public function handle(Nutgram $bot): void
     {
         $bot->sendMessage(
             text: $this->getMessage(),

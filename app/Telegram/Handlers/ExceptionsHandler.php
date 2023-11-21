@@ -15,10 +15,6 @@ class ExceptionsHandler
 
     public function global(Nutgram $bot, Throwable $e): void
     {
-        if (ExceptionType::getAllExceptions()->contains(fn ($exception) => $e instanceof $exception)) {
-            return;
-        }
-
         $this->reportException($bot, $e);
     }
 

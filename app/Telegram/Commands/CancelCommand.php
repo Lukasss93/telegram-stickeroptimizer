@@ -2,12 +2,17 @@
 
 namespace App\Telegram\Commands;
 
+use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\ReplyKeyboardRemove;
 
-class CancelCommand
+class CancelCommand extends Command
 {
-    public function __invoke(Nutgram $bot): void
+    protected string $command = 'cancel';
+
+    protected ?string $description = 'Cancel current action';
+
+    public function handle(Nutgram $bot): void
     {
         try {
             $bot->endConversation();

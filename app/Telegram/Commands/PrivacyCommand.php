@@ -2,14 +2,19 @@
 
 namespace App\Telegram\Commands;
 
+use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
 use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 
-class PrivacyCommand
+class PrivacyCommand extends Command
 {
-    public function __invoke(Nutgram $bot): void
+    protected string $command = 'privacy';
+
+    protected ?string $description = 'Privacy Policy';
+
+    public function handle(Nutgram $bot): void
     {
         $bot->sendMessage(
             text: message('privacy'),

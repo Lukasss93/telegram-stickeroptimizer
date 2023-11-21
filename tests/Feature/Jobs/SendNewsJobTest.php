@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\TelegramUserBlockedException;
-use App\Exceptions\TelegramUserDeactivatedException;
+use App\Telegram\Exceptions\UserBlockedException;
+use App\Telegram\Exceptions\UserDeactivatedException;
 use App\Jobs\SendNews;
 use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -29,20 +29,20 @@ it('runs job', function () {
     $this->assertDatabaseHas('chats', ['chat_id' => $this->chat->chat_id]);
 });
 
-it('throws TelegramUserDeactivatedException', function () {
+it('throws UserDeactivatedException', function () {
     $this->mock(Nutgram::class)
         ->shouldReceive('forwardMessage')
-        ->andThrowExceptions([new TelegramUserDeactivatedException('Forbidden: user is deactivated')]);
+        ->andThrowExceptions([new UserDeactivatedException('Forbidden: user is deactivated')]);
 
     SendNews::dispatch($this->chat->chat_id, 123);
 
     $this->assertDatabaseMissing('chats', ['chat_id' => $this->chat->chat_id]);
 });
 
-it('throws TelegramUserBlockedException', function () {
+it('throws UserBlockedException', function () {
     $this->mock(Nutgram::class)
         ->shouldReceive('forwardMessage')
-        ->andThrowExceptions([new TelegramUserBlockedException('Forbidden: bot was blocked by the user')]);
+        ->andThrowExceptions([new UserBlockedException('Forbidden: bot was blocked by the user')]);
 
     SendNews::dispatch($this->chat->chat_id, 123);
 
