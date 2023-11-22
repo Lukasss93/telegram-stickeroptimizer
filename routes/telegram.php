@@ -3,6 +3,7 @@
 /** @var Nutgram $bot */
 
 use App\Telegram\Commands;
+use App\Telegram\Commands\StatsCommand;
 use App\Telegram\Conversations\DonateConversation;
 use App\Telegram\Exceptions;
 use App\Telegram\Handlers;
@@ -31,6 +32,7 @@ $bot->onDocument(Handlers\DocumentHandler::class);
 $bot->onPhoto(Handlers\PhotoHandler::class);
 $bot->onPreCheckoutQuery(Handlers\PreCheckoutQueryHandler::class);
 $bot->onSuccessfulPayment(Handlers\SuccessfulPaymentHandler::class);
+$bot->onCallbackQueryData('stats:{value}', [StatsCommand::class, 'updateStatsMessage']);
 
 /*
 |--------------------------------------------------------------------------

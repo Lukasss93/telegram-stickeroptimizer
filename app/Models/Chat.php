@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Rules\HexColorRule;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -83,9 +82,9 @@ class Chat extends Model
             'watermark.opacity' => 'integer|min:0|max:100',
             'watermark.text.content' => 'nullable|max:100',
             'watermark.text.size' => 'integer|min:1|max:100',
-            'watermark.text.color' => [new HexColorRule],
+            'watermark.text.color' => 'hex_color',
             'watermark.border.size' => 'integer|min:0|max:10',
-            'watermark.border.color' => [new HexColorRule],
+            'watermark.border.color' => 'hex_color',
         ];
     }
 

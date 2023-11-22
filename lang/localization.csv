@@ -46,13 +46,11 @@ donate,appreciated,That'll be very much appreciated 😊,Verrà molto apprezzato
 donate,terms,Terms and conditions for donation payments,Termini e condizioni per le donazioni,Zasady i warunki płatności darowizn
 donate,thanks,Thank you for your donation!,Grazie per la tua donazione!,Dziękujemy za wsparcie!
 donate,with,Donate with :service,Dona con :service,Wesprzyj za pomocą :service
-stats,title,<b>📊 Statistics</b>,<b>📊 Statistiche</b>,<b>📊 Statystyki</b>
-stats,stickers.today,<b>🆕 Stickers optimized today:</b> :value,<b>🆕 Sticker ottimizzati oggi:</b> :value,<b>🆕 Naklejki zoptymalizowane dziś:</b> :value
-stats,stickers.total,<b>🖼 Total stickers optimized:</b> :value,<b>🖼 Totale sticker ottimizzati:</b> :value,<b>🖼 Wszystkie zoptymalizowane naklejki:</b> :value
-stats,users.today.new,<b>🆕 New users today:</b> :value,<b>🆕 Nuovi utenti oggi:</b> :value,<b>🆕 Nowi użytkownicy dzisiaj:</b> :value
-stats,users.today.active,<b>✳️ Active users today:</b> :value,<b>✳️ Utenti attivi oggi:</b> :value,<b>✳️ Aktywni użytkownicy dzisiaj:</b> :value
-stats,users.total,<b>👥 Total users:</b> :value,<b>👥 Utenti totali:</b> :value,<b>👥 Wszyscy użytkownicy:</b> :value
-stats,last_update,<i>Last update:</i> :value,<i>Ultimo aggiornamento:</i> :value,<i>Ostatnia aktualizacja:</i> :value
+stats,title,📊 Statistics,📊 Statistiche,📊 Statystyki
+stats,category.optimized,🖼 Stickers optimized,🖼 Sticker ottimizzati,🖼 Naklejki zoptymalizowane
+stats,category.new_users,👥 Users,👥 Utenti,👥 Wszyscy
+stats,category.active_users,✳️ Active users,✳️ Utenti attivi,✳️ Aktywni użytkownicy
+stats,last_update,Last update:,Ultimo aggiornamento:,Ostatnia aktualizacja:
 stats,wait,Please wait next statistics update.,Attendi il prossimo aggiornamento delle statistiche.,Proszę czekać na kolejną aktualizację statystyk.
 settings,back,🔙 Back,🔙 Indietro,🔙 Powrót
 settings,description,Here you can change the bot settings.,Qui puoi cambiare le impostazioni del bot.,Tutaj możesz zmienić ustawienia bota.
@@ -87,3 +85,9 @@ watermark,border.size.send,Enter the border size (0-10):,Inserisci la dimensione
 watermark,border.color.set,🖍 Set border color,🖍 Imposta colore bordo,🖍 Ustaw kolor obramowania
 watermark,border.color.send,Enter the border color (HEX):,Inserisci il colore del bordo (HEX):,Wprowadź kolor obramowania (HEX):
 watermark,to_disable,"To disable the watermark, set the opacity to 0.","Per disabilitare il watermark, imposta l'opacità a 0.",
+stats,range.month,This month: :value,Questo mese: :value,
+stats,range.today,Today: :value,Oggi: :value,
+stats,range.total,Total: :value,Totale: :value,
+stats,range.week,This week: :value,Questa settimana: :value,
+stats,range.year,This year: :value,Quest'anno: :value,
+stats,range.yesterday,Yesterday: :value,Ieri: :value,

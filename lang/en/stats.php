@@ -2,19 +2,21 @@
 
 return [
 
-    'title' => '<b>📊 Statistics</b>',
-    'stickers' => [
-        'today' => '<b>🆕 Stickers optimized today:</b> :value',
-        'total' => '<b>🖼 Total stickers optimized:</b> :value',
+    'title' => '📊 Statistics',
+    'category' => [
+        'optimized' => '🖼 Stickers optimized',
+        'new_users' => '👥 Users',
+        'active_users' => '✳️ Active users',
     ],
-    'users' => [
-        'today' => [
-            'new' => '<b>🆕 New users today:</b> :value',
-            'active' => '<b>✳️ Active users today:</b> :value',
-        ],
-        'total' => '<b>👥 Total users:</b> :value',
-    ],
-    'last_update' => '<i>Last update:</i> :value',
+    'last_update' => 'Last update:',
     'wait' => 'Please wait next statistics update.',
+    'range' => [
+        'month' => 'This month: :value',
+        'today' => 'Today: :value',
+        'total' => 'Total: :value',
+        'week' => 'This week: :value',
+        'year' => 'This year: :value',
+        'yesterday' => 'Yesterday: :value',
+    ],
 
 ];

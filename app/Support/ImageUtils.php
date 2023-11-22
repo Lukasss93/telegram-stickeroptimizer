@@ -12,20 +12,6 @@ use Throwable;
 class ImageUtils
 {
     /**
-     * Validate hex color
-     * @param string $value
-     * @return bool
-     */
-    public function isHexColor(string $value): bool
-    {
-        if (!preg_match('/^#[a-f0-9]{6}$/i', $value)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
      * Check if a file is an animated webp
      * @param string|resource $source
      * @return bool

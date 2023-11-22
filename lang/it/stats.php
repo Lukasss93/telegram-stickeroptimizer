@@ -2,19 +2,21 @@
 
 return [
 
-    'title' => '<b>📊 Statistiche</b>',
-    'stickers' => [
-        'today' => '<b>🆕 Sticker ottimizzati oggi:</b> :value',
-        'total' => '<b>🖼 Totale sticker ottimizzati:</b> :value',
+    'title' => '📊 Statistiche',
+    'category' => [
+        'optimized' => '🖼 Sticker ottimizzati',
+        'new_users' => '👥 Utenti',
+        'active_users' => '✳️ Utenti attivi',
     ],
-    'users' => [
-        'today' => [
-            'new' => '<b>🆕 Nuovi utenti oggi:</b> :value',
-            'active' => '<b>✳️ Utenti attivi oggi:</b> :value',
-        ],
-        'total' => '<b>👥 Utenti totali:</b> :value',
-    ],
-    'last_update' => '<i>Ultimo aggiornamento:</i> :value',
+    'last_update' => 'Ultimo aggiornamento:',
     'wait' => 'Attendi il prossimo aggiornamento delle statistiche.',
+    'range' => [
+        'month' => 'Questo mese: :value',
+        'today' => 'Oggi: :value',
+        'total' => 'Totale: :value',
+        'week' => 'Questa settimana: :value',
+        'year' => 'Quest\'anno: :value',
+        'yesterday' => 'Ieri: :value',
+    ],
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -43,38 +44,109 @@ class Statistic extends Model
 
     public static function getStatsForBot(): array
     {
-        $date = now();
+        $date = CarbonImmutable::now();
 
-        $stickersNew = self::query()
+        // stickers optimized
+        $stickersOptimizedYesterday = self::query()
             ->where('action', 'sticker')
             ->where('category', 'optimized')
-            ->whereDate('collected_at', $date->toDateString())
+            ->whereBetween('collected_at', [$date->subDay()->startOfDay(), $date->subDay()->endOfDay()])
             ->count();
-
-        $stickersTotal = self::query()
+        $stickersOptimizedToday = self::query()
+            ->where('action', 'sticker')
+            ->where('category', 'optimized')
+            ->whereBetween('collected_at', [$date->startOfDay(), $date->endOfDay()])
+            ->count();
+        $stickersOptimizedWeek = self::query()
+            ->where('action', 'sticker')
+            ->where('category', 'optimized')
+            ->whereBetween('collected_at', [$date->startOfWeek(), $date->endOfWeek()])
+            ->count();
+        $stickersOptimizedMonth = self::query()
+            ->where('action', 'sticker')
+            ->where('category', 'optimized')
+            ->whereBetween('collected_at', [$date->startOfMonth(), $date->endOfMonth()])
+            ->count();
+        $stickersOptimizedYear = self::query()
+            ->where('action', 'sticker')
+            ->where('category', 'optimized')
+            ->whereBetween('collected_at', [$date->startOfYear(), $date->endOfYear()])
+            ->count();
+        $stickersOptimizedTotal = self::query()
             ->where('action', 'sticker')
             ->where('category', 'optimized')
             ->count();
 
-        $usersNewToday = Chat::query()
-            ->whereDate('created_at', $date->toDateString())
-            ->count();
-
-        $usersActiveToday = self::query()
+        //active users
+        $activeUsersYesterday = self::query()
             ->distinct()
-            ->whereDate('collected_at', $date->toDateString())
+            ->whereBetween('collected_at', [$date->subDay()->startOfDay(), $date->subDay()->endOfDay()])
+            ->whereNotNull('chat_id')
+            ->count('chat_id');
+        $activeUsersToday = self::query()
+            ->distinct()
+            ->whereBetween('collected_at', [$date->startOfDay(), $date->endOfDay()])
+            ->whereNotNull('chat_id')
+            ->count('chat_id');
+        $activeUsersWeek = self::query()
+            ->distinct()
+            ->whereBetween('collected_at', [$date->startOfWeek(), $date->endOfWeek()])
+            ->whereNotNull('chat_id')
+            ->count('chat_id');
+        $activeUsersMonth = self::query()
+            ->distinct()
+            ->whereBetween('collected_at', [$date->startOfMonth(), $date->endOfMonth()])
+            ->whereNotNull('chat_id')
+            ->count('chat_id');
+        $activeUsersYear = self::query()
+            ->distinct()
+            ->whereBetween('collected_at', [$date->startOfYear(), $date->endOfYear()])
             ->whereNotNull('chat_id')
             ->count('chat_id');
 
+        // users
+        $usersYesterday = Chat::query()
+            ->whereBetween('created_at', [$date->subDay()->startOfDay(), $date->subDay()->endOfDay()])
+            ->count();
+        $usersToday = Chat::query()
+            ->whereBetween('created_at', [$date->startOfDay(), $date->endOfDay()])
+            ->count();
+        $usersWeek = Chat::query()
+            ->whereBetween('created_at', [$date->startOfWeek(), $date->endOfWeek()])
+            ->count();
+        $usersMonth = Chat::query()
+            ->whereBetween('created_at', [$date->startOfMonth(), $date->endOfMonth()])
+            ->count();
+        $usersYear = Chat::query()
+            ->whereBetween('created_at', [$date->startOfYear(), $date->endOfYear()])
+            ->count();
         $usersTotal = Chat::count();
 
         return [
-            'stickers_new' => number_format($stickersNew, thousands_separator: '˙'),
-            'stickers_total' => number_format($stickersTotal, thousands_separator: '˙'),
-            'users_new_today' => number_format($usersNewToday, thousands_separator: '˙'),
-            'users_active_today' => number_format($usersActiveToday, thousands_separator: '˙'),
-            'users_total' => number_format($usersTotal, thousands_separator: '˙'),
-            'last_update' => now()->format('Y-m-d H:i:s e'),
+            'stickers_optimized' => [
+                'yesterday' => number_format($stickersOptimizedYesterday, thousands_separator: '˙'),
+                'today' => number_format($stickersOptimizedToday, thousands_separator: '˙'),
+                'week' => number_format($stickersOptimizedWeek, thousands_separator: '˙'),
+                'month' => number_format($stickersOptimizedMonth, thousands_separator: '˙'),
+                'year' => number_format($stickersOptimizedYear, thousands_separator: '˙'),
+                'total' => number_format($stickersOptimizedTotal, thousands_separator: '˙'),
+            ],
+            'active_users' => [
+                'yesterday' => number_format($activeUsersYesterday, thousands_separator: '˙'),
+                'today' => number_format($activeUsersToday, thousands_separator: '˙'),
+                'week' => number_format($activeUsersWeek, thousands_separator: '˙'),
+                'month' => number_format($activeUsersMonth, thousands_separator: '˙'),
+                'year' => number_format($activeUsersYear, thousands_separator: '˙'),
+            ],
+            'users' => [
+                'yesterday' => number_format($usersYesterday, thousands_separator: '˙'),
+                'today' => number_format($usersToday, thousands_separator: '˙'),
+                'week' => number_format($usersWeek, thousands_separator: '˙'),
+                'month' => number_format($usersMonth, thousands_separator: '˙'),
+                'year' => number_format($usersYear, thousands_separator: '˙'),
+                'total' => number_format($usersTotal, thousands_separator: '˙'),
+            ],
+            'last_update' => $date->format('Y-m-d H:i:s e'),
         ];
     }
 }

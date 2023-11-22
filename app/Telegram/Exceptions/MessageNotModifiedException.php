@@ -9,4 +9,9 @@ use SergiX44\Nutgram\Telegram\Exceptions\TelegramException;
 class MessageNotModifiedException extends ApiException
 {
     public static ?string $pattern = '.*specified new message content and reply markup are exactly the same.*';
+
+    public function __invoke(Nutgram $bot, TelegramException $e)
+    {
+        //ignore this exception
+    }
 }

@@ -9,4 +9,9 @@ use SergiX44\Nutgram\Telegram\Exceptions\TelegramException;
 class MessageToDeleteNotFoundException extends ApiException
 {
     public static ?string $pattern = '.*message to delete not found.*';
+
+    public function __invoke(Nutgram $bot, TelegramException $e)
+    {
+        //ignore this exception
+    }
 }

@@ -2,19 +2,13 @@
 
 return [
 
-    'title' => '<b>📊 Statystyki</b>',
-    'stickers' => [
-        'today' => '<b>🆕 Naklejki zoptymalizowane dziś:</b> :value',
-        'total' => '<b>🖼 Wszystkie zoptymalizowane naklejki:</b> :value',
+    'title' => '📊 Statystyki',
+    'category' => [
+        'optimized' => '🖼 Naklejki zoptymalizowane',
+        'new_users' => '👥 Wszyscy',
+        'active_users' => '✳️ Aktywni użytkownicy',
     ],
-    'users' => [
-        'today' => [
-            'new' => '<b>🆕 Nowi użytkownicy dzisiaj:</b> :value',
-            'active' => '<b>✳️ Aktywni użytkownicy dzisiaj:</b> :value',
-        ],
-        'total' => '<b>👥 Wszyscy użytkownicy:</b> :value',
-    ],
-    'last_update' => '<i>Ostatnia aktualizacja:</i> :value',
+    'last_update' => 'Ostatnia aktualizacja:',
     'wait' => 'Proszę czekać na kolejną aktualizację statystyk.',
 
 ];
