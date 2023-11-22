@@ -45,12 +45,30 @@ it('sends /about command', function () {
 
 it('sends /stats command with filled content', function () {
     $stats = [
-        'stickers_new' => 1,
-        'stickers_total' => 2,
-        'users_new_today' => 3,
-        'users_active_today' => 4,
-        'users_total' => 5,
-        'last_update' => 6,
+        'stickers_optimized' => [
+            'yesterday' => 0,
+            'today' => 0,
+            'week' => 0,
+            'month' => 0,
+            'year' => 0,
+            'total' => 0,
+        ],
+        'active_users' => [
+            'yesterday' => 0,
+            'today' => 0,
+            'week' => 0,
+            'month' => 0,
+            'year' => 0,
+        ],
+        'users' => [
+            'yesterday' => 0,
+            'today' => 0,
+            'week' => 0,
+            'month' => 0,
+            'year' => 0,
+            'total' => 0,
+        ],
+        'last_update' => '0',
     ];
 
     Cache::put('stats', $stats);
@@ -58,7 +76,11 @@ it('sends /stats command with filled content', function () {
     bot()
         ->hearText('/stats')
         ->reply()
-        ->assertReplyText(message('stats.full', $stats));
+        ->assertReplyText(message('stats.template', [
+            'title' => __('stats.category.optimized'),
+            ...$stats['stickers_optimized'],
+            'lastUpdate' => $stats['last_update'],
+        ]));
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'stats',
