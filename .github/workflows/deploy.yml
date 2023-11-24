@@ -51,6 +51,7 @@ jobs:
             git reset --hard
             git fetch origin
             git pull "https://Lukasss93:${{ secrets.GIT_TOKEN }}@github.com/Lukasss93/telegram-stickeroptimizer.git" master
+            wget https://getcomposer.org/download/latest-2.x/composer.phar -O composer.phar
             php8.2 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
             php8.2 artisan migrate --force --step
             php8.2 artisan optimize:clear
