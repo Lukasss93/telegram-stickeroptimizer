@@ -19,6 +19,6 @@ class StartCommand extends Command
             parse_mode: ParseMode::HTML,
         );
 
-        stats('start', 'command');
+        stats('command.start');
     }
 }

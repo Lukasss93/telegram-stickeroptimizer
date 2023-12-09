@@ -43,7 +43,7 @@ class DonateConversation extends InlineMenu
 
         $this->showMenu();
 
-        stats('donate', 'command');
+        stats('command.donate');
     }
 
     /**
@@ -72,7 +72,7 @@ class DonateConversation extends InlineMenu
 
         $this->showMenu();
 
-        stats('donate.telegram', 'donation');
+        stats('donate.telegram');
     }
 
     /**
@@ -97,7 +97,7 @@ class DonateConversation extends InlineMenu
 
         $this->end();
 
-        stats('donate.invoice', 'donation', ['value' => $value]);
+        stats('donate.invoice', ['value' => $value]);
     }
 
     /**
@@ -123,13 +123,13 @@ class DonateConversation extends InlineMenu
 
         $this->end();
 
-        stats('donate.third', 'donation', ['service' => $service]);
+        stats('donate.third', ['service' => $service]);
     }
 
     protected function closing(Nutgram $bot): void
     {
         parent::closing($bot);
 
-        stats('donate.cancel', 'donation');
+        stats('donate.cancel');
     }
 }

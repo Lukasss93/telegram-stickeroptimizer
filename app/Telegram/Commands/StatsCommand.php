@@ -25,7 +25,7 @@ class StatsCommand extends Command
                 parse_mode: ParseMode::HTML,
             );
 
-            stats('stats', 'command');
+            stats('command.stats');
 
             return;
         }
@@ -36,7 +36,7 @@ class StatsCommand extends Command
             reply_markup: $this->getKeyboard(),
         );
 
-        stats('stats', 'command');
+        stats('command.stats');
     }
 
     public function updateStatsMessage(Nutgram $bot, string $value)

@@ -17,7 +17,7 @@ class UpdateChatStatusHandler
             $chat->blocked_at = $chatMember->new_chat_member instanceof ChatMemberBanned ? now() : null;
             $chat->save();
 
-            stats($chat->blocked_at === null ? 'chat.unblocked' : 'chat.blocked', 'chat status');
+            stats($chat->blocked_at === null ? 'user.status.unblocked' : 'user.status.blocked');
         }
     }
 }

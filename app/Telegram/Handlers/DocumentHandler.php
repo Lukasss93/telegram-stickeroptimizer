@@ -15,6 +15,6 @@ class DocumentHandler
 
         OptimizeStickerJob::dispatchSync($bot->chatId(), $replyID, $fileID, $fileSize);
 
-        stats('document', 'handler');
+        stats('handler.document');
     }
 }

@@ -62,14 +62,14 @@ class SettingsConversation extends InlineMenu
                     callback_data: 'settings:cancel@end')
             )->showMenu();
 
-        stats('settings', 'command');
+        stats('command.settings');
     }
 
     protected function handleNews(Nutgram $bot): void
     {
         $this->settings->set('news', !$this->settings->get('news'));
 
-        stats('news action', 'settings', ['status' => $this->settings->get('news')]);
+        stats('settings.news', ['status' => $this->settings->get('news')]);
 
         $this->start($bot);
     }

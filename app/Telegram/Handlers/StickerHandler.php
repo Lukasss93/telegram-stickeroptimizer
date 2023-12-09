@@ -27,6 +27,6 @@ class StickerHandler
 
         OptimizeStickerJob::dispatchSync($bot->chatId(), $replyID, $fileID, $fileSize);
 
-        stats('sticker', 'handler');
+        stats('handler.sticker');
     }
 }

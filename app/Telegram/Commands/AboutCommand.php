@@ -20,6 +20,6 @@ class AboutCommand extends Command
             disable_web_page_preview: true,
         );
 
-        stats('about', 'command');
+        stats('command.about');
     }
 }

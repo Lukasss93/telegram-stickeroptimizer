@@ -19,6 +19,6 @@ class HelpCommand extends Command
             parse_mode: ParseMode::HTML,
         );
 
-        stats('help', 'command');
+        stats('command.help');
     }
 }

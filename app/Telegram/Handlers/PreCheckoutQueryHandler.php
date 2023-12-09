@@ -10,6 +10,6 @@ class PreCheckoutQueryHandler
     {
         $bot->answerPreCheckoutQuery(true);
 
-        stats('precheckout', 'payment');
+        stats('donate.precheckout');
     }
 }

@@ -22,7 +22,7 @@ class CancelCommand extends Command
                 reply_markup: ReplyKeyboardRemove::make(true),
             )?->delete();
         } finally {
-            stats('cancel', 'command');
+            stats('command.cancel');
         }
     }
 }

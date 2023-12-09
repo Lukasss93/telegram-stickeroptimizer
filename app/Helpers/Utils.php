@@ -111,13 +111,12 @@ function cast(string $type, mixed $value, mixed $default = null): array|bool|flo
  * @param array|null $value
  * @param int|null $chat_id
  */
-function stats(string $action, string $category = null, array $value = null, int $chat_id = null): void
+function stats(string $action, array $payload = null, int $user_id = null): void
 {
     Statistic::create([
         'action' => $action,
-        'category' => $category,
-        'value' => $value,
-        'chat_id' => $chat_id ?? app(Nutgram::class)->update()?->getUser()?->id,
+        'value' => $payload,
+        'chat_id' => $user_id ?? app(Nutgram::class)->update()?->getUser()?->id,
     ]);
 }
 

@@ -24,6 +24,6 @@ class PrivacyCommand extends Command
                 ->addRow(InlineKeyboardButton::make(trans('privacy.title'), config('bot.privacy'))),
         );
 
-        stats('privacy', 'command');
+        stats('command.privacy');
     }
 }

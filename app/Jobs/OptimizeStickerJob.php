@@ -112,7 +112,7 @@ class OptimizeStickerJob implements ShouldQueue
             );
 
             //save statistic
-            stats('sticker', 'optimized');
+            stats('sticker.optimized');
 
         } catch (TooLargeFileException $e) {
             $bot->sendMessage(
