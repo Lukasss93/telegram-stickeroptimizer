@@ -23,10 +23,6 @@
         <server name="BOT_CHANNEL" value="123456"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <server name="DB_HOST" value="db-test"/>
-        <server name="DB_DATABASE" value="botdb-test"/>
-        <server name="DB_USERNAME" value="botdb-test"/>
-        <server name="DB_PASSWORD" value="botdb-test"/>
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
