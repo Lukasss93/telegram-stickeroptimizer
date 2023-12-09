@@ -20,6 +20,8 @@ services:
     image: mariadb
     volumes:
       - db-volume:/var/lib/mysql
+      - ./.docker/my.cnf:/etc/mysql/mariadb.conf.d/my.cnf
+      - ./.docker/dumps:/home/dumps
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: botdb
