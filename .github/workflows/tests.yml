@@ -32,7 +32,7 @@ jobs:
           distribution: "mariadb"
           mysql-version: "10.7"
           root-password: "root"
-        run: mysql -u root -proot -e "CREATE DATABASE test;"
+      - run: mysql -u root -proot -e "CREATE DATABASE test;"
 
       - name: Execute tests
         env:
