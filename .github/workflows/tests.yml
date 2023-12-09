@@ -1,5 +1,5 @@
 name: Tests
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   tests:
@@ -27,5 +27,19 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-suggest
 
+      - uses: shogo82148/actions-setup-mysql@v1
+        with:
+          distribution: "mariadb"
+          mysql-version: "10.7"
+          root-password: "root"
+        run: mysql -u root -proot -e "CREATE DATABASE test;"
+
       - name: Execute tests
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test
+          DB_USERNAME: root
+          DB_PASSWORD: root
         run: composer run tests
