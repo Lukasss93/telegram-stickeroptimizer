@@ -28,7 +28,13 @@ class Kernel extends ConsoleKernel
         //update the bot statistics
         $schedule
             ->command(UpdateBotStatsCommand::class)
-            ->everyFiveMinutes();
+            ->everyFiveMinutes()
+            ->withoutOverlapping()
+            ->sentryMonitor(
+                monitorSlug: 'stats_update',
+                checkInMargin: 1,
+                maxRuntime: 3,
+            );
     }
 
     /**
