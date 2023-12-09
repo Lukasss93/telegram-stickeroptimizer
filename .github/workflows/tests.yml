@@ -41,4 +41,4 @@ jobs:
           DB_DATABASE: test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: composer run tests
+        run: vendor/bin/pest --colors=always
