@@ -17,15 +17,15 @@
         "ext-zip": "*",
         "archtechx/enums": "^0.3.0",
         "chillerlan/php-qrcode": "^4.3",
-        "lukasss93/laravel-model-settings": "^6.0",
         "guzzlehttp/guzzle": "^7.4",
         "intervention/image": "^2.7",
         "laravel/framework": "^10.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",
+        "lukasss93/laravel-model-settings": "^6.0",
         "nutgram/laravel": "^1.0",
         "pe46dro/gd-text": "^1.2",
-        "sentry/sentry-laravel": "^3.0"
+        "sentry/sentry-laravel": "^3.8"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12.2",
