@@ -27,8 +27,7 @@ it('creates an optimized sticker from photo', function () {
     Queue::assertPushed(OptimizeStickerJob::class);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'photo',
-        'category' => 'handler',
+        'action' => 'handler.photo',
     ]);
 
 });

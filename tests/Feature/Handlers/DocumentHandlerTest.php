@@ -25,8 +25,7 @@ it('creates an optimized sticker from document', function () {
     Queue::assertPushed(OptimizeStickerJob::class);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'document',
-        'category' => 'handler',
+        'action' => 'handler.document',
     ]);
 
 });

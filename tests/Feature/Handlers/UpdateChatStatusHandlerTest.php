@@ -19,8 +19,7 @@ it('updates chat status: member', function () {
     ]);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'chat.unblocked',
-        'category' => 'chat status',
+        'action' => 'user.status.unblocked',
     ]);
 });
 
@@ -46,8 +45,7 @@ it('updates chat status: banned', function () {
     ]);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'chat.blocked',
-        'category' => 'chat status',
+        'action' => 'user.status.blocked',
     ]);
 
     $this->travelBack();

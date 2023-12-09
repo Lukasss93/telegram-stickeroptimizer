@@ -93,8 +93,7 @@ it('passes with a valid image', function () {
         }, 1);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'sticker',
-        'category' => 'optimized',
+        'action' => 'sticker.optimized',
     ]);
 });
 
@@ -134,7 +133,6 @@ it('passes with a valid image + watermark', function () {
         }, 1);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'sticker',
-        'category' => 'optimized',
+        'action' => 'sticker.optimized',
     ]);
 });

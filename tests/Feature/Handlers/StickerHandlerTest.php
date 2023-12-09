@@ -28,8 +28,7 @@ it('creates an optimized sticker from sticker', function () {
     Queue::assertPushed(OptimizeStickerJob::class);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'sticker',
-        'category' => 'handler',
+        'action' => 'handler.sticker',
     ]);
 
 });
@@ -59,8 +58,7 @@ it('does not creates an optimized sticker from an animated sticker', function ()
     Queue::assertNotPushed(OptimizeStickerJob::class);
 
     $this->assertDatabaseMissing('statistics', [
-        'action' => 'sticker',
-        'category' => 'handler',
+        'action' => 'handler.sticker',
     ]);
 
 });

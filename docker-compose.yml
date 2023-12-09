@@ -32,9 +32,28 @@ services:
     networks:
       - telegram-stickeroptimizer-network
 
+  db-test:
+    container_name: telegram-stickeroptimizer-db-test
+    image: mariadb
+    volumes:
+      - db-test-volume:/var/lib/mysql
+      - ./.docker/my.cnf:/etc/mysql/mariadb.conf.d/my.cnf
+      - ./.docker/dumps:/home/dumps
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: botdb-test
+      MYSQL_USER: botdb-test
+      MYSQL_PASSWORD: botdb-test
+    ports:
+      - "3307:3306"
+    networks:
+      - telegram-stickeroptimizer-network
+
 volumes:
   db-volume:
     name: telegram-stickeroptimizer-db-volume
+  db-test-volume:
+    name: telegram-stickeroptimizer-db-test-volume
 
 networks:
   telegram-stickeroptimizer-network:

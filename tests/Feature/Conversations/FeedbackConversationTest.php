@@ -54,7 +54,6 @@ it('gets feedback', function () {
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'feedback.sent',
-        'category' => 'feedback',
     ]);
 });
 
@@ -81,6 +80,5 @@ it('gets invalid feedback + it cancels feedback', function () {
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'feedback.cancelled',
-        'category' => 'feedback',
     ]);
 });

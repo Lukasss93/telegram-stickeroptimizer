@@ -31,8 +31,7 @@ beforeEach(function () {
         ->assertActiveConversation();
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'donate',
-        'category' => 'command',
+        'action' => 'command.donate',
     ]);
 });
 
@@ -76,12 +75,10 @@ it('clicks on Telegram Payment button + it generates donation invoice', function
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.telegram',
-        'category' => 'donation',
     ]);
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.invoice',
-        'category' => 'donation',
         'value' => json_encode(['value' => (int)$value]),
     ]);
 
@@ -98,13 +95,11 @@ it('donates via donation invoice', function () {
         ->assertReplyText(__('donate.thanks'));
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'precheckout',
-        'category' => 'payment',
+        'action' => 'donate.precheckout',
     ]);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'donation',
-        'category' => 'payment',
+        'action' => 'donate.success',
     ]);
 });
 
@@ -128,7 +123,6 @@ it('clicks on a third-party donation button', function () {
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.third',
-        'category' => 'donation',
         'value' => json_encode(['service' => $providerKey]),
     ]);
 });
@@ -142,7 +136,5 @@ it('closes donate menu', function () {
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'donate.cancel',
-        'category' => 'donation',
     ]);
-
 });

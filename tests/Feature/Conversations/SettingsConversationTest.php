@@ -64,8 +64,7 @@ beforeEach(function () {
             ->assertActiveConversation();
 
         $this->assertDatabaseHas('statistics', [
-            'action' => 'settings',
-            'category' => 'command',
+            'action' => 'command.settings',
         ]);
 
         return $test;
@@ -162,8 +161,7 @@ it('clicks on news button', function () {
     expect($this->chat->settings()->get('news'))->toBe(false);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'news action',
-        'category' => 'settings',
+        'action' => 'settings.news',
         'value' => json_encode(['status' => $this->chat->settings()->get('news')]),
     ]);
 });

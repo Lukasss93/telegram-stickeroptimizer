@@ -14,8 +14,7 @@ it('sends /start command', function () {
         ->assertReplyText(message('start'));
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'start',
-        'category' => 'command',
+        'action' => 'command.start',
     ]);
 });
 
@@ -26,8 +25,7 @@ it('sends /help command', function () {
         ->assertReplyText(message('start'));
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'help',
-        'category' => 'command',
+        'action' => 'command.help',
     ]);
 });
 
@@ -38,8 +36,7 @@ it('sends /about command', function () {
         ->assertReplyText(message('about'));
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'about',
-        'category' => 'command',
+        'action' => 'command.about',
     ]);
 });
 
@@ -83,8 +80,7 @@ it('sends /stats command with filled content', function () {
         ]));
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'stats',
-        'category' => 'command',
+        'action' => 'command.stats',
     ]);
 
     Cache::forget('stats');
@@ -97,8 +93,7 @@ it('sends /stats command with empty content', function () {
         ->assertReplyText(message('stats.empty'));
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'stats',
-        'category' => 'command',
+        'action' => 'command.stats',
     ]);
 });
 
@@ -115,8 +110,7 @@ it('sends /privacy command', function () {
         ]);
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'privacy',
-        'category' => 'command',
+        'action' => 'command.privacy',
     ]);
 });
 
@@ -137,7 +131,6 @@ it('sends /cancel command', function () {
         ->assertCalled('deleteMessage');
 
     $this->assertDatabaseHas('statistics', [
-        'action' => 'cancel',
-        'category' => 'command',
+        'action' => 'command.cancel',
     ]);
 });
