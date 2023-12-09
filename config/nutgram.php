@@ -9,7 +9,6 @@ return [
 
     // Extra or specific configurations
     'config' => [
-        'read_timeout' => 20,
         'timeout' => 20,
     ],
 

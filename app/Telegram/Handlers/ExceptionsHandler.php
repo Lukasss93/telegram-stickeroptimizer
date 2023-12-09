@@ -2,7 +2,6 @@
 
 namespace App\Telegram\Handlers;
 
-use App\Enums\ExceptionType;
 use SergiX44\Nutgram\Nutgram;
 use Throwable;
 
