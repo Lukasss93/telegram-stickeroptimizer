@@ -17,6 +17,12 @@ jobs:
           key: php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
           restore-keys: php-${{ matrix.php }}-composer-
 
+      - uses: shogo82148/actions-setup-mysql@v1
+        with:
+          distribution: "mariadb"
+          mysql-version: "10.7"
+          root-password: "root"
+
       - name: Setup PHP
         uses: shivammathur/setup-php@2.9.0
         with:
@@ -26,13 +32,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-suggest
-
-      - uses: shogo82148/actions-setup-mysql@v1
-        with:
-          distribution: "mariadb"
-          mysql-version: "10.7"
-          root-password: "root"
-      - run: mysql -u root -proot -e "CREATE DATABASE test;"
 
       - name: Execute tests
         env:
