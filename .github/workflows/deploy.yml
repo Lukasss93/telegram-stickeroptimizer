@@ -19,6 +19,13 @@ jobs:
           key: php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
           restore-keys: php-${{ matrix.php }}-composer-
 
+      - name: Setup MySQL
+        uses: shogo82148/actions-setup-mysql@v1
+        with:
+          distribution: "mariadb"
+          mysql-version: "10.7"
+          root-password: "root"
+
       - name: Setup PHP
         uses: shivammathur/setup-php@2.9.0
         with:
@@ -30,7 +37,14 @@ jobs:
         run: composer install --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests
-        run: composer run tests
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+        run: vendor/bin/pest --colors=always
 
   deploy:
     name: Deploy
