@@ -48,33 +48,27 @@ class Statistic extends Model
 
         // stickers optimized
         $stickersOptimizedYesterday = self::query()
-            ->where('action', 'sticker')
-            ->where('category', 'optimized')
+            ->where('action', 'sticker.optimized')
             ->whereBetween('collected_at', [$date->subDay()->startOfDay(), $date->subDay()->endOfDay()])
             ->count();
         $stickersOptimizedToday = self::query()
-            ->where('action', 'sticker')
-            ->where('category', 'optimized')
+            ->where('action', 'sticker.optimized')
             ->whereBetween('collected_at', [$date->startOfDay(), $date->endOfDay()])
             ->count();
         $stickersOptimizedWeek = self::query()
-            ->where('action', 'sticker')
-            ->where('category', 'optimized')
+            ->where('action', 'sticker.optimized')
             ->whereBetween('collected_at', [$date->startOfWeek(), $date->endOfWeek()])
             ->count();
         $stickersOptimizedMonth = self::query()
-            ->where('action', 'sticker')
-            ->where('category', 'optimized')
+            ->where('action', 'sticker.optimized')
             ->whereBetween('collected_at', [$date->startOfMonth(), $date->endOfMonth()])
             ->count();
         $stickersOptimizedYear = self::query()
-            ->where('action', 'sticker')
-            ->where('category', 'optimized')
+            ->where('action', 'sticker.optimized')
             ->whereBetween('collected_at', [$date->startOfYear(), $date->endOfYear()])
             ->count();
         $stickersOptimizedTotal = self::query()
-            ->where('action', 'sticker')
-            ->where('category', 'optimized')
+            ->where('action', 'sticker.optimized')
             ->count();
 
         //active users
