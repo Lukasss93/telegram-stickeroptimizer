@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->sentryMonitor(
+                monitorSlug: 'stickeroptimizer-stats_update',
                 checkInMargin: 1,
                 maxRuntime: 3,
             );
