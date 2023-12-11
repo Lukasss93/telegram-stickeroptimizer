@@ -31,7 +31,6 @@ class Kernel extends ConsoleKernel
             ->everyFiveMinutes()
             ->withoutOverlapping()
             ->sentryMonitor(
-                monitorSlug: 'stats_update',
                 checkInMargin: 1,
                 maxRuntime: 3,
             );

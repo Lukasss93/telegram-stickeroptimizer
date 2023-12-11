@@ -56,7 +56,7 @@ jobs:
       - name: Deploy to production server
         uses: appleboy/ssh-action@master
         with:
-          command_timeout: 60m
+          command_timeout: 120m
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASS }}
@@ -76,5 +76,4 @@ jobs:
             php8.2 artisan storage:link
             php8.2 artisan nutgram:register-commands
             php8.2 artisan up
-            php8.2 artisan stats:update
             echo 'DONE!'
