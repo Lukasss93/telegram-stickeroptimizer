@@ -4,8 +4,10 @@ namespace App\Telegram\Middleware;
 
 use App\Models\Chat;
 use Illuminate\Support\Facades\DB;
+use Sentry\State\Scope;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ChatType;
+use function Sentry\configureScope;
 
 class CollectChat
 {
@@ -39,6 +41,10 @@ class CollectChat
         });
 
         $bot->set(Chat::class, $chat);
+
+        configureScope(function(Scope $scope) use ($chat) {
+            $scope->setUser($chat->toArray());
+        });
 
         $next($bot);
     }
