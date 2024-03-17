@@ -62,18 +62,18 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           script: |
             cd ${{ secrets.PROJECT_PATH}}
-            php8.2 artisan down
+            php8.3 artisan down
             git reset --hard
             git fetch origin
             git pull "https://Lukasss93:${{ secrets.GIT_TOKEN }}@github.com/Lukasss93/telegram-stickeroptimizer.git" master
             wget https://getcomposer.org/download/latest-2.x/composer.phar -O composer.phar
-            php8.2 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
-            php8.2 artisan migrate --force --step
-            php8.2 artisan optimize:clear
-            php8.2 artisan optimize
-            php8.2 artisan view:cache
-            php8.2 artisan event:cache
-            php8.2 artisan storage:link
-            php8.2 artisan nutgram:register-commands
-            php8.2 artisan up
+            php8.3 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
+            php8.3 artisan migrate --force --step
+            php8.3 artisan optimize:clear
+            php8.3 artisan optimize
+            php8.3 artisan view:cache
+            php8.3 artisan event:cache
+            php8.3 artisan storage:link
+            php8.3 artisan nutgram:register-commands
+            php8.3 artisan up
             echo 'DONE!'
