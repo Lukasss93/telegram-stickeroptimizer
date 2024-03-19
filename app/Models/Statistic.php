@@ -33,9 +33,15 @@ use Illuminate\Support\Carbon;
 class Statistic extends Model
 {
     public $timestamps = false;
-    protected $dates = ['collected_at'];
-    protected $casts = ['value' => 'array'];
-    protected $guarded = [];
+    protected static $unguarded = true;
+
+    protected function casts(): array
+    {
+        return [
+            'value' => 'array',
+            'collected_at' => 'datetime',
+        ];
+    }
 
     public function chat(): BelongsTo
     {

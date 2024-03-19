@@ -47,10 +47,13 @@ class Chat extends Model
     public $incrementing = false;
     protected static $unguarded = true;
 
-    protected $casts = [
-        'started_at' => 'datetime',
-        'blocked_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'started_at' => 'datetime',
+            'blocked_at' => 'datetime',
+        ];
+    }
 
     protected bool $initSettings = true;
 
