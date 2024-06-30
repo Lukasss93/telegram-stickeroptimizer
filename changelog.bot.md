@@ -2,12 +2,19 @@
 
 All notable changes to this bot will be documented in this file.
 
+## v2.4 - 2024-06-30
+
+❇️ @newstickeroptimizerbot **Update v2.4** ❇️
+
+**Changelog:**<br>
+✂️ Added the ability to trim transparent areas<br>
+
 ## v2.3 - 2022-04-11
 
 ❇️ @newstickeroptimizerbot **Update v2.3** ❇️
 
 **Changelog:**<br>
-🖼 Added ability to change the template (sticker or icon pack)<br>
+🖼 Added the ability to change the template (sticker or icon pack)<br>
 🐞 Minor fixes and improvements<br>
 
 ## v2.2 - 2022-02-13
