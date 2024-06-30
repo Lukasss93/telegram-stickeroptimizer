@@ -33,32 +33,35 @@ class SettingsConversation extends InlineMenu
                 'language' => language($this->settings->get('language')),
                 'watermark' => $this->settings->get('watermark.opacity') > 0,
                 'template' => StickerTemplate::from($this->settings->get('template'))->getLabel(),
+                'trim' => $this->settings->get('trim'),
             ]), [
                 'parse_mode' => ParseMode::HTML,
                 'disable_web_page_preview' => true,
             ])->addButtonRow(
                 InlineKeyboardButton::make(
-                    !$this->settings->get('news') ? trans('settings.enable_news') : trans('settings.disable_news'),
+                    text: !$this->settings->get('news') ? trans('settings.enable_news') : trans('settings.disable_news'),
                     callback_data: 'settings:news@handleNews'),
-            )->addButtonRow(
                 InlineKeyboardButton::make(
-                    trans('settings.language.title'),
+                    text: trans('settings.language.title'),
                     callback_data: 'settings:languages@handleLanguages'
                 )
             )->addButtonRow(
                 InlineKeyboardButton::make(
-                    trans('settings.watermark.title'),
+                    text: trans('settings.watermark.title'),
                     callback_data: 'settings:watermark@handleWatermark'
-                )
-            )
-            ->addButtonRow(
+                ),
                 InlineKeyboardButton::make(
-                    trans('settings.template.change'),
+                    text: trans('settings.template.change'),
                     callback_data: 'settings:template@handleTemplate'
                 )
             )->addButtonRow(
                 InlineKeyboardButton::make(
-                    '❌ '.trans('common.close'),
+                    text: !$this->settings->get('trim') ? trans('settings.trim.enable') : trans('settings.trim.disable'),
+                    callback_data: 'settings:trim@handleTrim'
+                ),
+            )->addButtonRow(
+                InlineKeyboardButton::make(
+                    text: '❌ '.trans('common.close'),
                     callback_data: 'settings:cancel@end')
             )->showMenu();
 
@@ -342,6 +345,15 @@ class SettingsConversation extends InlineMenu
             'template',
             $current === StickerTemplate::STICKER() ? StickerTemplate::ICON() : StickerTemplate::STICKER()
         );
+
+        $this->start($bot);
+    }
+
+    protected function handleTrim(Nutgram $bot): void
+    {
+        $this->settings->set('trim', !$this->settings->get('trim'));
+
+        stats('settings.trim', ['status' => $this->settings->get('trim')]);
 
         $this->start($bot);
     }

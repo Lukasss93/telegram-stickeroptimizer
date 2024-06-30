@@ -11,11 +11,11 @@ use SergiX44\Nutgram\Testing\FakeNutgram;
 beforeEach(function () {
     $this->mainMenu = function (): FakeNutgram {
         $keyboard = InlineKeyboardMarkup::make()
-            ->addRow(InlineKeyboardButton::make(
-                text: trans('settings.disable_news'),
-                callback_data: 'settings:news')
-            )
             ->addRow(
+                InlineKeyboardButton::make(
+                text: trans('settings.disable_news'),
+                callback_data: 'settings:news'
+                ),
                 InlineKeyboardButton::make(
                     text: trans('settings.language.title'),
                     callback_data: 'settings:languages'
@@ -24,13 +24,16 @@ beforeEach(function () {
                 InlineKeyboardButton::make(
                     text: trans('settings.watermark.title'),
                     callback_data: 'settings:watermark'
-                )
-            )
-            ->addRow(
+                ),
                 InlineKeyboardButton::make(
                     text: trans('settings.template.change'),
                     callback_data: 'settings:template'
                 )
+            )->addRow(
+                InlineKeyboardButton::make(
+                    text: trans('settings.trim.enable'),
+                    callback_data: 'settings:trim'
+                ),
             )->addRow(
                 InlineKeyboardButton::make(
                     text: '❌ '.trans('common.close'),
@@ -56,6 +59,7 @@ beforeEach(function () {
                     'language' => language($this->chat->settings()->get('language')),
                     'watermark' => $this->chat->settings()->get('watermark.opacity') > 0,
                     'template' => StickerTemplate::from($this->chat->settings()->get('template'))->getLabel(),
+                    'trim' => $this->chat->settings()->get('trim'),
                 ]),
                 'parse_mode' => ParseMode::HTML,
                 'disable_web_page_preview' => true,
@@ -163,6 +167,22 @@ it('clicks on news button', function () {
     $this->assertDatabaseHas('statistics', [
         'action' => 'settings.news',
         'value' => json_encode(['status' => $this->chat->settings()->get('news')]),
+    ]);
+});
+
+it('clicks on trim button', function () {
+    botFromCallable($this->mainMenu)
+        ->hearCallbackQueryData('settings:trim')
+        ->reply()
+        ->assertReply('editMessageText')
+        ->assertReply('answerCallbackQuery', index: 1)
+        ->assertActiveConversation();
+
+    expect($this->chat->settings()->get('news'))->toBe(true);
+
+    $this->assertDatabaseHas('statistics', [
+        'action' => 'settings.trim',
+        'value' => json_encode(['status' => $this->chat->settings()->get('trim')]),
     ]);
 });
 

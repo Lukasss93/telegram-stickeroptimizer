@@ -26,5 +26,9 @@ return [
         'icon' => 'Icona',
         'change' => '🖼 Cambia template',
     ],
+    'trim' => [
+        'enable' => '✂️ Ritaglia aree trasparenti',
+        'disable' => '✂️ Non ritagliare aree trasparenti',
+    ],
 
 ];

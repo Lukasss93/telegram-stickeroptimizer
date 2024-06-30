@@ -26,5 +26,9 @@ return [
         'icon' => 'Icon',
         'change' => '🖼 Change template',
     ],
+    'trim' => [
+        'enable' => '✂️ Trim transparent areas',
+        'disable' => '✂️ Do not trim transparent areas',
+    ],
 
 ];

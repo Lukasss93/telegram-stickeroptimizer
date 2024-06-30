@@ -7,6 +7,7 @@ use App\Enums\TelegramLimit;
 use App\Exceptions\TooLargeFileException;
 use App\Facades\ImageUtils;
 use App\ImageFilters\ScaleFilter;
+use App\ImageFilters\TrimTransparentPixelsFilter;
 use App\ImageFilters\WatermarkFilter;
 use App\Models\Chat;
 use Illuminate\Bus\Queueable;
@@ -82,6 +83,9 @@ class OptimizeStickerJob implements ShouldQueue
 
             //load image
             $image = Image::make($file->url());
+
+            //remove adjacent transparent pixels
+            $image->filter(TrimTransparentPixelsFilter::make($chatSettings));
 
             //scale image
             $image->filter(ScaleFilter::make(StickerTemplate::from($chatSettings->get('template'))));

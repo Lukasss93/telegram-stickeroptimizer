@@ -76,6 +76,7 @@ class Chat extends Model
                 ],
             ],
             'template' => 'sticker',
+            'trim' => false,
         ];
     }
 
