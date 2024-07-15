@@ -1,0 +1,19 @@
+#1 nano /etc/systemd/system/stickeroptimizer.video@.service
+
+[Unit]
+Description=Sticker Optimizer Video Optimizer Worker #%i
+StartLimitBurst=0
+
+[Service]
+Restart=always
+WorkingDirectory=/yourfolder
+ExecStart=/bin/sh -c '/usr/bin/php8.3 artisan queue:work --queue=video --memory=1024 >> ./storage/logs/worker-video-%i.log'
+User=stickeroptimizer
+Group=stickeroptimizer
+
+[Install]
+WantedBy=default.target
+
+#2 systemctl enable stickeroptimizer.video\@{1..3}.service
+#3 systemctl daemon-reload
+#4 systemctl start stickeroptimizer.video\@{1..3}.service
