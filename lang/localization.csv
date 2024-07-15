@@ -40,7 +40,7 @@ feedback,thanks,Thank you for your feedback!,Grazie per il tuo feedback!,Dzięku
 feedback,wrong,Invalid content. Please send only text.,Contenuto invalido. Per favore inserisci solo del testo.,Nieprawidłowa zawartość. Proszę wprowadzić tylko tekst.
 donate,donation,Donation,Donazione,Darowizna
 donate,support_by_donating,Support this bot by donating,Supporta questo bot donando,Wspomóż tego bota poprzez dotację
-donate,select_amount,Select the amount you wish to donate:,Seleziona la quantità che desideri donare:,"Wybierz kwotę, jaką chcesz przekazać:"
+donate,select_amount,Enter the number of Telegram Stars you would like to donate:,Inserisci il numero di Telegram Stars che desideri donare:,"Wprowadź liczbę gwiazdek Telegram, które chcesz przekazać:"
 donate,consider_donation,"If you want to support my work, please consider making a donation.","Se vuoi supportare il mio lavoro, per favore considera una donazione.","Jeśli chcesz wesprzeć moją pracę, rozważ przekazanie darowizny."
 donate,appreciated,That'll be very much appreciated 😊,Verrà molto apprezzato 😊,To będzie bardzo miłe 😊
 donate,terms,Terms and conditions for donation payments,Termini e condizioni per le donazioni,Zasady i warunki płatności darowizn
@@ -93,3 +93,4 @@ stats,range.year,This year: :value,Quest'anno: :value,
 stats,range.yesterday,Yesterday: :value,Ieri: :value,
 settings,trim.enable,✂️ Trim transparent areas,✂️ Ritaglia aree trasparenti,
 settings,trim.disable,✂️ Do not trim transparent areas,✂️ Non ritagliare aree trasparenti,
+donate,invalid,Please enter a number greater than 0.,Inserire un numero maggiore di 0.,Wprowadź liczbę większą niż 0.
