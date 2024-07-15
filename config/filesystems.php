@@ -60,6 +60,11 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/temp'),
         ],
+
+        'converted' => [
+            'driver' => 'local',
+            'root' => storage_path('app/converted'),
+        ],
     ],
 
     /*
