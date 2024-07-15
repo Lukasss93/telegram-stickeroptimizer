@@ -25,9 +25,11 @@ class ScaleFilter implements FilterInterface
      */
     public function applyFilter(Image $image): Image
     {
+        $side = $this->template->getSide();
+
         return match ($this->template) {
-            StickerTemplate::STICKER => $image->resize(512, 512, fn ($rule) => $rule->aspectRatio()),
-            StickerTemplate::ICON => $image->resize(100, 100),
+            StickerTemplate::STICKER => $image->resize($side, $side, fn ($rule) => $rule->aspectRatio()),
+            StickerTemplate::ICON => $image->resize($side, $side),
         };
     }
 }

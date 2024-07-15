@@ -22,4 +22,12 @@ enum StickerTemplate: string
             self::ICON => trans('settings.template.icon').' (100x100)',
         };
     }
+
+    public function getSide(): int
+    {
+        return match ($this) {
+            self::STICKER => 512,
+            self::ICON => 100,
+        };
+    }
 }

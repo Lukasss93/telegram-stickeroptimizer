@@ -39,6 +39,15 @@ class DocumentHandler
             return;
         }
 
-        OptimizeVideoStickerJob::dispatch($bot->chatId(), $replyID, $fileID);
+        //send status message
+        $statusMessage = $bot->sendMessage(
+            text: trans('optimize.running'),
+            chat_id: $bot->chatId(),
+            reply_to_message_id: $replyID,
+            allow_sending_without_reply: true,
+        );
+
+        OptimizeVideoStickerJob::dispatch($bot->chatId(), $replyID, $fileID, $statusMessage?->message_id)
+            ->onQueue('video');
     }
 }

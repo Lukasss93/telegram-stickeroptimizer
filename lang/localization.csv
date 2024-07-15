@@ -94,3 +94,5 @@ stats,range.yesterday,Yesterday: :value,Ieri: :value,
 settings,trim.enable,✂️ Trim transparent areas,✂️ Ritaglia aree trasparenti,
 settings,trim.disable,✂️ Do not trim transparent areas,✂️ Non ritagliare aree trasparenti,
 donate,invalid,Please enter a number greater than 0.,Inserire un numero maggiore di 0.,Wprowadź liczbę większą niż 0.
+optimize,running,Optimizing the file...,Sto ottimizzando il file...,Optymalizacja pliku...
+optimize,error,Optimization failed.,Ottimizzazione fallita.,Optymalizacja nie powiodła się.

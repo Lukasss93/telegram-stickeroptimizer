@@ -30,7 +30,7 @@ $bot->onMyChatMember(Handlers\UpdateChatStatusHandler::class);
 $bot->onSticker(Handlers\StickerHandler::class);
 $bot->onDocument(Handlers\DocumentHandler::class);
 $bot->onAnimation(Handlers\AnimationHandler::class);
-$bot->onAnimation(Handlers\VideoHandler::class);
+$bot->onVideo(Handlers\VideoHandler::class);
 $bot->onPhoto(Handlers\PhotoHandler::class);
 $bot->onPreCheckoutQuery(Handlers\PreCheckoutQueryHandler::class);
 $bot->onSuccessfulPayment(Handlers\SuccessfulPaymentHandler::class);
