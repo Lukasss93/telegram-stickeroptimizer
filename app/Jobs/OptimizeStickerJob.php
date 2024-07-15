@@ -16,9 +16,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Str;
-use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Facades\Image;
+use InvalidArgumentException;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ChatAction;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
@@ -29,23 +29,12 @@ class OptimizeStickerJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private int $chatID;
-    private int $replyID;
-    private string $fileID;
-    private int $fileSize;
-
-    /**
-     * @param int $chatID
-     * @param int $replyID
-     * @param string $fileID
-     * @param int $fileSize
-     */
-    public function __construct(int $chatID, int $replyID, string $fileID, int $fileSize)
-    {
-        $this->chatID = $chatID;
-        $this->replyID = $replyID;
-        $this->fileID = $fileID;
-        $this->fileSize = $fileSize;
+    public function __construct(
+        protected int $chatID,
+        protected int $replyID,
+        protected string $fileID,
+        protected int $fileSize,
+    ) {
     }
 
     /**
