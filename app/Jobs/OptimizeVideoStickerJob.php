@@ -133,6 +133,9 @@ class OptimizeVideoStickerJob implements ShouldQueue
                 reply_to_message_id: $this->replyID,
                 allow_sending_without_reply: true,
             );
+
+            //save statistic
+            stats('video.optimized');
         } catch (Throwable $e) {
             report($e);
             $bot->sendMessage(
