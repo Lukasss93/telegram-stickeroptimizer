@@ -68,5 +68,6 @@ jobs:
             php8.3 artisan event:cache
             php8.3 artisan storage:link
             php8.3 artisan nutgram:register-commands
+            php8.3 artisan queue:restart
             php8.3 artisan up
             echo 'DONE!'
