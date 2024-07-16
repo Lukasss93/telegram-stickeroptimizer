@@ -2,9 +2,21 @@
 
 All notable changes to this bot will be documented in this file.
 
+
+## v2.5 - 2024-07-17
+
+❇️ **@newstickeroptimizerbot NEWS**
+❇️ **Update v2.5**
+
+**Changelog:**<br>
+🎬 Added the ability to optimize video files<br>
+⭐ Reactivated the /donate command<br>
+
+
 ## v2.4 - 2024-06-30
 
-❇️ @newstickeroptimizerbot **Update v2.4** ❇️
+❇️ **@newstickeroptimizerbot NEWS**
+❇️ **Update v2.4**
 
 **Changelog:**<br>
 ✂️ Added the ability to trim transparent areas<br>
