@@ -50,6 +50,14 @@ it('sends /stats command with filled content', function () {
             'year' => 0,
             'total' => 0,
         ],
+        'videos_optimized' => [
+            'yesterday' => 0,
+            'today' => 0,
+            'week' => 0,
+            'month' => 0,
+            'year' => 0,
+            'total' => 0,
+        ],
         'active_users' => [
             'yesterday' => 0,
             'today' => 0,
@@ -74,7 +82,7 @@ it('sends /stats command with filled content', function () {
         ->hearText('/stats')
         ->reply()
         ->assertReplyText(message('stats.template', [
-            'title' => __('stats.category.optimized'),
+            'title' => __('stats.category.optimized.stickers'),
             ...$stats['stickers_optimized'],
             'lastUpdate' => $stats['last_update'],
         ]));
