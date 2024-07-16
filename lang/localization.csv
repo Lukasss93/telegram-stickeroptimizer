@@ -47,7 +47,8 @@ donate,terms,Terms and conditions for donation payments,Termini e condizioni per
 donate,thanks,Thank you for your donation!,Grazie per la tua donazione!,Dziękujemy za wsparcie!
 donate,with,Donate with :service,Dona con :service,Wesprzyj za pomocą :service
 stats,title,📊 Statistics,📊 Statistiche,📊 Statystyki
-stats,category.optimized,🖼 Stickers optimized,🖼 Sticker ottimizzati,🖼 Naklejki zoptymalizowane
+stats,category.optimized.stickers,🖼 Stickers optimized,🖼 Sticker ottimizzati,🖼 Naklejki zoptymalizowane
+stats,category.optimized.videos,🎬 Videos optimized,🎬 Video ottimizzati,🎬 Zoptymalizowane naklejki
 stats,category.new_users,👥 Users,👥 Utenti,👥 Wszyscy
 stats,category.active_users,✳️ Active users,✳️ Utenti attivi,✳️ Aktywni użytkownicy
 stats,last_update,Last update:,Ultimo aggiornamento:,Ostatnia aktualizacja:

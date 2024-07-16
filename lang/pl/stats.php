@@ -4,7 +4,10 @@ return [
 
     'title' => '📊 Statystyki',
     'category' => [
-        'optimized' => '🖼 Naklejki zoptymalizowane',
+        'optimized' => [
+            'stickers' => '🖼 Naklejki zoptymalizowane',
+            'videos' => '🎬 Zoptymalizowane naklejki',
+        ],
         'new_users' => '👥 Wszyscy',
         'active_users' => '✳️ Aktywni użytkownicy',
     ],

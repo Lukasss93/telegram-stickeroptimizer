@@ -77,6 +77,31 @@ class Statistic extends Model
             ->where('action', 'sticker.optimized')
             ->count();
 
+        // videos optimized
+        $videosOptimizedYesterday = self::query()
+            ->where('action', 'video.optimized')
+            ->whereBetween('collected_at', [$date->subDay()->startOfDay(), $date->subDay()->endOfDay()])
+            ->count();
+        $videosOptimizedToday = self::query()
+            ->where('action', 'video.optimized')
+            ->whereBetween('collected_at', [$date->startOfDay(), $date->endOfDay()])
+            ->count();
+        $videosOptimizedWeek = self::query()
+            ->where('action', 'video.optimized')
+            ->whereBetween('collected_at', [$date->startOfWeek(), $date->endOfWeek()])
+            ->count();
+        $videosOptimizedMonth = self::query()
+            ->where('action', 'video.optimized')
+            ->whereBetween('collected_at', [$date->startOfMonth(), $date->endOfMonth()])
+            ->count();
+        $videosOptimizedYear = self::query()
+            ->where('action', 'video.optimized')
+            ->whereBetween('collected_at', [$date->startOfYear(), $date->endOfYear()])
+            ->count();
+        $videosOptimizedTotal = self::query()
+            ->where('action', 'video.optimized')
+            ->count();
+
         //active users
         $activeUsersYesterday = self::query()
             ->distinct()
@@ -130,6 +155,14 @@ class Statistic extends Model
                 'month' => number_format($stickersOptimizedMonth, thousands_separator: '˙'),
                 'year' => number_format($stickersOptimizedYear, thousands_separator: '˙'),
                 'total' => number_format($stickersOptimizedTotal, thousands_separator: '˙'),
+            ],
+            'videos_optimized' => [
+                'yesterday' => number_format($videosOptimizedYesterday, thousands_separator: '˙'),
+                'today' => number_format($videosOptimizedToday, thousands_separator: '˙'),
+                'week' => number_format($videosOptimizedWeek, thousands_separator: '˙'),
+                'month' => number_format($videosOptimizedMonth, thousands_separator: '˙'),
+                'year' => number_format($videosOptimizedYear, thousands_separator: '˙'),
+                'total' => number_format($videosOptimizedTotal, thousands_separator: '˙'),
             ],
             'active_users' => [
                 'yesterday' => number_format($activeUsersYesterday, thousands_separator: '˙'),

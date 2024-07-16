@@ -64,7 +64,8 @@ class StatsCommand extends Command
     protected function getMessage(array $data, string $value): string
     {
         $title = match ($value) {
-            'stickers_optimized' => __('stats.category.optimized'),
+            'stickers_optimized' => __('stats.category.optimized.stickers'),
+            'videos_optimized' => __('stats.category.optimized.videos'),
             'active_users' => __('stats.category.active_users'),
             'users' => __('stats.category.new_users'),
         };
@@ -80,7 +81,8 @@ class StatsCommand extends Command
     {
         return InlineKeyboardMarkup::make()
             ->addRow(
-                InlineKeyboardButton::make(__('stats.category.optimized'), callback_data: 'stats:stickers_optimized'),
+                InlineKeyboardButton::make(__('stats.category.optimized.stickers'), callback_data: 'stats:stickers_optimized'),
+                InlineKeyboardButton::make(__('stats.category.optimized.videos'), callback_data: 'stats:videos_optimized'),
             )->addRow(
                 InlineKeyboardButton::make(__('stats.category.active_users'), callback_data: 'stats:active_users'),
                 InlineKeyboardButton::make(__('stats.category.new_users'), callback_data: 'stats:users'),

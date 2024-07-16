@@ -4,7 +4,10 @@ return [
 
     'title' => '📊 Statistiche',
     'category' => [
-        'optimized' => '🖼 Sticker ottimizzati',
+        'optimized' => [
+            'stickers' => '🖼 Sticker ottimizzati',
+            'videos' => '🎬 Video ottimizzati',
+        ],
         'new_users' => '👥 Utenti',
         'active_users' => '✳️ Utenti attivi',
     ],
