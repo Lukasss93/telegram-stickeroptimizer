@@ -67,7 +67,7 @@ class OptimizeVideoStickerJob implements ShouldQueue
 
             //output format
             $format = new WebM(videoCodec: 'libvpx-vp9');
-            $format->setKiloBitrate((self::FILESIZE_LIMIT * 8) / self::LENGTH_LIMIT);
+            $format->setKiloBitrate(self::FILESIZE_LIMIT);
 
             //open file
             $ffmpeg = FFMpeg::openUrl($file->url(), []);
