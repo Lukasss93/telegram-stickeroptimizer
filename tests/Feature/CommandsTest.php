@@ -43,40 +43,47 @@ it('sends /about command', function () {
 it('sends /stats command with filled content', function () {
     $stats = [
         'stickers_optimized' => [
-            'yesterday' => 0,
             'today' => 0,
-            'week' => 0,
-            'month' => 0,
+            'yesterday' => 0,
+            'last_7_days' => 0,
+            'last_30_days' => 0,
             'year' => 0,
             'total' => 0,
+            'last_update' => '0',
         ],
         'videos_optimized' => [
-            'yesterday' => 0,
             'today' => 0,
-            'week' => 0,
-            'month' => 0,
+            'yesterday' => 0,
+            'last_7_days' => 0,
+            'last_30_days' => 0,
             'year' => 0,
             'total' => 0,
+            'last_update' => '0',
         ],
         'active_users' => [
-            'yesterday' => 0,
             'today' => 0,
-            'week' => 0,
-            'month' => 0,
+            'yesterday' => 0,
+            'last_7_days' => 0,
+            'last_30_days' => 0,
             'year' => 0,
+            'total' => null,
+            'last_update' => '0',
         ],
         'users' => [
-            'yesterday' => 0,
             'today' => 0,
-            'week' => 0,
-            'month' => 0,
+            'yesterday' => 0,
+            'last_7_days' => 0,
+            'last_30_days' => 0,
             'year' => 0,
             'total' => 0,
+            'last_update' => '0',
         ],
-        'last_update' => '0',
     ];
 
-    Cache::put('stats', $stats);
+    Cache::put('stats.stickers_optimized', $stats['stickers_optimized']);
+    Cache::put('stats.videos_optimized', $stats['videos_optimized']);
+    Cache::put('stats.active_users', $stats['active_users']);
+    Cache::put('stats.users', $stats['users']);
 
     bot()
         ->hearText('/stats')
@@ -84,7 +91,6 @@ it('sends /stats command with filled content', function () {
         ->assertReplyText(message('stats.template', [
             'title' => __('stats.category.optimized.stickers'),
             ...$stats['stickers_optimized'],
-            'lastUpdate' => $stats['last_update'],
         ]));
 
     $this->assertDatabaseHas('statistics', [
@@ -98,7 +104,9 @@ it('sends /stats command with empty content', function () {
     bot()
         ->hearText('/stats')
         ->reply()
-        ->assertReplyText(message('stats.empty'));
+        ->assertReplyText(message('stats.empty', [
+            'title' => __('stats.category.optimized.stickers'),
+        ]));
 
     $this->assertDatabaseHas('statistics', [
         'action' => 'command.stats',
