@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use LaracraftTech\LaravelDateScopes\DateScopes;
 use Lukasss93\ModelSettings\Traits\HasSettingsTable;
 use SergiX44\Nutgram\Telegram\Types\User\User;
 
@@ -41,6 +42,7 @@ class Chat extends Model
 {
     use HasFactory;
     use HasSettingsTable;
+    use DateScopes;
 
     protected $primaryKey = 'chat_id';
     protected $keyType = 'string';

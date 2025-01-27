@@ -19,6 +19,7 @@
         "chillerlan/php-qrcode": "^4.3",
         "guzzlehttp/guzzle": "^7.4",
         "intervention/image": "^2.7",
+        "laracraft-tech/laravel-date-scopes": "^2.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",

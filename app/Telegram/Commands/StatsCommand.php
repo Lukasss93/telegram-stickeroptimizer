@@ -2,12 +2,10 @@
 
 namespace App\Telegram\Commands;
 
-use Illuminate\Support\Facades\Cache;
+use App\Enums\Stats;
 use SergiX44\Nutgram\Handlers\Type\Command;
 use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
-use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardButton;
-use SergiX44\Nutgram\Telegram\Types\Keyboard\InlineKeyboardMarkup;
 
 class StatsCommand extends Command
 {
@@ -17,75 +15,47 @@ class StatsCommand extends Command
 
     public function handle(Nutgram $bot): void
     {
-        $data = Cache::get('stats');
-
-        if ($data === null) {
-            $bot->sendMessage(
-                text: message('stats.empty'),
-                parse_mode: ParseMode::HTML,
-            );
-
-            stats('command.stats');
-
-            return;
-        }
+        [$message, $keyboard] = $this->renderMessage('stickers_optimized');
 
         $bot->sendMessage(
-            text: $this->getMessage($data, 'stickers_optimized'),
+            text: $message,
             parse_mode: ParseMode::HTML,
-            reply_markup: $this->getKeyboard(),
+            reply_markup: $keyboard,
         );
 
         stats('command.stats');
     }
 
-    public function updateStatsMessage(Nutgram $bot, string $value)
+    public function updateStatsMessage(Nutgram $bot, string $value): void
     {
-        $data = Cache::get('stats');
-
-        if ($data === null) {
-            $bot->editMessageText(
-                text: message('stats.empty'),
-                parse_mode: ParseMode::HTML,
-            );
-
-            return;
-        }
+        [$message, $keyboard] = $this->renderMessage($value);
 
         $bot->editMessageText(
-            text: $this->getMessage($data, $value),
+            text: $message,
             parse_mode: ParseMode::HTML,
-            reply_markup: $this->getKeyboard(),
+            reply_markup: $keyboard,
         );
 
         $bot->answerCallbackQuery();
     }
 
-    protected function getMessage(array $data, string $value): string
+    protected function renderMessage(string $value): array
     {
-        $title = match ($value) {
-            'stickers_optimized' => __('stats.category.optimized.stickers'),
-            'videos_optimized' => __('stats.category.optimized.videos'),
-            'active_users' => __('stats.category.active_users'),
-            'users' => __('stats.category.new_users'),
-        };
+        $stats = Stats::from($value);
 
-        return message('stats.template', [
-            'title' => $title,
-            ...$data[$value],
-            'lastUpdate' => $data['last_update'],
-        ]);
-    }
+        if (!$stats->isCached()) {
+            return [
+                message('stats.empty', ['title' => $stats->title(),]),
+                Stats::keyboard(),
+            ];
+        }
 
-    protected function getKeyboard(): InlineKeyboardMarkup
-    {
-        return InlineKeyboardMarkup::make()
-            ->addRow(
-                InlineKeyboardButton::make(__('stats.category.optimized.stickers'), callback_data: 'stats:stickers_optimized'),
-                InlineKeyboardButton::make(__('stats.category.optimized.videos'), callback_data: 'stats:videos_optimized'),
-            )->addRow(
-                InlineKeyboardButton::make(__('stats.category.active_users'), callback_data: 'stats:active_users'),
-                InlineKeyboardButton::make(__('stats.category.new_users'), callback_data: 'stats:users'),
-            );
+        return [
+            message('stats.template', [
+                'title' => $stats->title(),
+                ...$stats->data(),
+            ]),
+            Stats::keyboard(),
+        ];
     }
 }

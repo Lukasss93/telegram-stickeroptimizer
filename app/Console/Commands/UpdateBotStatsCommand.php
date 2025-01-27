@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Statistic;
+use App\Enums\Stats;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
 
 class UpdateBotStatsCommand extends Command
 {
@@ -16,7 +15,7 @@ class UpdateBotStatsCommand extends Command
     {
         $this->warn('Updating bot stats...');
 
-        Cache::put('stats', Statistic::getStatsForBot());
+        Stats::cache();
 
         $this->info('Bot stats updated successfully.');
 

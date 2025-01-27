@@ -14,12 +14,12 @@ return [
     'last_update' => 'Last update:',
     'wait' => 'Please wait next statistics update.',
     'range' => [
-        'month' => 'This month: :value',
         'today' => 'Today: :value',
-        'total' => 'Total: :value',
-        'week' => 'This week: :value',
-        'year' => 'This year: :value',
         'yesterday' => 'Yesterday: :value',
+        'last_7_days' => 'Last 7 days: :value',
+        'last_30_days' => 'Last 30 days: :value',
+        'year' => 'This year: :value',
+        'total' => 'Total: :value',
     ],
 
 ];
