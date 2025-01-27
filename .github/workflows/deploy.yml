@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@2.30.0
         with:
-          php-version: 8.3
+          php-version: 8.4
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: xdebug
 
@@ -55,19 +55,20 @@ jobs:
           password: ${{ secrets.SSH_PASS }}
           script: |
             cd ${{ secrets.PROJECT_PATH}}
-            php8.3 artisan down
+            php8.4 artisan down
             git reset --hard
             git fetch origin
             git pull "https://Lukasss93:${{ secrets.GIT_TOKEN }}@github.com/Lukasss93/telegram-stickeroptimizer.git" master
             wget https://getcomposer.org/download/latest-2.x/composer.phar -O composer.phar
-            php8.3 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
-            php8.3 artisan migrate --force --step
-            php8.3 artisan optimize:clear
-            php8.3 artisan optimize
-            php8.3 artisan view:cache
-            php8.3 artisan event:cache
-            php8.3 artisan storage:link
-            php8.3 artisan nutgram:register-commands
-            php8.3 artisan queue:restart
-            php8.3 artisan up
+            php8.4 composer.phar install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-progress
+            php8.4 artisan migrate --force --step
+            php8.4 artisan optimize:clear
+            php8.4 artisan optimize
+            php8.4 artisan view:cache
+            php8.4 artisan event:cache
+            php8.4 artisan storage:link
+            php8.4 artisan nutgram:register-commands
+            php8.4 artisan queue:restart
+            php8.4 artisan up
+            php8.4 artisan stats:update
             echo 'DONE!'
