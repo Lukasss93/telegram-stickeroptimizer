@@ -1,4 +1,4 @@
-FROM chialab/php-dev:8.3-apache
+FROM chialab/php-dev:8.4-apache
 
 # install ffmpeg
 RUN apt update && apt install -y ffmpeg
