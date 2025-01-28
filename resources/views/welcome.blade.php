@@ -47,7 +47,8 @@
 
                     <div class="ml-12">
                         <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                            @lang('start.description')
+                            <p>@lang('start.description.sticker')</p>
+                            <p class="mt-2">@lang('start.description.video')</p>
                         </div>
                     </div>
                 </div>
