@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\ExtraDateScopes;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,7 @@ use LaracraftTech\LaravelDateScopes\DateScopes;
 class Statistic extends Model
 {
     use DateScopes;
+    use ExtraDateScopes;
 
     public $timestamps = false;
     protected static $unguarded = true;

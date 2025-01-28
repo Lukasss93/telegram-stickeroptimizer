@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\ExtraDateScopes;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,6 +44,7 @@ class Chat extends Model
     use HasFactory;
     use HasSettingsTable;
     use DateScopes;
+    use ExtraDateScopes;
 
     protected $primaryKey = 'chat_id';
     protected $keyType = 'string';
