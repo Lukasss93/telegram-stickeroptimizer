@@ -33,6 +33,11 @@ enum Stats: string
         return Cache::has(sprintf('%s.%s', self::CACHE_KEY, $this->value));
     }
 
+    public function clearCache(): void
+    {
+        Cache::forget(sprintf('%s.%s', self::CACHE_KEY, $this->value));
+    }
+
     public function data(): array
     {
         return Cache::rememberForever(sprintf('%s.%s', self::CACHE_KEY, $this->value), function () {
@@ -97,6 +102,7 @@ enum Stats: string
     public static function cache(): void
     {
         foreach (self::cases() as $stats) {
+            $stats->clearCache();
             $stats->data();
         }
     }
