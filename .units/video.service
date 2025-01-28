@@ -7,7 +7,7 @@ StartLimitBurst=0
 [Service]
 Restart=always
 WorkingDirectory=/yourfolder
-ExecStart=/bin/sh -c '/usr/bin/php8.3 artisan queue:work --queue=video --memory=1024 >> ./storage/logs/worker-video-%i.log'
+ExecStart=/bin/sh -c '/usr/bin/php8.4 artisan queue:work --queue=video --memory=1024 >> ./storage/logs/worker-video-%i.log'
 User=stickeroptimizer
 Group=stickeroptimizer
 
