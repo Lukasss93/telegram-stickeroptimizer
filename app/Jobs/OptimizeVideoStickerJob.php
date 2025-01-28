@@ -39,6 +39,7 @@ class OptimizeVideoStickerJob implements ShouldQueue
         protected string $fileID,
         protected ?int $statusMessageId,
     ) {
+        $this->onQueue('video');
     }
 
     public function handle(Nutgram $bot): void
