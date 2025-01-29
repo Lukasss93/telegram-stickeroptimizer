@@ -33,7 +33,7 @@
 - GIT
 
 ## 🗃️ Flow chart
-![flow](.assets/flow/flow.png)
+![flow](.assets/flow.png)
 
 ## 🚀 First deploy
 
