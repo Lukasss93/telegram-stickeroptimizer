@@ -21,7 +21,7 @@
 
 - Apache / nginx
 - SSL support
-- PHP ≥ 8.3
+- PHP ≥ 8.4
     - ext-json
     - ext-pdo
     - ext-gd
