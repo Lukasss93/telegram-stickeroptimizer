@@ -23,7 +23,9 @@ use SergiX44\Nutgram\Nutgram;
 use SergiX44\Nutgram\Telegram\Properties\ChatAction;
 use SergiX44\Nutgram\Telegram\Properties\ParseMode;
 use SergiX44\Nutgram\Telegram\Types\Internal\InputFile;
+use SergiX44\Nutgram\Telegram\Types\Media\File;
 use Throwable;
+use Intervention\Image\Image as InterventionImage;
 
 class OptimizeStickerJob implements ShouldQueue
 {
@@ -71,7 +73,7 @@ class OptimizeStickerJob implements ShouldQueue
             $chatSettings = Chat::find($this->chatID)?->settings();
 
             //load image
-            $image = Image::make($file->url());
+            $image = $this->loadImage($file);
 
             //remove adjacent transparent pixels
             $image->filter(TrimTransparentPixelsFilter::make($chatSettings));
@@ -114,8 +116,20 @@ class OptimizeStickerJob implements ShouldQueue
                 reply_to_message_id: $this->replyID,
                 allow_sending_without_reply: true,
             );
-        } catch (Throwable) {
+        } catch (Throwable $e) {
             $bot->sendMessage(trans('common.invalid_file'));
+            report($e);
+        }
+    }
+
+    protected function loadImage(File $file): InterventionImage
+    {
+        try {
+            // load via URL
+            return Image::make($file->url());
+        } catch (NotReadableException) {
+            // load via download stream
+            return Image::make(fopen($file->url(), 'rb'));
         }
     }
 }
